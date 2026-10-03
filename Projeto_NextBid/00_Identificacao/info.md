@@ -1,14 +1,14 @@
 # 1. Título do projeto
-NextBid
+## NextBid
 
 # 2. Ano letivo
-2026-2027
+## 2026-2027
 
 # 3. Semestre
-5º Semestre
+## 5º Semestre
 
 # 4. Curso(s) envolvidos
-Licenciatura em Engenharia Informática
+## Licenciatura em Engenharia Informática
 
 # 5. Unidades curriculares e 6. Docentes
 * **Projeto de Desenvolvimento de Software:** Miguel Boavida
