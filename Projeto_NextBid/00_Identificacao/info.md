@@ -24,10 +24,17 @@
 * **Rodrigo Toscano Daibert** | Número: 20241750 | Contacto: 20241750@iade.pt
 
 # 8. Palavras-chave
-Leilões On-line, Sistemas Distribuídos, Tolerância a Faltas, Inteligência Artificial, Segurança Informática, [Adicionar outras, ex: Microsserviços, Web]
+Sistemas Distribuídos, Tolerância a Faltas, Leilões On-line, Alta Disponibilidade, Replicação de Dados, Concorrência, Inteligência Artificial, Segurança Informática, Microsserviços.
 
 # 9. Tecnologias utilizadas
-[INSERIR A VOSSA STACK - Ex: React, Node.js, PostgreSQL, Docker, RabbitMQ, Python]
+* **Frontend:** HTML, CSS e JavaScript (desenvolvido em VS Code).
+* **Backend:** Java (Spring Boot).
+* **Base de Dados:** MySQL.
+* **Infraestrutura e Distribuição:** Docker.
+* **Inteligência Artificial:** Python.
+* **Segurança Informática:** JWT (JSON Web Tokens) e mecanismos de proteção adicionais a implementar.
+
 
 # 10. Resumo curto
-Este projeto tem como objetivo o desenvolvimento de um sistema distribuído de leilões on-line, assegurando alta disponibilidade e tolerância a faltas. Dando continuidade a um projeto web anterior, a arquitetura foi redesenhada para suportar a concorrência inerente a múltiplos utilizadores a licitar simultaneamente, evitando pontos únicos de falha através da replicação de serviços e bases de dados. A plataforma integra mecanismos robustos de Segurança Informática para proteger transações e dados sensíveis dos utilizadores. Adicionalmente, o sistema incorpora componentes de Inteligência Artificial para [INSERIR A VOSSA IDEIA, ex: detetar comportamentos anómalos nas licitações ou sugerir leilões relevantes], garantindo uma solução tecnológica completa, resiliente e alinhada com as necessidades reais de um ambiente de comércio eletrónico em tempo real.
+O projeto NextBid é a evolução de uma plataforma web de leilões on-line, desenvolvida num semestre anterior sob uma arquitetura puramente centralizada e monolítica. O grande objetivo atual é transformar este ecossistema numa solução integralmente distribuída. Esta transição acarreta desafios críticos, sendo as principais preocupações assegurar a alta disponibilidade dos serviços, a consistência estrita dos dados em tempo real (fundamental num ambiente de leilões com elevada concorrência de lances simultâneos) e a tolerância a faltas. Para eliminar os pontos únicos de falha da versão anterior, a nova infraestrutura utilizará contentores Docker para replicar os serviços em Java Spring Boot e a base de dados MySQL. Em paralelo com esta robustez arquitetural, o projeto integra componentes de Inteligência Artificial em Python para deteção de anomalias e reforça a segurança informática recorrendo a JWT e validações avançadas, assegurando um sistema resiliente e escalável.
+
