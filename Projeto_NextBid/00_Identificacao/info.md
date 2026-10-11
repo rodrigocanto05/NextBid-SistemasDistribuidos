@@ -36,5 +36,8 @@ Sistemas Distribuídos, Tolerância a Faltas, Leilões On-line, Alta Disponibili
 
 
 # 10. Resumo curto
-O projeto NextBid é a evolução de uma plataforma web de leilões on-line, desenvolvida num semestre anterior sob uma arquitetura puramente centralizada e monolítica. O grande objetivo atual é transformar este ecossistema numa solução integralmente distribuída. Esta transição acarreta desafios críticos, sendo as principais preocupações assegurar a alta disponibilidade dos serviços, a consistência estrita dos dados em tempo real (fundamental num ambiente de leilões com elevada concorrência de lances simultâneos) e a tolerância a faltas. Para eliminar os pontos únicos de falha da versão anterior, a nova infraestrutura utilizará contentores Docker para replicar os serviços em Java Spring Boot e a base de dados MySQL. Em paralelo com esta robustez arquitetural, o projeto integra componentes de Inteligência Artificial em Python para deteção de anomalias e reforça a segurança informática recorrendo a JWT e validações avançadas, assegurando um sistema resiliente e escalável.
+O NextBid é uma plataforma web de leilões on-line que desenvolvemos num semestre anterior, com uma arquitetura centralizada e monolítica. Nesta fase, o objetivo é passá-la para um sistema distribuído.
 
+Num leilão chegam muitos lances ao mesmo tempo, por isso as principais preocupações são a alta disponibilidade dos serviços, a consistência estrita dos dados em tempo real e a tolerância a faltas. Para eliminar os pontos únicos de falha da versão anterior, os serviços em Java Spring Boot e a base de dados MySQL vão ser replicados em contentores Docker.
+
+O projeto vai ainda integrar componentes de Inteligência Artificial em Python para deteção de anomalias e reforçar a segurança com JWT e outras validações.
