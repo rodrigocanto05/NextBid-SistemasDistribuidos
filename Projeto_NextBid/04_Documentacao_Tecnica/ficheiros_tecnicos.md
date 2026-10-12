@@ -1,21 +1,76 @@
-Descrição da Solução Desenvolvida (NextBid)
+# Ficheiros Técnicos - NextBid
 
-Para o projeto deste semestre, decidimos pegar na plataforma de leilões que desenvolvemos anteriormente e evoluí-la para um sistema robusto e preparado para cenários reais. O grande problema de um site de leilões acontece nos últimos segundos (o famoso sniping), quando dezenas de utilizadores tentam licitar exatamente ao mesmo tempo. Como sabíamos que um servidor tradicional não ia aguentar esse pico de concorrência e podia falhar deitando tudo a perder, optámos por reestruturar o NextBid numa arquitetura distribuída e baseada em microsserviços.   
+Esta pasta reúne os dois diagramas da 1ª entrega: a arquitetura distribuída e os casos de uso. O texto completo está no relatório do projeto.
 
-Como organizámos a arquitetura e a tolerância a falhas:
-Em vez de termos tudo a correr na mesma máquina, agora o tráfego dos utilizadores entra através de um Load Balancer (Nginx). O Nginx distribui os acessos de forma equilibrada por três instâncias independentes do nosso backend (desenvolvido em Java Spring Boot), que estão a correr dentro de contentores Docker. Se uma destas instâncias for abaixo por algum erro inesperado, o sistema não cai: o Nginx percebe a falha e reencaminha os utilizadores para os servidores que continuam ativos.   
+| Ficheiro | Conteúdo |
+|---|---|
+| `diagramas/01_arquitetura_distribuida.pdf` | Diagrama da arquitetura distribuída (vetorial) |
+| `diagramas/02_casos_de_uso.svg` | Diagrama de casos de uso (vetorial) |
 
-Na base de dados, aplicámos o mesmo princípio. Usamos MySQL com replicação Primary-Replica (Master/Slave). Basicamente, tudo o que é escrito na base de dados principal é copiado em tempo real para a réplica. Se o servidor de dados principal falhar a meio de um leilão, a réplica assume imediatamente o lugar, garantindo que não perdemos o histórico de lances de ninguém.   
+As versões em PNG estão em `../02_Imagens/` (`01_arquitetura_distribuida.png` e `02_casos_de_uso_uml.png`).
 
-Lidar com lances em tempo real:
-Para resolver as colisões de lances simultâneos (race conditions), usamos WebSockets para manter a ligação em tempo real com o frontend. Quando as licitações entram, são enviadas diretamente para o RabbitMQ (um message broker). O RabbitMQ cria uma fila de mensagens e processa um lance de cada vez, por ordem de chegada, garantindo consistência total e sem bloquear o servidor.
+---
 
-Inteligência Artificial:
-Para cumprir a componente de IA, criámos um microsserviço à parte feito em Python (FastAPI). Aqui implementámos duas grandes funcionalidades:   
+## 1. Arquitetura distribuída
 
-- Bots de Licitação (Procura com Adversários): Usámos o algoritmo Minimax com poda Alpha-Beta para criar agentes autónomos. Estes "bots snipers" conseguem participar nos leilões e calcular a melhor estratégia para licitar contra jogadores humanos.
+![Arquitetura distribuída](../02_Imagens/01_arquitetura_distribuida.png)
 
-- Previsão de Preços (Machine Learning): Treinámos um modelo preditivo que olha para o histórico de leilões antigos e tenta prever o valor final de fecho de um artigo. Este modelo também nos ajuda a sinalizar anomalias (por exemplo, se detetar padrões de licitação demasiado rápidos que indiquem fraude).
+O diagrama segue o caminho de um pedido, de cima para baixo:
 
-Segurança Informática:
-Finalmente, a segurança era um ponto crítico. Todas as comunicações estão protegidas por HTTPS e WSS (WebSockets Secure), e os logins são geridos através de tokens JWT. Além disso, como num leilão é obrigatório saber exatamente quem licitou e a que horas, implementámos um sistema de logs imutáveis. Isto garante o princípio de não-repúdio, ou seja, nenhum utilizador pode negar que fez um determinado lance, e ninguém consegue falsificar o histórico do leilão.   
+| Camada | O que faz | Tecnologia |
+|---|---|---|
+| Utilizadores e website | O licitador, o vendedor e o administrador usam o site no browser. Os lances e o temporizador atualizam-se sem recarregar a página. | React + WebSockets (WSS) |
+| Porta de entrada | Dois balanceadores partilham o mesmo endereço (IP virtual). O ativo reparte os pedidos; o de reserva assume se o ativo falhar. | Nginx + Keepalived |
+| Servidores | Várias instâncias iguais tratam do login (JWT + 2FA), dos leilões e dos lances. Se uma cair, as outras continuam. | Java Spring Boot |
+| Fila de lances | Guarda os lances por ordem de chegada, absorve os picos dos últimos segundos e não deixa perder nenhum lance aceite. | RabbitMQ (Quorum Queues) |
+| Cache | Mantém as sessões e o estado dos leilões ativos em memória. | Redis |
+| Serviço de IA | Deteta lances suspeitos, estima o preço final e controla os bots de licitação. | Python (FastAPI + Scikit-Learn) |
+| Dados | Base de dados principal com uma réplica sempre atualizada, que é promovida se a principal falhar. | MySQL (Master / Slave) |
+
+Todas as peças correm em contentores Docker. O sistema foi pensado para aguentar uma falha de cada vez em cada camada sem parar o serviço.
+
+---
+
+## 2. Casos de uso
+
+![Casos de uso](../02_Imagens/02_casos_de_uso_uml.png)
+
+Atores:
+
+- **Licitador:** explora leilões, licita em tempo real, usa o mapa interativo, participa na Caça ao Tesouro e recebe notificações.
+- **Vendedor:** publica leilões e define o preço base, a duração e a localização do artigo.
+- **Administrador:** monitoriza o desempenho do sistema, audita transações, gere utilizadores e revê os lances marcados como suspeitos.
+- **Serviço de IA** e **App Autenticadora (TOTP):** sistemas externos que participam na licitação.
+
+A laranja estão os casos de uso novos desta fase, ligados aos requisitos do relatório:
+
+| Requisito | Caso de uso |
+|---|---|
+| RF1 - Autenticação com 2FA | `Licitar em tempo real` inclui `Validar código 2FA (TOTP)` |
+| RF2 - Licitações em tempo real | `Licitar em tempo real` e `Acompanhar lances e temporizador ao vivo` |
+| RF3 - Deteção de licitações fraudulentas | `Licitar em tempo real` inclui `Analisar lance`; o Administrador faz `Rever lances suspeitos` |
+| RF4 - Estimativa do preço final | `Consultar estimativa do preço final` |
+| Bots snipers (secção 5.1) | `Licitar automaticamente (bot sniper · Minimax)` estende `Licitar em tempo real` |
+
+---
+
+## 3. Índice de imagens (`02_Imagens`)
+
+| Ficheiro | Conteúdo |
+|---|---|
+| 01_arquitetura_distribuida.png | Diagrama da arquitetura distribuída |
+| 02_casos_de_uso_uml.png | Diagrama de casos de uso |
+| DesignSystems.png | Design System do website NextBid (cores, tipografia e componentes) |
+| PagHome.png | Mockup: página inicial, com a faixa de lances ao vivo |
+| PagHome2.png | Mockup: leilões em curso (destaques) |
+| PagLeilões.png | Mockup: todos os leilões, com pesquisa e filtro |
+| PagArtigo.png | Mockup: página do leilão, com temporizador e licitação |
+| PagArtigoDesc.png | Mockup: página do leilão, descrição e características |
+| PagArtigoDesc2.png | Mockup: página do leilão, detalhes e última licitação |
+| PagMeusLeilões.png | Mockup: os meus leilões |
+| PagPerfil.png | Mockup: perfil e carteira |
+| PagStats.png | Mockup: perfil, atividade recente e conquistas |
+| PagPerfil2.png | Mockup: perfil com o menu do utilizador aberto |
+| PagTesouro.png | Mockup: Caça ao Tesouro, com mapa |
+
+Os mockups e o Design System vêm do repositório original do NextBid (https://github.com/rodrigocanto05/NextBid).
