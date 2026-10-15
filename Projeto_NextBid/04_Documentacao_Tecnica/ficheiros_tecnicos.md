@@ -4,8 +4,8 @@ Esta pasta reúne os dois diagramas da 1ª entrega: a arquitetura distribuída e
 
 | Ficheiro | Conteúdo |
 |---|---|
-| `diagramas/01_arquitetura_distribuida.pdf` | Diagrama da arquitetura distribuída (vetorial) |
-| `diagramas/02_casos_de_uso.svg` | Diagrama de casos de uso (vetorial) |
+| `diagramas/01_arquitetura_distribuida.pdf` | Diagrama da arquitetura distribuída |
+| `diagramas/02_casos_de_uso.svg` | Diagrama de casos de uso |
 
 As versões em PNG estão em `../02_Imagens/` (`01_arquitetura_distribuida.png` e `02_casos_de_uso_uml.png`).
 
