@@ -1,4 +1,4 @@
-# Memória Descritiva - NextBid
+# Memória e Arquivo Documental
 
 ## 1. Identificação
 * **Nome do projeto:** NextBid - Plataforma Distribuída de Leilões On-line
