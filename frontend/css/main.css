@@ -1,0 +1,29 @@
+/* ─── Base ───────────────────────────────────── */
+@import url("./reset.css");
+@import url("./layout.css");
+@import url("./utils.css");
+
+/* ─── Components ─────────────────────────────── */
+@import url("./components/buttons/buttons.css");
+@import url("./components/forms/forms.css");
+@import url("./components/dropdown/dropdown.css");
+@import url("./components/discover/discover.css");
+@import url("./components/fab/fab.css");
+@import url("./components/footer/footer.css");
+@import url("./components/navbar/navbar.css");
+@import url("./components/hero/hero.css");
+@import url("./components/ticker/ticker.css");
+@import url("./components/auction-card/auction-card.css");
+@import url("./components/favorite-button/favorite-button.css");
+@import url("./components/filter-bar/filter-bar.css");
+@import url("./components/modal/modal.css");
+@import url("./components/notification-bell/notification-bell.css");
+@import url("./components/novo-leilao/novo-leilao.css");
+@import url("./components/stats/stats.css");
+@import url("./components/tabs/tabs.css");
+
+/* ─── Page-specific ──────────────────────────── */
+@import url("./pages/leilao-detail.css");
+@import url("./pages/my-auctions.css");
+@import url("./pages/notifications.css");
+@import url("./pages/perfil.css");

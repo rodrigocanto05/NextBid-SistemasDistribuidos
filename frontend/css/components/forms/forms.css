@@ -1,0 +1,132 @@
+/* ============ AUTH PAGE LAYOUT ============ */
+.auth-page {
+    min-height: calc(100vh - 160px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 24px 60px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    background: var(--bg-card);
+    border: 1px solid var(--gold-soft);
+    border-radius: var(--radius-xl);
+    padding: 36px 32px;
+    box-shadow: var(--shadow-lg);
+}
+
+/* ============ HEADER ============ */
+.auth-card__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.auth-card__logo-img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    margin-bottom: 12px;
+}
+
+.auth-card__page-title {
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 4px;
+    text-align: center;
+    letter-spacing: 0.08em;
+}
+
+.auth-card__title {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* ============ FORM ============ */
+.auth-card__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    color: var(--text-soft);
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    background: var(--bg-base);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius-md);
+    color: var(--text-white);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color var(--t-base), background var(--t-base);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: var(--bg-card);
+}
+
+.form-group input::placeholder { color: var(--text-muted); }
+
+/* ============ ACTIONS ============ */
+.auth-card__error {
+    color: var(--danger);
+    font-size: 0.85rem;
+    min-height: 1.2em;
+    text-align: center;
+}
+
+.auth-card__btn {
+    padding: 14px;
+    background: var(--gold);
+    color: var(--bg-base);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: background var(--t-base), transform var(--t-fast);
+}
+.auth-card__btn:hover { background: var(--gold-hover); transform: translateY(-1px); }
+
+.auth-card__link {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 18px;
+}
+.auth-card__link a { color: var(--gold); }
+
+/* ============ OUTLINE BUTTON (navbar back) ============ */
+.btn--outline {
+    background: transparent;
+    border: 1px solid var(--gold-border);
+    color: var(--text-white);
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    cursor: pointer;
+    transition: background var(--t-base), border-color var(--t-base);
+}
+.btn--outline:hover { background: var(--gold-faint); border-color: var(--gold); }

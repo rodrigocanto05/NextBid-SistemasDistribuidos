@@ -1,0 +1,87 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: rgba(10, 14, 26, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gold-soft);
+}
+
+.navbar__inner {
+    width: 100%;
+    padding: 4px 28px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 24px;
+    height: 104px;
+}
+
+.navbar__brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 1.25rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    font-weight: 700;
+    justify-self: start;
+}
+
+.navbar__logo-img {
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+}
+
+.navbar__logo-icon {
+    font-size: 1.7rem;
+    line-height: 1;
+}
+
+.navbar__links {
+    display: flex;
+    gap: 40px;
+    justify-self: center;
+}
+
+.navbar__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: var(--text-soft);
+    font-size: 0.82rem;
+    transition: color var(--t-base), transform var(--t-fast);
+}
+
+.navbar__link:hover,
+.navbar__link--active { color: var(--gold); }
+.navbar__link:hover   { transform: translateY(-1px); }
+
+.navbar__link-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 22px;
+    line-height: 1;
+}
+.navbar__link-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke-width: 1.75;
+}
+
+.navbar__auth {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-self: end;
+}
+
+@media (max-width: 900px) {
+    .navbar__inner { grid-template-columns: auto 1fr; padding: 10px 16px; }
+    .navbar__links { display: none; }
+}

@@ -1,0 +1,11 @@
+# Forward the Authorization header to PHP.
+# Without this, Apache often strips it before $_SERVER['HTTP_AUTHORIZATION']
+# is populated, causing all Bearer-token endpoints to return 401.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP:Authorization} .+
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
+
+# Fallback for environments where mod_rewrite is unavailable.
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1

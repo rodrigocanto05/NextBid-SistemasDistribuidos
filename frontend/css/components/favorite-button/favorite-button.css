@@ -1,0 +1,52 @@
+.fav-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 14, 26, 0.75);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--gold-border);
+    border-radius: 50%;
+    color: var(--text-soft);
+    cursor: pointer;
+    z-index: 2;
+    transition: transform var(--t-fast), background var(--t-base), border-color var(--t-base), color var(--t-base);
+}
+
+.fav-btn:hover {
+    transform: translateY(-1px) scale(1.05);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.fav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.fav-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    transition: fill var(--t-base), stroke var(--t-base);
+}
+
+.fav-btn.is-active {
+    color: var(--danger);
+    border-color: rgba(239, 68, 68, 0.5);
+}
+.fav-btn.is-active svg { fill: var(--danger); stroke: var(--danger); }
+
+.fav-btn.is-pulsing { animation: fav-pulse 0.45s ease; }
+
+@keyframes fav-pulse {
+    0%   { transform: scale(1); }
+    35%  { transform: scale(1.28); }
+    70%  { transform: scale(0.94); }
+    100% { transform: scale(1); }
+}
+
+.auction-card__cat-badge--shifted { right: 56px; }

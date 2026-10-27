@@ -1,0 +1,23 @@
+<?php
+require_once '../../includes/cors.php';
+header('Content-Type: application/json');
+require_once '../../config/db.php';
+require_once '../../includes/AuctionManager.php';
+require_once '../../includes/AuthMiddleware.php';
+
+$user   = AuthMiddleware::requireAuth($pdo);
+$userId = $user['id'];
+
+$status = $_GET['status'] ?? null;
+if ($status !== null && !in_array($status, ['active', 'sold', 'ended', 'expired'])) {
+    exit(json_encode(['status' => 'error', 'message' => 'Estado inválido.']));
+}
+
+$auctionMgr = new AuctionManager($pdo);
+$auctions   = $auctionMgr->getBySellerId($userId, $status);
+
+echo json_encode([
+    'status'   => 'success',
+    'count'    => count($auctions),
+    'auctions' => $auctions
+]);

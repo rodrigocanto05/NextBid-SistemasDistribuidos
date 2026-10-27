@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="NextBid Login, Leilão Login, Leilão online">
+    <title>NextBid — Login</title>
+    <link rel="icon" href="../../img/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../../img/favicon-192.png">
+    <link rel="stylesheet" href="../../css/main.css?v=8">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar__inner">
+            <a href="../pages/index.html" class="navbar__brand">
+                <img src="../../img/logo-NextBid.png" alt="NextBid" style="width:42px;height:42px;object-fit:contain;">
+                <span>NEXTBID</span>
+            </a>
+            <div class="navbar__auth">
+                <a href="../pages/index.html"><button class="btn--outline">← Início</button></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CARTÃO DE LOGIN -->
+    <main class="auth-page">
+        <div class="auth-card">
+
+            <div class="auth-card__header">
+                <img src="../../img/logo-NextBid.png" alt="NextBid" class="auth-card__logo-img">
+                <h1 class="auth-card__page-title">Login</h1>
+                <p class="auth-card__title">Bem-vindo de volta</p>
+            </div>
+
+            <form id="LoginPage" class="auth-card__form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="exemplo@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="A tua password" required>
+                </div>
+
+                <p class="auth-card__error" id="login-erro"></p>
+
+                <button type="submit" class="auth-card__btn">Entrar</button>
+            </form>
+
+            <p class="auth-card__link">
+                Ainda não tens conta? <a href="Register.html">Registar →</a>
+            </p>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 NextBid — Todos os direitos reservados</p>
+    </footer>
+
+    <script src="../../js/shared/Helpers.js?v=8"></script>
+    <script src="../../js/pages/auth/Login.js?v=8"></script>
+
+</body>
+
+</html>

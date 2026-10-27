@@ -1,0 +1,123 @@
+.notifications-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+}
+
+.notifications-page .tabs {
+    margin-top: 0;
+}
+
+.notif-toolbar {
+    max-width: 1100px;
+    margin: 0 auto 18px;
+    padding: 0 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.notif-list {
+    background: var(--bg-card);
+    border: 1px solid var(--gold-soft);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.notif-row {
+    padding: 16px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.06);
+    transition: background var(--t-base);
+}
+
+.notif-row:last-child { border-bottom: none; }
+.notif-row:hover      { background: var(--gold-faint); }
+
+.notif-row.is-unread { background: rgba(212, 175, 55, 0.04); }
+.notif-row.is-unread .notif-row__dot { background: var(--gold); }
+
+.notif-row__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: transparent;
+    margin-top: 8px;
+    flex-shrink: 0;
+}
+
+.notif-row__icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gold-faint);
+    color: var(--gold);
+    border-radius: var(--radius-md);
+    font-size: 1.15rem;
+}
+
+.notif-row__body {
+    flex: 1;
+    min-width: 0;
+}
+
+.notif-row__text {
+    color: var(--text-white);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    margin-bottom: 6px;
+}
+
+.notif-row__time {
+    color: var(--text-faint);
+    font-size: 0.78rem;
+}
+
+.notif-row__actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.notif-row__action {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    transition: background var(--t-base), color var(--t-base);
+}
+.notif-row__action:hover { background: var(--gold-faint); color: var(--gold); }
+.notif-row__action.is-danger:hover { background: rgba(239, 68, 68, 0.12); color: var(--danger); }
+.notif-row__action svg { width: 16px; height: 16px; }
+
+.notif-empty {
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--text-muted);
+}
+.notif-empty__icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gold-faint);
+    color: var(--gold);
+    border-radius: 50%;
+    font-size: 1.6rem;
+}
+.notif-empty__title {
+    color: var(--text-white);
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+}

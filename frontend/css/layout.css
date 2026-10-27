@@ -1,0 +1,45 @@
+﻿.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-base);
+}
+
+.page__main {
+    flex: 1;
+    padding-top: 189px; /* navbar (104) + ticker (45) + gap */
+}
+
+.section {
+    padding: 48px 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.section--tight { padding: 24px; }
+
+.section__title {
+    font-size: 2rem;
+    color: var(--text-white);
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+}
+
+.page-header {
+    padding: 24px 24px 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.page-header__title {
+    font-size: 2.5rem;
+    color: var(--text-white);
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+}
+
+.page-header__sub {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}

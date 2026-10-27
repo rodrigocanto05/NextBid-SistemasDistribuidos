@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    /* ─── Brand ─────────────────────────────────────── */
+    --primary:           #2F4858;
+    --primary-hover:     #0B1220;
+    --logo-navy:         #0F2A44;
+    --logo-gold:         #C9A227;
+
+    --gold:              #D4AF37;
+    --gold-hover:        #E5C158;
+    --gold-soft:         rgba(212, 175, 55, 0.20);
+    --gold-faint:        rgba(212, 175, 55, 0.10);
+    --gold-border:       rgba(212, 175, 55, 0.30);
+
+    /* ─── Backgrounds (DS exatos) ───────────────────── */
+    --bg-base:           #0B1220;
+    --bg-deep:           #0F172A;
+    --bg-panel:          #111827;
+    --bg-card:           #151B2B;
+
+    /* ─── Text ──────────────────────────────────────── */
+    --text-white:        #FFFFFF;
+    --text-secondary:    #B0B8C1;
+    --text-soft:         rgba(255, 255, 255, 0.80);
+    --text-muted:        rgba(255, 255, 255, 0.60);
+    --text-faint:        rgba(255, 255, 255, 0.40);
+
+    /* ─── Status (DS exatos) ────────────────────────── */
+    --success:           #22C55E;
+    --danger:            #EF4444;
+
+    /* ─── Typography tokens (DS) ────────────────────── */
+    --font-heading:      'EB Garamond', Garamond, 'Times New Roman', serif;
+    --font-body:         'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+    --fs-h1:             56px;   --lh-h1:     61.6px;
+    --fs-h2:             48px;   --lh-h2:     52.8px;
+    --fs-h3:             40px;   --lh-h3:     44px;
+    --fs-large:          20px;   --lh-large:  28px;
+    --fs-medium:         18px;   --lh-medium: 25.2px;
+    --fs-normal:         16px;   --lh-normal: 22.4px;
+    --fs-small:          14px;   --lh-small:  19.6px;
+
+    /* ─── Spacing scale (DS) ────────────────────────── */
+    --space-1:           8px;
+    --space-2:           16px;
+    --space-3:           24px;
+    --space-4:           32px;
+    --space-5:           40px;
+    --space-6:           56px;
+    --space-7:           72px;
+    --space-8:           80px;
+    --space-9:           96px;
+    --space-10:          120px;
+
+    /* ─── Shape ─────────────────────────────────────── */
+    --radius-sm:         6px;
+    --radius-md:         10px;
+    --radius-lg:         12px;
+    --radius-xl:         16px;
+    --radius-full:       999px;
+
+    /* ─── Shadow ────────────────────────────────────── */
+    --shadow-sm:         0 2px 8px rgba(0, 0, 0, 0.20);
+    --shadow-md:         0 6px 24px rgba(0, 0, 0, 0.35);
+    --shadow-lg:         0 12px 48px rgba(0, 0, 0, 0.50);
+
+    /* ─── Motion ────────────────────────────────────── */
+    --t-fast:            0.15s ease;
+    --t-base:            0.25s ease;
+    --t-slow:            0.4s ease;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    height: 100%;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: var(--fs-normal);
+    line-height: var(--lh-normal);
+    background: var(--bg-base);
+    color: var(--text-white);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.1;
+}
+h1 { font-size: var(--fs-h1); line-height: var(--lh-h1); }
+h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); }
+h3 { font-size: var(--fs-h3); line-height: var(--lh-h3); }
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+input, select, textarea { font-family: inherit; }

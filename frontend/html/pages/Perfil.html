@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextBid — Perfil</title>
+  <link rel="icon" href="../../img/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="../../img/favicon-192.png" />
+  <link rel="stylesheet" href="../../css/main.css?v=11" />
+
+</head>
+
+<body class="page pf-page">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__brand">
+        <img class="navbar__logo-img" src="../../img/logo-NextBid.png" alt="NextBid" />
+        <span>NEXTBID</span>
+      </a>
+      <nav class="navbar__links">
+        <a href="index.html" class="navbar__link">
+          <span class="navbar__link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+          </span>
+          Início
+        </a>
+        <a href="leiloes/LeiloesAtivos.html" class="navbar__link">
+          <span class="navbar__link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m14.5 12.5-8 8a2.12 2.12 0 1 1-3-3l8-8" />
+              <path d="m16 16 6-6" />
+              <path d="m8 8 6-6" />
+              <path d="m9 7 8 8" />
+              <path d="m21 11-8-8" />
+            </svg>
+          </span>
+          Leilões
+        </a>
+        <a href="leiloes/MeusLeiloes.html" class="navbar__link">
+          <span class="navbar__link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+              <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+              <path d="M7 21h10" />
+              <path d="M12 3v18" />
+              <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
+            </svg>
+          </span>
+          Os Meus Leilões
+        </a>
+      </nav>
+      <div class="navbar__auth" id="navbar-auth"></div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="page__main pf-main">
+    <div class="pf-wrapper">
+
+      <!-- ── Hero card ─────────────────────────────────────── -->
+      <section class="pf-hero">
+
+        <!-- Avatar -->
+        <div class="pf-avatar-wrap">
+          <div class="pf-avatar" id="pf-avatar-preview">
+            <img id="pf-avatar-img" src="../../img/avatar-placeholder.png" alt="Avatar" />
+          </div>
+          <label for="pf-avatar-file" class="pf-avatar-btn btn btn--ghost btn--sm" title="Alterar foto">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+              <circle cx="12" cy="13" r="4" />
+            </svg>
+            Foto
+          </label>
+          <input type="file" id="pf-avatar-file" accept="image/jpeg,image/png,image/webp" hidden />
+          <button type="button" id="pf-avatar-remove" class="pf-avatar-btn btn btn--ghost btn--sm">
+            Remover
+          </button>
+          <p id="pf-avatar-msg" class="pf-small-msg"></p>
+        </div>
+
+        <!-- Main info -->
+        <div class="pf-info">
+          <h1 class="pf-info__name" id="pf-name">—</h1>
+
+          <div class="pf-level-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--gold)">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+            Nível <span id="pf-level">1</span>
+          </div>
+
+          <div class="pf-xp-row">
+            <span class="pf-xp-val"><span id="pf-xp">0</span> XP</span>
+            <span class="pf-xp-next" id="pf-xp-next">Próximo nível</span>
+          </div>
+          <div class="pf-xp-bar">
+            <div class="pf-xp-fill" id="pf-xp-fill" style="width:0%"></div>
+          </div>
+
+          <div class="pf-meta">
+            <span class="pf-meta__item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+              <span id="pf-rating">—</span>
+            </span>
+            <span class="pf-meta__item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <span id="pf-location">—</span>
+            </span>
+            <span class="pf-meta__item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+              Membro desde <span id="pf-created">—</span>
+            </span>
+          </div>
+
+          <p class="pf-bio" id="pf-bio"></p>
+        </div>
+
+        <!-- Actions -->
+        <div class="pf-hero-actions">
+          <button type="button" class="btn btn--ghost" id="pf-edit-trigger">Editar Perfil</button>
+        </div>
+
+      </section>
+
+      <!-- ── Wallet ──────────────────────────────────────── -->
+      <section class="pf-wallet">
+        <div class="pf-wallet__info">
+          <p class="pf-wallet__label">Carteira NextBid</p>
+          <p class="pf-wallet__amount"><span id="pf-balance">0,00</span> €</p>
+        </div>
+        <button type="button" class="btn btn--primary" id="pf-add-funds">+ Adicionar Saldo</button>
+      </section>
+
+      <!-- ── Stats ───────────────────────────────────────── -->
+      <div class="pf-stats">
+        <div class="pf-stat">
+          <svg class="pf-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+          <strong id="pf-rating-num">—</strong>
+          <p>Média avaliações <small id="pf-rating-count" style="color:var(--text-faint)"></small></p>
+        </div>
+        <div class="pf-stat">
+          <svg class="pf-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <line x1="8" y1="21" x2="16" y2="21" />
+            <line x1="12" y1="17" x2="12" y2="21" />
+          </svg>
+          <strong id="pf-published">0</strong>
+          <p>Leilões publicados</p>
+        </div>
+        <div class="pf-stat">
+          <svg class="pf-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg>
+          <strong id="pf-licitacoes">0</strong>
+          <p>Total licitações</p>
+        </div>
+        <div class="pf-stat">
+          <svg class="pf-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+            <path d="M4 22h16"/>
+            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+            <path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/>
+          </svg>
+          <strong id="pf-won">0</strong>
+          <p>Leilões ganhos</p>
+        </div>
+        <div class="pf-stat">
+          <svg class="pf-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+            <line x1="7" y1="7" x2="7.01" y2="7" />
+          </svg>
+          <strong id="pf-participated">0</strong>
+          <p>Participou</p>
+        </div>
+      </div>
+
+      <!-- ── Tabs ────────────────────────────────────────── -->
+      <div class="pf-tabs" role="tablist">
+        <button class="pf-tab pf-tab--active" data-tab="bids" role="tab">Licitações</button>
+        <button class="pf-tab" data-tab="settings" role="tab">Configurações</button>
+      </div>
+
+      <!-- ── Tab: Bids ───────────────────────────────────── -->
+      <section class="pf-panel" id="pf-panel-bids">
+        <h2 class="pf-panel__title">As minhas licitações</h2>
+
+        <p class="pf-panel__loading" id="pf-bids-loading">A carregar…</p>
+        <p class="pf-panel__empty" id="pf-bids-empty" hidden>Ainda não licitaste em nenhum leilão.</p>
+        <p class="pf-panel__error" id="pf-bids-error" hidden></p>
+
+        <ul class="pf-bids-list" id="pf-bids-list"></ul>
+      </section>
+
+      <!-- ── Tab: Settings ───────────────────────────────── -->
+      <section class="pf-panel" id="pf-panel-settings" hidden>
+        <h2 class="pf-panel__title">Atualizar perfil</h2>
+
+        <form id="pf-form-update" class="pf-form">
+          <div class="pf-form__group">
+            <label class="pf-form__label" for="pf-edit-name">Nome</label>
+            <input class="pf-form__input" type="text" id="pf-edit-name" placeholder="Novo nome" />
+          </div>
+          <div class="pf-form__group">
+            <label class="pf-form__label" for="pf-edit-email">E-mail</label>
+            <input class="pf-form__input" type="email" id="pf-edit-email" placeholder="Novo e-mail" />
+          </div>
+          <div class="pf-form__group">
+            <label class="pf-form__label" for="pf-edit-password">Nova password</label>
+            <input class="pf-form__input" type="password" id="pf-edit-password"
+              placeholder="Deixa em branco para manter" />
+          </div>
+          <div class="pf-form__group">
+            <label class="pf-form__label" for="pf-edit-location">Localização</label>
+            <input class="pf-form__input" type="text" id="pf-edit-location" placeholder="Cidade, País" />
+          </div>
+          <div class="pf-form__group">
+            <label class="pf-form__label" for="pf-edit-bio">Bio</label>
+            <textarea class="pf-form__input pf-form__textarea" id="pf-edit-bio" rows="3"
+              placeholder="Conta algo sobre ti…"></textarea>
+          </div>
+
+          <div class="pf-form__actions">
+            <button type="submit" class="btn btn--primary">Guardar Alterações</button>
+          </div>
+          <p class="pf-small-msg" id="pf-update-msg"></p>
+        </form>
+
+        <hr class="pf-divider" />
+
+        <h2 class="pf-panel__title">Sessão</h2>
+        <button type="button" id="pf-logout-btn" class="btn btn--danger">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="9" y2="12" />
+          </svg>
+          Terminar sessão
+        </button>
+      </section>
+
+      <!-- ── Reviews recebidas (sempre visível, último para own; logo apos stats para view) ── -->
+      <section class="pf-panel" id="pf-panel-reviews">
+        <h2 class="pf-panel__title">
+          Avaliações recebidas
+          <small id="pf-reviews-meta" style="color:var(--text-faint);font-weight:400;font-size:0.85em"></small>
+        </h2>
+        <p class="pf-panel__loading" id="pf-reviews-loading">A carregar…</p>
+        <p class="pf-panel__empty" id="pf-reviews-empty" hidden>Ainda não recebeu nenhuma avaliação.</p>
+        <ul class="pf-reviews-list" id="pf-reviews-list"></ul>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FAB stack -->
+  <div class="fab-stack">
+    <button class="fab fab--primary" id="btn-novo-leilao" title="Criar Novo Leilão">+</button>
+  </div>
+
+  <!-- MODAL: Criar Leilão -->
+  <div class="modal-overlay" id="modal-novo-leilao" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title" id="modal-title">Criar Novo Leilão</h2>
+        <button class="modal__close" id="modal-close" aria-label="Fechar">✕</button>
+      </div>
+      <form id="form-novo-leilao" class="modal__body" novalidate>
+
+        <div class="form-group">
+          <label class="form-label" for="nl-categoria">Categoria</label>
+          <select id="nl-categoria" name="categoryId" class="form-input" required>
+            <option value="">Selecionar categoria…</option>
+          </select>
+          <span class="form-hint form-hint--gold" id="nl-categoria-hint" style="display:none">
+            💡 Sugerido automaticamente pelo nome e descrição
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="nl-nome">Nome do Produto</label>
+          <input type="text" id="nl-nome" name="name" class="form-input" placeholder="Ex: iPhone 14 Pro Max 256GB"
+            required maxlength="120" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="nl-descricao">Descrição</label>
+          <textarea id="nl-descricao" name="description" class="form-input form-textarea"
+            placeholder="Descreve o produto em detalhe…" rows="4" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="nl-condicao">Condição</label>
+          <select id="nl-condicao" name="condition" class="form-input" required>
+            <option value="new">Novo</option>
+            <option value="like new">Como Novo</option>
+            <option value="good">Bom Estado</option>
+            <option value="used">Usado</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="nl-preco">Preço Inicial</label>
+            <input type="number" id="nl-preco" name="startPrice" class="form-input" placeholder="0" min="1" step="1"
+              required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="nl-moeda">Moeda</label>
+            <select id="nl-moeda" name="currency" class="form-input">
+              <option value="EUR">€ Euro</option>
+              <option value="USD">$ Dólar</option>
+              <option value="GBP">£ Libra</option>
+              <option value="CHF">CHF Franco</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Data e Hora de Fim</label>
+          <div class="quick-dur" id="nl-quick-dur" role="group" aria-label="Duração rápida">
+            <button type="button" class="quick-dur__chip" data-hours="1">1 hora</button>
+            <button type="button" class="quick-dur__chip" data-hours="6">6 horas</button>
+            <button type="button" class="quick-dur__chip is-active" data-hours="24">1 dia</button>
+            <button type="button" class="quick-dur__chip" data-hours="72">3 dias</button>
+            <button type="button" class="quick-dur__chip" data-hours="168">7 dias</button>
+            <button type="button" class="quick-dur__chip" data-hours="336">14 dias</button>
+            <button type="button" class="quick-dur__chip" data-hours="720">30 dias</button>
+          </div>
+          <div class="form-row">
+            <div class="form-group form-group--nested">
+              <label class="form-sublabel" for="nl-fim-date">📅 Data</label>
+              <input type="date" id="nl-fim-date" class="form-input" required />
+            </div>
+            <div class="form-group form-group--nested">
+              <label class="form-sublabel" for="nl-fim-time">🕐 Hora</label>
+              <input type="time" id="nl-fim-time" class="form-input" required />
+            </div>
+          </div>
+          <input type="hidden" id="nl-fim" name="ends_at" />
+          <span class="form-hint">💡 O leilão começa imediatamente após publicação</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Fotos (3 a 15)</label>
+          <div class="photo-upload-row">
+            <label class="btn btn--ghost photo-upload-btn" for="nl-fotos-galeria">🖼 Galeria</label>
+            <input type="file" id="nl-fotos-galeria" accept="image/jpeg,image/png,image/webp" multiple hidden />
+            <label class="btn btn--ghost photo-upload-btn" for="nl-fotos-camera">📷 Câmara</label>
+            <input type="file" id="nl-fotos-camera" accept="image/*" capture="environment" hidden />
+          </div>
+          <p class="photo-counter error" id="nl-photo-counter">0 / 15 fotos selecionadas (mínimo 3)</p>
+          <div class="photo-grid" id="nl-photo-grid"></div>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full" id="nl-submit" disabled>
+          Publicar Leilão
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__copy">© 2026 NextBid. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Shared scripts -->
+  <script src="../../js/shared/Helpers.js?v=8"></script>
+  <script src="../../js/shared/Auth.js?v=8"></script>
+  <script src="../../js/components/wallet/Wallet.js?v=8"></script>
+  <script src="../../js/components/favorite-button/FavoriteButton.js?v=8"></script>
+  <script src="../../js/components/notification-bell/NotificationBell.js?v=8"></script>
+
+  <script src="../../js/components/navbar/Navbar.js?v=8"></script>
+
+  <!-- Novo Leilão modal scripts -->
+  <script src="../../js/components/novo-leilao/Modal.js?v=8"></script>
+  <script src="../../js/components/novo-leilao/AutoSuggest.js?v=8"></script>
+  <script src="../../js/components/novo-leilao/Upload.js?v=8"></script>
+  <script src="../../js/components/novo-leilao/Submit.js?v=8"></script>
+  <script src="../../js/components/novo-leilao/Init.js?v=8"></script>
+
+  <!-- Page script -->
+  <script src="../../js/pages/Perfil.js?v=8"></script>
+</body>
+
+</html>

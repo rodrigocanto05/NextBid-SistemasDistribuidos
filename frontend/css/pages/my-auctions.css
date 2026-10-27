@@ -1,0 +1,101 @@
+/* badges para os resultados */
+.result-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.result-badge--sold {
+    background: rgba(46, 204, 113, .15);
+    color: var(--success);
+    border: 1px solid rgba(46, 204, 113, .4);
+}
+
+.result-badge--unsold {
+    background: rgba(231, 76, 60, .15);
+    color: var(--danger);
+    border: 1px solid rgba(231, 76, 60, .4);
+}
+
+/* Login Forms */
+.login-prompt {
+    max-width: 480px;
+    margin: 80px auto;
+    padding: 40px 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--gold-soft);
+    border-radius: var(--radius-xl);
+    text-align: center;
+}
+
+.login-prompt h2 {
+    color: var(--gold);
+    margin-bottom: 12px;
+}
+
+.login-prompt p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+/* Stat cards */
+.my-stats {
+    max-width: 1400px;
+    margin: 24px auto 28px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, var(--bg-panel), var(--bg-card));
+    border: 1px solid var(--gold-soft);
+    border-radius: var(--radius-xl);
+}
+
+.stat-card__icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gold-faint);
+    color: var(--gold);
+    border-radius: var(--radius-md);
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+
+.stat-card__icon--success {
+    background: rgba(46, 204, 113, .12);
+    color: var(--success);
+}
+
+.stat-card__icon--info {
+    background: rgba(212, 175, 55, .14);
+    color: var(--gold);
+}
+
+.stat-card__label {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.stat-card__value {
+    color: var(--text-white);
+    font-size: 1.8rem;
+    font-weight: 600;
+}

@@ -1,0 +1,115 @@
+﻿.hero {
+    position: relative;
+    height: 80vh;
+    min-height: 500px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.hero__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+}
+
+.hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+        rgba(10, 14, 26, 0.5) 0%,
+        rgba(10, 14, 26, 0.75) 60%,
+        var(--bg-base) 100%);
+}
+
+.hero__content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+}
+
+.hero__kicker {
+    color: var(--gold);
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+.hero__title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    max-width: 800px;
+    line-height: 1.1;
+}
+
+.hero__subtitle {
+    font-size: 1.05rem;
+    color: var(--text-soft);
+    max-width: 600px;
+}
+
+.hero__ctas { display: flex; gap: 16px; margin-top: 8px; }
+
+.hero__dots {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    gap: 10px;
+}
+
+.hero__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all var(--t-base);
+    cursor: pointer;
+}
+
+.hero__dot--active {
+    background: var(--gold);
+    width: 32px;
+    border-radius: var(--radius-full);
+}
+
+/* Prev/next arrows for the hero carousel */
+.hero__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(10, 14, 26, 0.55);
+    border: 1px solid var(--gold-border);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background var(--t-fast), transform var(--t-fast), border-color var(--t-fast);
+    backdrop-filter: blur(4px);
+}
+
+.hero__arrow:hover {
+    background: rgba(10, 14, 26, 0.85);
+    border-color: var(--gold);
+    transform: translateY(-50%) scale(1.06);
+}
+
+.hero__arrow--prev { left: 18px; }
+.hero__arrow--next { right: 18px; }
+
+.hero__arrow svg { display: block; }

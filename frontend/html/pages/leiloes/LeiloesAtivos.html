@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextBid — Todos os Leilões</title>
+  <link rel="icon" href="../../../img/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../../img/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="../../../img/favicon-192.png" />
+  <link rel="stylesheet" href="../../../css/main.css?v=11" />
+
+</head>
+
+<body class="page">
+
+  <header class="navbar">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__brand">
+        <img class="navbar__logo-img" src="../../../img/logo-NextBid.png" alt="NextBid" />
+        <span>NEXTBID</span>
+      </a>
+      <nav class="navbar__links">
+        <a href="../index.html" class="navbar__link"><span class="navbar__link-icon"><svg viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg></span>Início</a>
+        <a href="LeiloesAtivos.html" class="navbar__link navbar__link--active"><span class="navbar__link-icon"><svg
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m14.5 12.5-8 8a2.12 2.12 0 1 1-3-3l8-8" />
+              <path d="m16 16 6-6" />
+              <path d="m8 8 6-6" />
+              <path d="m9 7 8 8" />
+              <path d="m21 11-8-8" />
+            </svg></span>Leilões</a>
+        <a href="MeusLeiloes.html" class="navbar__link"><span class="navbar__link-icon"><svg viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+              <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+              <path d="M7 21h10" />
+              <path d="M12 3v18" />
+              <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
+            </svg></span>Os Meus Leilões</a>
+      </nav>
+      <div class="navbar__auth" id="navbar-auth"></div>
+    </div>
+  </header>
+
+  <div class="ticker">
+    <div class="ticker__track" id="ticker-track"></div>
+  </div>
+
+  <main class="page__main">
+    <div class="page-header">
+      <h1 class="page-header__title">Todos os Leilões</h1>
+      <p class="page-header__sub">Explora todos os leilões ativos e encontra oportunidades únicas</p>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+      <div class="filter-bar__panel">
+        <div class="filter-bar__search">
+          <span class="filter-bar__icon">🔍</span>
+          <input type="text" id="search-input" class="filter-bar__input" placeholder="Pesquisar leilões..." />
+        </div>
+        <select id="filter-category" class="filter-bar__select">
+          <option value="">Todas as categorias</option>
+        </select>
+      </div>
+    </div>
+
+    <p class="results-count" id="results-count"></p>
+
+    <div class="auctions-grid" id="leiloes-container">
+      <div class="cards-loading" id="cards-loading">
+        <div class="spinner"></div>
+        <p>A carregar leilões…</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- FAB stack -->
+  <div class="fab-stack">
+    <button class="fab fab--primary" id="btn-novo-leilao" title="Criar Novo Leilão">+</button>
+  </div> <!-- MODAL: Criar Leilão -->
+  <div class="modal-overlay" id="modal-novo-leilao" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title" id="modal-title">Criar Novo Leilão</h2>
+        <button class="modal__close" id="modal-close" aria-label="Fechar">✕</button>
+      </div>
+      <form id="form-novo-leilao" class="modal__body" novalidate>
+
+        <div class="form-group">
+          <label class="form-label" for="nl-categoria">Categoria</label>
+          <select id="nl-categoria" name="categoryId" class="form-input" required>
+            <option value="">Selecionar categoria…</option>
+          </select>
+          <span class="form-hint form-hint--gold" id="nl-categoria-hint" style="display:none">
+            💡 Sugerido automaticamente pelo nome e descrição
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="nl-nome">Nome do Produto</label>
+          <input type="text" id="nl-nome" name="name" class="form-input" placeholder="Ex: iPhone 14 Pro Max 256GB"
+            required maxlength="120" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="nl-descricao">Descrição</label>
+          <textarea id="nl-descricao" name="description" class="form-input form-textarea"
+            placeholder="Descreve o produto em detalhe…" rows="4" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="nl-condicao">Condição</label>
+          <select id="nl-condicao" name="condition" class="form-input" required>
+            <option value="new">Novo</option>
+            <option value="like new">Como Novo</option>
+            <option value="good">Bom Estado</option>
+            <option value="used">Usado</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="nl-preco">Preço Inicial</label>
+            <input type="number" id="nl-preco" name="startPrice" class="form-input" placeholder="0" min="1" step="1"
+              required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="nl-moeda">Moeda</label>
+            <select id="nl-moeda" name="currency" class="form-input">
+              <option value="EUR">€ Euro</option>
+              <option value="USD">$ Dólar</option>
+              <option value="GBP">£ Libra</option>
+              <option value="CHF">CHF Franco</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Data e Hora de Fim</label>
+          <div class="quick-dur" id="nl-quick-dur" role="group" aria-label="Duração rápida">
+            <button type="button" class="quick-dur__chip" data-hours="1">1 hora</button>
+            <button type="button" class="quick-dur__chip" data-hours="6">6 horas</button>
+            <button type="button" class="quick-dur__chip is-active" data-hours="24">1 dia</button>
+            <button type="button" class="quick-dur__chip" data-hours="72">3 dias</button>
+            <button type="button" class="quick-dur__chip" data-hours="168">7 dias</button>
+            <button type="button" class="quick-dur__chip" data-hours="336">14 dias</button>
+            <button type="button" class="quick-dur__chip" data-hours="720">30 dias</button>
+          </div>
+          <div class="form-row">
+            <div class="form-group form-group--nested">
+              <label class="form-sublabel" for="nl-fim-date">📅 Data</label>
+              <input type="date" id="nl-fim-date" class="form-input" required />
+            </div>
+            <div class="form-group form-group--nested">
+              <label class="form-sublabel" for="nl-fim-time">🕐 Hora</label>
+              <input type="time" id="nl-fim-time" class="form-input" required />
+            </div>
+          </div>
+          <input type="hidden" id="nl-fim" name="ends_at" />
+          <span class="form-hint">💡 O leilão começa imediatamente após publicação</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Fotos (3 a 15)</label>
+          <div class="photo-upload-row">
+            <label class="btn btn--ghost photo-upload-btn" for="nl-fotos-galeria">🖼 Galeria</label>
+            <input type="file" id="nl-fotos-galeria" accept="image/jpeg,image/png,image/webp" multiple hidden />
+            <label class="btn btn--ghost photo-upload-btn" for="nl-fotos-camera">📷 Câmara</label>
+            <input type="file" id="nl-fotos-camera" accept="image/*" capture="environment" hidden />
+          </div>
+          <p class="photo-counter error" id="nl-photo-counter">0 / 15 fotos selecionadas (mínimo 3)</p>
+          <div class="photo-grid" id="nl-photo-grid"></div>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full" id="nl-submit" disabled>
+          Publicar Leilão
+        </button>
+      </form>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__copy">© 2026 NextBid. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="../../../js/shared/Helpers.js?v=8"></script>
+  <script src="../../../js/shared/Auth.js?v=8"></script>
+  <script src="../../../js/components/wallet/Wallet.js?v=8"></script>
+  <script src="../../../js/components/favorite-button/FavoriteButton.js?v=8"></script>
+  <script src="../../../js/components/notification-bell/NotificationBell.js?v=8"></script>
+
+  <script src="../../../js/components/navbar/Navbar.js?v=8"></script>
+  <script src="../../../js/components/cronometro/Cronometro.js?v=10"></script>
+  <script src="../../../js/components/ticker/Ticker.js?v=8"></script>
+  <script src="../../../js/components/auction-card/AuctionCard.js?v=8"></script>
+  <script src="../../../js/components/filter-bar/FilterBar.js?v=8"></script>
+  <script src="../../../js/components/novo-leilao/Modal.js?v=8"></script>
+  <script src="../../../js/components/novo-leilao/AutoSuggest.js?v=8"></script>
+  <script src="../../../js/components/novo-leilao/Upload.js?v=8"></script>
+  <script src="../../../js/components/novo-leilao/Submit.js?v=8"></script>
+  <script src="../../../js/components/novo-leilao/Init.js?v=8"></script>
+  <script src="../../../js/pages/Leiloes.js?v=10"></script>
+</body>
+
+</html>

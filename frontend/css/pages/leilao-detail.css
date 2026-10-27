@@ -1,0 +1,1173 @@
+.la-main {
+    flex: 1;
+    padding-top: 120px;
+    padding-bottom: 60px;
+}
+
+.la-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 28px;
+}
+
+/* Back link */
+.la-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 22px;
+    transition: color var(--t-fast);
+}
+
+.la-back:hover {
+    color: var(--gold);
+}
+
+/* Status loading/error */
+.la-loading-state,
+.la-error-state {
+    text-align: center;
+    padding: 80px 24px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.la-error-state {
+    color: var(--danger);
+}
+
+/* Page header */
+.la-header {
+    margin-bottom: 24px;
+}
+
+.la-header__title {
+    font-size: 1.75rem;
+    color: var(--text-white);
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+}
+
+.la-header__meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.la-header__sep {
+    color: var(--gold-border);
+}
+
+.la-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.la-badge--active {
+    background: rgba(46, 204, 113, 0.15);
+    color: var(--success);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.la-badge--ended {
+    background: rgba(231, 76, 60, 0.12);
+    color: var(--danger);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.la-badge--pending {
+    background: rgba(212, 175, 55, 0.12);
+    color: var(--gold);
+    border: 1px solid var(--gold-border);
+}
+
+
+.la-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 24px;
+    align-items: start;
+}
+
+/* LiveCard */
+.la-card {
+    background: var(--bg-card);
+    border: 1px solid var(--gold-soft);
+    border-radius: var(--radius-xl);
+    padding: 22px 24px;
+    margin-bottom: 20px;
+}
+
+.la-card:last-child {
+    margin-bottom: 0;
+}
+
+.la-card__title {
+    font-size: 0.78rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--gold-soft);
+}
+
+/* Galeria */
+.la-gallery {
+    background: var(--bg-card);
+    border: 1px solid var(--gold-soft);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.la-gallery__main {
+    position: relative;
+    aspect-ratio: 4/3;
+    background: #07090f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.la-gallery__main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity var(--t-base);
+}
+
+.la-gallery__thumbs {
+    display: flex;
+    gap: 8px;
+    padding: 10px 12px;
+    overflow-x: auto;
+    background: var(--bg-deep);
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-soft) transparent;
+}
+
+.la-gallery__thumbs::-webkit-scrollbar {
+    height: 3px;
+}
+
+.la-gallery__thumbs::-webkit-scrollbar-thumb {
+    background: var(--gold-soft);
+    border-radius: 2px;
+}
+
+.la-gallery__thumb {
+    width: 70px;
+    height: 70px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    flex-shrink: 0;
+    transition: border-color var(--t-fast), opacity var(--t-fast);
+    opacity: 0.65;
+}
+
+.la-gallery__thumb:hover {
+    opacity: 0.9;
+}
+
+.la-gallery__thumb--active {
+    border-color: var(--gold);
+    opacity: 1;
+}
+
+.la-gallery__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Seller */
+.la-seller {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.la-seller--link {
+    color: inherit;
+    text-decoration: none;
+    padding: 6px;
+    margin: -6px;
+    border-radius: var(--radius-md);
+    transition: background var(--t-fast);
+    position: relative;
+}
+
+.la-seller--link:hover {
+    background: var(--gold-faint);
+}
+
+.la-seller__chevron {
+    margin-left: auto;
+    color: var(--gold);
+    font-size: 1.4rem;
+    line-height: 1;
+    opacity: 0.6;
+    transition: transform var(--t-fast), opacity var(--t-fast);
+}
+
+.la-seller--link:hover .la-seller__chevron {
+    opacity: 1;
+    transform: translateX(2px);
+}
+
+.la-seller__photo {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid var(--gold-border);
+    overflow: hidden;
+    flex-shrink: 0;
+    background: var(--bg-deep);
+}
+
+.la-seller__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.la-seller__name {
+    font-weight: 600;
+    color: var(--text-white);
+    margin-bottom: 3px;
+}
+
+.la-seller__rating {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+/* Descrição */
+.la-description {
+    color: var(--text-soft);
+    font-size: 0.93rem;
+    line-height: 1.75;
+    white-space: pre-wrap;
+}
+
+/* Tabela de Atributos */
+.la-attrs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+}
+
+.la-attrs-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--gold-soft);
+    color: var(--text-soft);
+    vertical-align: top;
+}
+
+.la-attrs-table tr:last-child td {
+    border-bottom: none;
+}
+
+.la-attrs-table td:first-child {
+    color: var(--text-muted);
+    width: 38%;
+    text-transform: uppercase;
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+}
+
+/* Painel de Leilão */
+.la-auction-panel {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--gold-soft);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* Thin animated gold stripe along the top edge */
+.la-auction-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        var(--gold) 25%,
+        var(--gold-hover) 50%,
+        var(--gold) 75%,
+        transparent 100%);
+    background-size: 200% 100%;
+    animation: la-stripe 4s ease-in-out infinite;
+    z-index: 2;
+}
+
+@keyframes la-stripe {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
+.la-auction-panel__header {
+    position: relative;
+    padding: 22px 24px 22px;
+    background:
+        radial-gradient(120% 100% at 100% 0%, rgba(212, 175, 55, 0.10) 0%, rgba(212, 175, 55, 0) 60%),
+        linear-gradient(135deg, rgba(20, 18, 40, 0.95), rgba(15, 20, 40, 0.95));
+    border-bottom: 1px solid var(--gold-soft);
+}
+
+.la-countdown-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    font-weight: 600;
+}
+
+/* "Live" pulsing dot prefix */
+.la-countdown-label::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.55);
+    animation: la-live-pulse 1.8s ease-out infinite;
+}
+
+@keyframes la-live-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.55); }
+    70%  { box-shadow: 0 0 0 9px rgba(212, 175, 55, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+/* ─── Segmented countdown ─────────────────────────── */
+.la-countdown {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Plain-text fallback (e.g. "Terminado") */
+.la-countdown:not(.la-countdown--segments) {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+}
+
+.la-countdown--ended {
+    color: var(--danger) !important;
+    font-size: 1.4rem !important;
+}
+
+.la-countdown--segments {
+    display: flex;
+    align-items: stretch;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    flex-wrap: nowrap;
+}
+
+.la-countdown__unit {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 4px 9px;
+    background:
+        linear-gradient(180deg, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.02) 100%),
+        rgba(7, 11, 22, 0.65);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color var(--t-base), transform var(--t-fast), background var(--t-base);
+}
+
+/* Subtle inner highlight */
+.la-countdown__unit::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.45), transparent);
+    opacity: 0.7;
+}
+
+.la-countdown__unit.is-hidden {
+    display: none;
+}
+
+.la-countdown__num {
+    font-family: var(--font-heading);
+    font-size: 1.65rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--gold);
+    letter-spacing: 0.01em;
+    text-shadow: 0 2px 14px rgba(212, 175, 55, 0.25);
+    transition: transform var(--t-base), color var(--t-base);
+}
+
+.la-countdown__label {
+    margin-top: 6px;
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-faint);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Per-tick pulse (triggered by JS on value change) */
+.la-countdown__unit.is-tick {
+    animation: la-tile-pulse 0.6s ease-out;
+}
+
+.la-countdown__unit.is-tick .la-countdown__num {
+    animation: la-num-pop 0.55s cubic-bezier(0.22, 1.4, 0.36, 1);
+}
+
+@keyframes la-tile-pulse {
+    0%   { background:
+              linear-gradient(180deg, rgba(212, 175, 55, 0.22) 0%, rgba(212, 175, 55, 0.05) 100%),
+              rgba(7, 11, 22, 0.65);
+           border-color: var(--gold); }
+    100% { background:
+              linear-gradient(180deg, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.02) 100%),
+              rgba(7, 11, 22, 0.65);
+           border-color: var(--gold-border); }
+}
+
+@keyframes la-num-pop {
+    0%   { transform: translateY(-3px); opacity: 0.7; }
+    100% { transform: translateY(0);    opacity: 1; }
+}
+
+/* Separator dots between tiles (decorative) */
+.la-countdown__sep {
+    flex: 0 0 auto;
+    width: 4px;
+    align-self: center;
+    color: var(--gold-border);
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.la-countdown__sep::before,
+.la-countdown__sep::after {
+    content: "";
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--gold-border);
+}
+
+.la-countdown__sep.is-hidden { display: none; }
+
+/* Urgent (< 1h) — seconds tile shifts to danger, whole row gets a red wash */
+.la-countdown--urgent .la-countdown__unit {
+    border-color: rgba(231, 76, 60, 0.45);
+    background:
+        linear-gradient(180deg, rgba(231, 76, 60, 0.10) 0%, rgba(231, 76, 60, 0.02) 100%),
+        rgba(7, 11, 22, 0.65);
+}
+
+.la-countdown--urgent .la-countdown__num {
+    color: var(--danger);
+    text-shadow: 0 2px 14px rgba(231, 76, 60, 0.30);
+}
+
+.la-countdown--urgent .la-countdown__unit::after {
+    background: linear-gradient(90deg, transparent, rgba(231, 76, 60, 0.50), transparent);
+}
+
+.la-countdown--urgent .la-countdown__sep::before,
+.la-countdown--urgent .la-countdown__sep::after {
+    background: rgba(231, 76, 60, 0.45);
+}
+
+.la-ends-at {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--gold-soft);
+}
+
+.la-ends-at::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    background: currentColor;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2' ry='2'/><line x1='16' y1='2' x2='16' y2='6'/><line x1='8' y1='2' x2='8' y2='6'/><line x1='3' y1='10' x2='21' y2='10'/></svg>") no-repeat center / contain;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2' ry='2'/><line x1='16' y1='2' x2='16' y2='6'/><line x1='8' y1='2' x2='8' y2='6'/><line x1='3' y1='10' x2='21' y2='10'/></svg>") no-repeat center / contain;
+    opacity: 0.7;
+}
+
+.la-auction-panel__body {
+    padding: 22px 24px;
+}
+
+.la-bid-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.la-stat-item {
+    padding: 12px 14px;
+    background: rgba(7, 11, 22, 0.45);
+    border: 1px solid var(--gold-faint);
+    border-radius: var(--radius-md);
+    transition: border-color var(--t-base), background var(--t-base);
+}
+
+.la-stat-item:hover {
+    border-color: var(--gold-border);
+    background: rgba(7, 11, 22, 0.65);
+}
+
+.la-stat-item__label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.la-stat-item__value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-white);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.01em;
+}
+
+.la-stat-item__value--gold {
+    color: var(--gold);
+    text-shadow: 0 1px 12px rgba(212, 175, 55, 0.25);
+}
+
+/* Mensagem de Informação sobre Lance */
+.la-bid-info-msg {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    padding: 10px 14px;
+    background: var(--bg-deep);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--gold-border);
+}
+
+.la-bid-info-msg a {
+    color: var(--gold);
+}
+
+.la-bid-info-msg--danger {
+    color: var(--danger);
+    border-left-color: rgba(231, 76, 60, 0.5);
+}
+
+.la-balance-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.la-balance-val {
+    color: var(--text-white);
+    font-weight: 600;
+}
+
+.la-bid-min-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.la-bid-min-label strong {
+    color: var(--gold);
+    font-size: 0.9rem;
+}
+
+.la-bid-input-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.la-bid-input {
+    flex: 1;
+    background: var(--bg-deep);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius-md);
+    color: var(--text-white);
+    padding: 10px 14px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color var(--t-fast);
+}
+
+.la-bid-input:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.la-bid-input::placeholder {
+    color: var(--text-faint);
+}
+
+.la-presets {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.la-preset-btn {
+    background: var(--gold-faint);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius-sm);
+    color: var(--gold);
+    font-size: 0.76rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background var(--t-fast);
+}
+
+.la-preset-btn:hover {
+    background: var(--gold-soft);
+}
+
+.la-bid-feedback {
+    font-size: 0.84rem;
+    min-height: 1.2em;
+    margin-top: 8px;
+}
+
+/* Chat */
+.la-chat {
+    background: var(--bg-card);
+    border: 1px solid var(--gold-soft);
+    border-radius: var(--radius-xl);
+    display: flex;
+    flex-direction: column;
+    height: 440px;
+    margin-bottom: 20px;
+}
+
+.la-chat__header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--gold-soft);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, rgba(20, 18, 40, 0.6), transparent);
+}
+
+.la-chat__title {
+    font-size: 0.78rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    flex: 1;
+}
+
+.la-chat__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--success);
+    animation: nb-pulse 2s ease infinite;
+}
+
+@keyframes nb-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.4;
+        transform: scale(0.8);
+    }
+}
+
+.la-chat__count {
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    background: var(--bg-deep);
+    border-radius: var(--radius-full);
+    padding: 2px 8px;
+}
+
+.la-chat__messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scroll-behavior: smooth;
+}
+
+.la-chat__messages::-webkit-scrollbar {
+    width: 3px;
+}
+
+.la-chat__messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.la-chat__messages::-webkit-scrollbar-thumb {
+    background: var(--gold-soft);
+    border-radius: 2px;
+}
+
+.la-chat__empty {
+    color: var(--text-faint);
+    font-size: 0.83rem;
+    text-align: center;
+    padding: 24px 0;
+    align-self: center;
+    margin: auto 0;
+}
+
+/* Mensagem de Chat */
+.la-msg {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.la-msg--own {
+    flex-direction: row-reverse;
+}
+
+.la-msg__avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid var(--gold-border);
+    background: var(--bg-deep);
+}
+
+.la-msg__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.la-msg__content {
+    max-width: calc(100% - 44px);
+}
+
+.la-msg__bubble {
+    background: var(--bg-panel);
+    border-radius: 2px var(--radius-md) var(--radius-md) var(--radius-md);
+    padding: 8px 11px;
+}
+
+.la-msg--own .la-msg__bubble {
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius-md) 2px var(--radius-md) var(--radius-md);
+}
+
+.la-msg__name {
+    font-size: 0.72rem;
+    color: var(--gold);
+    margin-bottom: 3px;
+    font-weight: 600;
+}
+
+.la-msg--own .la-msg__name {
+    text-align: right;
+}
+
+.la-msg__text {
+    font-size: 0.86rem;
+    color: var(--text-soft);
+    line-height: 1.45;
+    word-break: break-word;
+}
+
+.la-msg__time {
+    font-size: 0.68rem;
+    color: var(--text-faint);
+    margin-top: 4px;
+    display: block;
+}
+
+.la-msg--own .la-msg__time {
+    text-align: right;
+}
+
+/* System message (auction lifecycle / bid events) */
+.la-msg--system {
+    justify-content: center;
+}
+
+.la-msg--system .la-msg__system-bubble {
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px dashed var(--gold-border);
+    border-radius: var(--radius-full);
+    padding: 6px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 100%;
+}
+
+.la-msg--system .la-msg__system-text {
+    color: var(--gold);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.la-msg--system .la-msg__time {
+    margin: 0;
+    color: var(--text-faint);
+    font-size: 0.66rem;
+    display: inline;
+}
+
+/* Chat footer */
+.la-chat__footer {
+    padding: 10px 14px;
+    border-top: 1px solid var(--gold-soft);
+    flex-shrink: 0;
+}
+
+.la-chat__input-row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+.la-chat__textarea {
+    flex: 1;
+    background: var(--bg-deep);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius-lg);
+    color: var(--text-white);
+    padding: 9px 14px;
+    font-size: 0.86rem;
+    font-family: inherit;
+    resize: none;
+    line-height: 1.4;
+    max-height: 80px;
+    overflow-y: auto;
+    transition: border-color var(--t-fast);
+}
+
+.la-chat__textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.la-chat__textarea::placeholder {
+    color: var(--text-faint);
+}
+
+.la-chat__send-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--bg-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    border: none;
+    transition: background var(--t-fast), transform var(--t-fast);
+}
+
+.la-chat__send-btn:hover {
+    background: var(--gold-hover);
+    transform: scale(1.05);
+}
+
+.la-chat__send-btn:active {
+    transform: scale(0.95);
+}
+
+.la-chat__auth {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 6px 0;
+}
+
+.la-chat__auth a {
+    color: var(--gold);
+}
+
+.la-chat__dev {
+    display: block;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.la-chat__dev-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.la-chat__send-msg {
+    font-size: 0.76rem;
+    min-height: 1em;
+    margin-top: 5px;
+    color: var(--danger);
+}
+
+/* Histórico de Lances */
+.la-bids-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 280px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-soft) transparent;
+}
+
+.la-bids-list::-webkit-scrollbar {
+    width: 3px;
+}
+
+.la-bids-list::-webkit-scrollbar-thumb {
+    background: var(--gold-soft);
+    border-radius: 2px;
+}
+
+.la-bid-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-deep);
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+    font-size: 0.83rem;
+}
+
+.la-bid-item__rank {
+    width: 18px;
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    flex-shrink: 0;
+    text-align: center;
+    font-weight: 700;
+}
+
+.la-bid-item__rank--gold {
+    color: var(--gold);
+}
+
+.la-bid-item__info {
+    flex: 1;
+    min-width: 0;
+}
+
+.la-bid-item__name {
+    color: var(--text-white);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.la-bid-item__date {
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    margin-top: 1px;
+}
+
+.la-bid-item__amount {
+    font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+}
+
+.la-bids-empty {
+    text-align: center;
+    color: var(--text-faint);
+    font-size: 0.83rem;
+    padding: 18px 0;
+}
+
+/* Cartão do Proprietário */
+.la-owner-card {
+    background: rgba(231, 76, 60, 0.05);
+    border: 1px solid rgba(231, 76, 60, 0.25);
+    border-radius: var(--radius-xl);
+    padding: 20px 24px;
+    margin-bottom: 20px;
+}
+
+.la-owner-card__title {
+    font-size: 0.78rem;
+    color: var(--danger);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+}
+
+.la-owner-card__desc {
+    font-size: 0.83rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.la-delete-msg {
+    font-size: 0.84rem;
+    margin-top: 10px;
+    min-height: 1.2em;
+}
+
+@media (max-width: 1100px) {
+    .la-grid {
+        grid-template-columns: 1fr 360px;
+    }
+}
+
+@media (max-width: 900px) {
+    .la-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .la-chat {
+        height: 360px;
+    }
+
+    .la-main {
+        padding-top: 110px;
+    }
+}
+
+@media (max-width: 600px) {
+    .la-wrapper {
+        padding: 16px;
+    }
+
+    .la-header__title {
+        font-size: 1.3rem;
+    }
+
+    .la-countdown__num {
+        font-size: 1.4rem;
+    }
+
+    .la-countdown__unit {
+        padding: 10px 4px 8px;
+    }
+
+    .la-countdown__label {
+        font-size: 0.55rem;
+        letter-spacing: 0.12em;
+    }
+
+    .la-auction-panel__header {
+        padding: 18px 18px 18px;
+    }
+
+    .la-auction-panel__body {
+        padding: 18px;
+    }
+}
+/* Rate modal — star picker + textarea */
+.la-rate-prompt {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    text-align: center;
+    margin: 0 0 14px;
+}
+.la-rate-stars {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+.la-rate-star {
+    background: none;
+    border: none;
+    font-size: 2.2rem;
+    line-height: 1;
+    color: rgba(255,255,255,0.18);
+    cursor: pointer;
+    padding: 4px 6px;
+    transition: color 0.15s ease, transform 0.1s ease;
+}
+.la-rate-star:hover { transform: scale(1.1); color: rgba(212,175,55,0.6); }
+.la-rate-star.is-on { color: var(--gold, #d4af37); }
+.la-rate-textarea {
+    width: 100%;
+    background: rgba(10,14,26,0.6);
+    border: 1px solid rgba(212,175,55,0.3);
+    border-radius: 8px;
+    color: #fff;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    resize: vertical;
+    margin-bottom: 10px;
+}
+.la-rate-textarea:focus { outline: none; border-color: var(--gold, #d4af37); }
+.la-rate-msg { font-size: 0.85rem; min-height: 1.2em; margin-bottom: 10px; }
+.la-rate-status { margin-top: 10px; font-size: 0.88rem; color: var(--gold, #d4af37); }

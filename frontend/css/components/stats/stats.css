@@ -1,0 +1,39 @@
+﻿.stats {
+    background: linear-gradient(90deg, var(--bg-panel), var(--bg-deep));
+    border-top: 1px solid var(--gold-soft);
+    border-bottom: 1px solid var(--gold-soft);
+    padding: 32px 24px;
+}
+
+.stats__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    text-align: center;
+}
+
+.stat__value {
+    font-size: 2rem;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.stat__label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+}
+
+.stats--compact {
+    margin: 24px 0 12px;
+    padding: 20px 24px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--gold-soft);
+}
+
+.stats--compact .stat__value { font-size: 1.5rem; }
+.stats--compact .stat__label { font-size: 0.8rem; }

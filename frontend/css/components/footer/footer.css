@@ -1,0 +1,18 @@
+﻿.footer {
+    background: var(--bg-base);
+    border-top: 1px solid var(--gold-soft);
+    padding: 28px 24px;
+    margin-top: auto;
+}
+
+.footer__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer__copy {
+    color: var(--text-faint);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
