@@ -5,7 +5,7 @@
 * **Ano letivo:** 2026-2027
 * **Semestre:** 5º Semestre
 * **Unidades curriculares:** Projeto de Desenvolvimento de Software, Engenharia de Software, Segurança Informática, Sistemas Distribuídos, Inteligência Artificial
-* **Docentes:** Miguel Boavida, Rui Ramos, Sérgio Nunes, Pedro Rosa, Samuel Gomes
+* **Docentes:** Miguel Boavida, Rui Ramos, Sérgio Nunes, Pedro Rosa, Samuel Gomes.
 
 ## 2. Resumo
 O projeto NextBid consiste no desenvolvimento de uma plataforma avançada de leilões on-line, concebida para responder aos rigorosos desafios técnicos associados ao comércio eletrónico em tempo real e de alta concorrência. No semestre anterior, a plataforma foi desenvolvida sob uma arquitetura de software monolítica e centralizada. Contudo, essa abordagem apresentava vulnerabilidades críticas, nomeadamente a existência de um ponto único de falha e limitações severas na escalabilidade durante os picos de tráfego, fenómenos habituais nos instantes finais dos leilões, vulgarmente conhecidos como "sniping".
