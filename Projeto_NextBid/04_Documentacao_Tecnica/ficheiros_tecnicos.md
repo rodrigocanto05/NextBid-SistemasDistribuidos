@@ -15,17 +15,20 @@ As versões em PNG estão em `../02_Imagens/` (`01_arquitetura_distribuida.png` 
 
 ![Arquitetura distribuída](../02_Imagens/01_arquitetura_distribuida.png)
 
+Diagrama atualizado na 2.ª entrega (Node.js, PostgreSQL, RabbitMQ com outbox e workers). A versão da
+1.ª entrega, com Spring Boot e MySQL, continua em `../02_Imagens/01_diagrama.png`.
+
 O diagrama segue o caminho de um pedido, de cima para baixo:
 
 | Camada | O que faz | Tecnologia |
 |---|---|---|
 | Utilizadores e website | O licitador, o vendedor e o administrador usam o site no browser. Os lances e o temporizador atualizam-se sem recarregar a página. | React + WebSockets (WSS) |
 | Porta de entrada | Dois balanceadores partilham o mesmo endereço (IP virtual). O ativo reparte os pedidos; o de reserva assume se o ativo falhar. | Nginx + Keepalived |
-| Servidores | Várias instâncias iguais tratam do login (JWT + 2FA), dos leilões e dos lances. Se uma cair, as outras continuam. | Java Spring Boot |
-| Fila de lances | Guarda os lances por ordem de chegada, absorve os picos dos últimos segundos e não deixa perder nenhum lance aceite. | RabbitMQ (Quorum Queues) |
-| Cache | Mantém as sessões e o estado dos leilões ativos em memória. | Redis |
+| Servidores | Várias instâncias iguais tratam do login (JWT + 2FA), dos leilões e dos lances. Se uma cair, as outras continuam. | Node.js (Express) |
+| Fila de eventos | Depois de cada lance confirmado, leva o evento até aos workers que enviam os avisos, dão XP e escrevem no chat (e, mais tarde, ao serviço de IA). Os lances não esperam por este trabalho, e nenhum evento se perde, mesmo com o broker em baixo: fica guardado na base de dados (outbox) até poder ser publicado. | RabbitMQ (Quorum Queues) + workers Node.js |
+| Tempo real | Leva os eventos de tempo real (novo lance, leilão terminado, mensagem nova) de uma instância da API para as outras, para todos os browsers os receberem logo. Não guarda dados. | Redis + Socket.IO |
 | Serviço de IA | Deteta lances suspeitos, estima o preço final e controla os bots de licitação. | Python (FastAPI + Scikit-Learn) |
-| Dados | Base de dados principal com uma réplica sempre atualizada, que é promovida se a principal falhar. | MySQL (Master / Slave) |
+| Dados | Base de dados principal com duas réplicas síncronas; uma delas é promovida se a principal falhar. Cada lance é confirmado aqui, de forma síncrona e atómica, junto com o seu evento. | PostgreSQL (1 principal + 2 réplicas) |
 
 Todas as peças correm em contentores Docker. O sistema foi pensado para aguentar uma falha de cada vez em cada camada sem parar o serviço.
 
@@ -58,7 +61,8 @@ A laranja estão os casos de uso novos desta fase, ligados aos requisitos do rel
 
 | Ficheiro | Conteúdo |
 |---|---|
-| 01_arquitetura_distribuida.png | Diagrama da arquitetura distribuída |
+| 01_arquitetura_distribuida.png | Diagrama da arquitetura distribuída (2.ª entrega) |
+| 01_diagrama.png | Diagrama da arquitetura da 1.ª entrega (Spring Boot e MySQL) |
 | 02_casos_de_uso_uml.png | Diagrama de casos de uso |
 | DesignSystems.png | Design System do website NextBid (cores, tipografia e componentes) |
 | PagHome.png | Mockup: página inicial, com a faixa de lances ao vivo |
