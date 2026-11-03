@@ -27,10 +27,10 @@
 Sistemas Distribuídos, Tolerância a Faltas, Leilões On-line, Alta Disponibilidade, Replicação de Dados, Concorrência, Inteligência Artificial, Segurança Informática, Microsserviços.
 
 # 9. Tecnologias utilizadas
-* **Frontend:** HTML, CSS e JavaScript (desenvolvido em VS Code).
-* **Backend:** Java (Spring Boot).
-* **Base de Dados:** MySQL.
-* **Infraestrutura e Distribuição:** Docker.
+* **Frontend:** HTML, CSS e JavaScript (desenvolvido em VS Code), com atualização em tempo real por WebSockets (Socket.IO). Migração para React prevista.
+* **Backend:** Node.js (Express): 3 instâncias da API e 2 workers que processam os eventos assíncronos.
+* **Base de Dados:** PostgreSQL, com um nó principal e duas réplicas síncronas.
+* **Infraestrutura e Distribuição:** Docker Compose, Nginx (balanceador de carga), RabbitMQ (eventos assíncronos, quorum queues) e Redis (tempo real entre instâncias).
 * **Inteligência Artificial:** Python.
 * **Segurança Informática:** JWT (JSON Web Tokens) e mecanismos de proteção adicionais a implementar.
 
@@ -38,6 +38,6 @@ Sistemas Distribuídos, Tolerância a Faltas, Leilões On-line, Alta Disponibili
 # 10. Resumo curto
 O NextBid é uma plataforma web de leilões on-line que desenvolvemos num semestre anterior, com uma arquitetura centralizada e monolítica. Nesta fase, o objetivo é passá-la para um sistema distribuído.
 
-Num leilão chegam muitos lances ao mesmo tempo, por isso as principais preocupações são a alta disponibilidade dos serviços, a consistência estrita dos dados em tempo real e a tolerância a faltas. Para eliminar os pontos únicos de falha da versão anterior, os serviços em Java Spring Boot e a base de dados MySQL vão ser replicados em contentores Docker.
+Num leilão chegam muitos lances ao mesmo tempo, por isso as principais preocupações são a alta disponibilidade dos serviços, a consistência estrita dos dados em tempo real e a tolerância a faltas. Para eliminar os pontos únicos de falha da versão anterior, os serviços em Node.js e a base de dados PostgreSQL vão ser replicados em contentores Docker.
 
 O projeto vai ainda integrar componentes de Inteligência Artificial em Python para deteção de anomalias e reforçar a segurança com JWT e outras validações.
