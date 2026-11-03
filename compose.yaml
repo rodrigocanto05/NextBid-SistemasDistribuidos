@@ -1,0 +1,4 @@
+name: nextbid
+include:
+  - path: infra/docker/docker-compose.yml
+    project_directory: .
