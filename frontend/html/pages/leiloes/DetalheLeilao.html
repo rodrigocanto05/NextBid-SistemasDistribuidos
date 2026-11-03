@@ -202,16 +202,16 @@
 
                   <div class="la-bid-input-row">
                     <input id="la-bid-amount" name="amount" type="number" step="1" min="1" class="la-bid-input"
-                      placeholder="Valor (€)" required />
+                      placeholder="Valor (créditos)" required />
                     <button type="submit" class="btn btn--primary">Licitar</button>
                   </div>
 
                   <div class="la-presets">
-                    <button type="button" class="la-preset-btn la-bid-preset" data-delta="5">+5€</button>
-                    <button type="button" class="la-preset-btn la-bid-preset" data-delta="10">+10€</button>
-                    <button type="button" class="la-preset-btn la-bid-preset" data-delta="50">+50€</button>
-                    <button type="button" class="la-preset-btn la-bid-preset" data-delta="100">+100€</button>
-                    <button type="button" class="la-preset-btn la-bid-preset" data-delta="500">+500€</button>
+                    <button type="button" class="la-preset-btn la-bid-preset" data-delta="5">+5</button>
+                    <button type="button" class="la-preset-btn la-bid-preset" data-delta="10">+10</button>
+                    <button type="button" class="la-preset-btn la-bid-preset" data-delta="50">+50</button>
+                    <button type="button" class="la-preset-btn la-bid-preset" data-delta="100">+100</button>
+                    <button type="button" class="la-preset-btn la-bid-preset" data-delta="500">+500</button>
                   </div>
 
                   <p class="la-bid-feedback" id="la-bid-msg" aria-live="polite"></p>
@@ -340,7 +340,9 @@
   <script src="../../../js/components/cronometro/Cronometro.js?v=10"></script>
 
   <!-- Page script -->
-  <script src="../../../js/pages/DetalheLeilao.js?v=8"></script>
+  <script src="/socket.io/socket.io.min.js"></script>
+  <script src="../../../js/shared/Realtime.js?v=1"></script>
+  <script src="../../../js/pages/DetalheLeilao.js?v=9"></script>
 </body>
 
 </html>

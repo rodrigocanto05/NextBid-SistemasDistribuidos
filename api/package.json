@@ -1,0 +1,29 @@
+{
+  "name": "nextbid-api",
+  "version": "2.0.0",
+  "private": true,
+  "description": "API e workers do NextBid em Node.js (Express + RabbitMQ). Substitui o backend PHP mantendo o mesmo contrato JSON.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "worker": "node src/worker.js",
+    "test:smoke": "node scripts/smoke-test.js",
+    "stress:bids": "node scripts/stress-bids.js",
+    "bench:hot-auction": "node scripts/bench-hot-auction.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@socket.io/redis-adapter": "8.3.0",
+    "@socket.io/redis-emitter": "5.1.0",
+    "amqplib": "2.2.0",
+    "bcryptjs": "2.4.3",
+    "express": "4.22.3",
+    "ioredis": "5.11.1",
+    "jsonwebtoken": "9.0.3",
+    "multer": "2.0.2",
+    "pg": "8.23.1",
+    "socket.io": "4.8.3"
+  }
+}

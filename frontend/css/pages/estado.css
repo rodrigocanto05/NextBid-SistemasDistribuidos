@@ -1,0 +1,14 @@
+/* Página técnica "Arquitetura ao vivo" (/estado). Propositadamente simples: é um painel de
+   demonstração, não faz parte do site. */
+body { font: 14px monospace; margin: 16px; }
+h2 small { font-weight: normal; color: #666; }
+table { border-collapse: collapse; margin-bottom: 16px; }
+th, td { border: 1px solid #999; padding: 3px 8px; text-align: left; }
+td.num { text-align: right; }
+.up { color: green; }
+.down { color: red; }
+.warn { color: #b36b00; }
+.muted { color: #777; }
+#feed { max-height: 300px; overflow: auto; border: 1px solid #999; padding: 4px 8px; margin: 0 0 16px; }
+pre { margin: 0 0 16px; }
+.hint { max-width: 900px; color: #555; margin: 0 0 12px; }

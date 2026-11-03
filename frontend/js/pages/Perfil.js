@@ -119,7 +119,7 @@
         setText('pf-rating',       p.avg_rating != null ? Number(p.avg_rating).toFixed(1) + ' / 5' : '—');
 
         const bal = Number(p.usr_balance ?? 0);
-        setText('pf-balance', bal.toLocaleString('pt-PT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+        setText('pf-balance', Math.round(bal).toLocaleString('pt-PT'));
 
         // Only sync localStorage when looking at *our own* profile.
         if (viewMode === 'own') {
@@ -336,8 +336,8 @@
                 const li      = document.createElement('li');
                 li.className  = 'pf-bid-item';
                 const winning = !!b.is_winning;
-                const amount  = Number(b.bid_amount  || 0).toLocaleString('pt-PT', { minimumFractionDigits: 2 });
-                const highest = Number(b.current_highest || 0).toLocaleString('pt-PT', { minimumFractionDigits: 2 });
+                const amount  = NB.formatCurrency(b.bid_amount);
+                const highest = NB.formatCurrency(b.current_highest);
                 const prdId   = parseInt(b.prd_id, 10) || 0;
                 const badgeCls = winning ? 'pf-bid-badge pf-bid-badge--winning' : 'pf-bid-badge pf-bid-badge--covered';
                 const badgeTxt = winning ? 'A vencer' : 'Coberto';
@@ -346,8 +346,8 @@
                     <div class="pf-bid-item__info">
                         <p class="pf-bid-item__name">${NB.escHtml(b.prd_name || 'Leilão')}</p>
                         <p class="pf-bid-item__detail">
-                            A minha oferta: <strong>${amount}€</strong> ·
-                            Atual: ${highest}€ ·
+                            A minha oferta: <strong>${amount}</strong> ·
+                            Atual: ${highest} ·
                             <small>${NB.escHtml(b.prd_status || '')}</small>
                         </p>
                         <p class="pf-bid-item__date">${fmtDateTime(b.bid_created_at)}</p>

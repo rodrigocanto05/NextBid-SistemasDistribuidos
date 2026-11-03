@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextBid — Estado da arquitetura</title>
+  <link rel="stylesheet" href="../../css/pages/estado.css" />
+</head>
+<body>
+  <h1>NextBid — Estado da arquitetura</h1>
+  <p id="meta">—</p>
+
+  <h2>Nginx (localhost:8080)</h2>
+  <table><thead><tr><th>Estado</th><th>api1</th><th>api2</th><th>api3</th><th>Pedidos</th></tr></thead><tbody id="nginx"></tbody></table>
+  <button id="btn-traffic">Enviar 30 pedidos</button>
+
+  <h2>API (Node.js)</h2>
+  <table>
+    <thead><tr><th>Instância</th><th>Estado</th><th>BD principal</th><th>Timeline</th><th>BD</th><th>Redis</th><th>RabbitMQ</th><th>Líder (fecho + relay)</th><th>Uptime</th></tr></thead>
+    <tbody id="apis"></tbody>
+  </table>
+
+  <h2>PostgreSQL <small>(replicação síncrona ANY 1)</small></h2>
+  <table>
+    <thead><tr><th>Nó</th><th>Papel</th><th>Timeline</th><th>LSN</th><th>Segue</th><th>Receção</th><th>Atraso</th><th>Réplicas</th></tr></thead>
+    <tbody id="pg"></tbody>
+  </table>
+
+  <h2>RabbitMQ <small>(eventos assíncronos: outbox → fila → workers)</small></h2>
+  <p class="hint">Cada lance aceite grava um evento no outbox, na mesma transação. A API líder publica-o na fila
+    <b>notifications</b> e um dos workers faz os avisos, o XP e a mensagem no chat. Com os workers em baixo a fila
+    enche; com o RabbitMQ em baixo é o outbox que enche. Nos dois casos os lances continuam.</p>
+  <table><tbody id="broker"></tbody></table>
+  <table>
+    <thead><tr><th>Fila</th><th>Tipo</th><th>Prontas</th><th>Por confirmar</th><th>Consumidores</th><th>Entrada/s</th><th>Processadas/s</th></tr></thead>
+    <tbody id="queues"></tbody>
+  </table>
+
+  <h2>Redis <small>(tempo real entre as 3 APIs)</small></h2>
+  <table><tbody id="redis"></tbody></table>
+
+  <h2>WebSocket (Socket.IO)</h2>
+  <table><tbody id="ws"><tr><td>Estado</td><td>—</td></tr></tbody></table>
+
+  <h2>Eventos</h2>
+  <ul id="feed"></ul>
+
+  <h2>Comandos</h2>
+  <pre id="cmds"></pre>
+
+  <script src="/socket.io/socket.io.min.js"></script>
+  <script src="../../js/pages/Estado.js"></script>
+</body>
+</html>

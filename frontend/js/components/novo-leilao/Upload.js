@@ -49,9 +49,12 @@ function render() {
                 ${i === 0 ? '<span class="photo-thumb__label">Principal</span>' : ''}
             </div>`).join('');
     }
+    const min = NB.NovoLeilao.minPhotos ? NB.NovoLeilao.minPhotos() : 3;
     if (counter) {
-        counter.textContent = `${n} / 15 fotos selecionadas${n < 3 ? ' (mínimo 3)' : ''}`;
-        counter.className   = `photo-counter ${n < 3 ? 'error' : 'ok'}`;
+        counter.textContent = `${n} / 15 fotos selecionadas${n < min ? ` (mínimo ${min})` : ''}`;
+        counter.className   = `photo-counter ${n < min ? 'error' : 'ok'}`;
     }
-    if (submit) submit.disabled = n < 3;
+    if (submit) submit.disabled = n < min;
 }
+
+NB.NovoLeilao.refreshPhotos = render;

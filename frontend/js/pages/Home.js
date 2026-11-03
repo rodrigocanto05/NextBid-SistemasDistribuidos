@@ -19,7 +19,7 @@
     });
 
     function loadStats() {
-        NB.apiGet('/api/stats/home.php').then(res => {
+        NB.apiGetCached('/api/stats/home.php').then(res => {
             if (res.status !== 'success') return;
             const d = res.data;
             setStat('stat-active-auctions', d.active_auctions);
@@ -35,7 +35,7 @@
     }
 
     function loadFeatured() {
-        NB.apiGet('/api/auctions/get_active.php')
+        NB.apiGetCached('/api/auctions/get_active.php')
             .then(data => {
                 const list = (data.auctions || []).slice(0, 8);
                 NB.renderGrid('leiloes-container', list, { favoritable: true });

@@ -9,18 +9,18 @@ NB.mountWalletModal = function () {
         <div class="modal-overlay" id="wallet-modal" role="dialog" aria-modal="true">
             <div class="modal modal--compact">
                 <div class="modal__header">
-                    <h2 class="modal__title">Adicionar Fundos</h2>
+                    <h2 class="modal__title">Carregar créditos</h2>
                     <button class="modal__close" id="wallet-close" aria-label="Fechar">✕</button>
                 </div>
                 <div class="modal__body">
-                    <p class="wallet-modal__sub">Escolha o montante para adicionar à sua carteira NextBid</p>
+                    <p class="wallet-modal__sub">Créditos de faculdade a adicionar à conta</p>
                     <div class="wallet-grid" id="wallet-grid">
                         ${[50,100,250,500,1000,2500].map(v =>
-                            `<button class="wallet-amount" data-amount="${v}">${v}€</button>`).join('')}
+                            `<button class="wallet-amount" data-amount="${v}">${v} créditos</button>`).join('')}
                     </div>
                     <div class="wallet-custom">
                         <input type="number" id="wallet-custom-input" class="form-input"
-                               placeholder="Outro valor (€)" min="1" step="1" />
+                               placeholder="Outro valor (créditos)" min="1" step="1" />
                         <button class="btn btn--primary" id="wallet-custom-add">Adicionar</button>
                     </div>
                     <p class="wallet-msg" id="wallet-msg" aria-live="polite"></p>
@@ -51,9 +51,7 @@ NB.mountWalletModal = function () {
 
         const pfBal = document.getElementById('pf-balance');
         if (pfBal) {
-            pfBal.textContent = user.wallet.toLocaleString('pt-PT', {
-                minimumFractionDigits: 2, maximumFractionDigits: 2
-            });
+            pfBal.textContent = Math.round(user.wallet).toLocaleString('pt-PT');
         }
 
         // Refresh detail-page balance row, if present
@@ -74,7 +72,7 @@ NB.mountWalletModal = function () {
         try {
             const res = await NB.apiPost(
                 '/api/transactions/deposit.php',
-                { amount, description: 'Depósito via carteira' },
+                { amount, description: 'Carregamento de créditos' },
                 { auth: true }
             );
 
@@ -88,7 +86,7 @@ NB.mountWalletModal = function () {
             const newBalance = Number(bal.balance ?? 0);
             refreshCachedBalance(newBalance);
 
-            setMsg(`+${amount}€ adicionados! Saldo: ${NB.formatCurrency(newBalance)}`, 'var(--success)');
+            setMsg(`+${NB.formatCurrency(amount)} adicionados. Saldo: ${NB.formatCurrency(newBalance)}`, 'var(--success)');
             setTimeout(close, 900);
         } catch (e) {
             setMsg('Erro de rede.', 'var(--danger)');
@@ -149,13 +147,11 @@ NB.refreshWallet = async function () {
 
         // Patch balance text in place
         const balEl = document.querySelector('.user-card__balance');
-        if (balEl) balEl.textContent = `💳 ${newBal.toLocaleString('pt-PT')}€`;
+        if (balEl) balEl.textContent = `💳 ${NB.formatCurrency(newBal)}`;
 
         const pfBal = document.getElementById('pf-balance');
         if (pfBal) {
-            pfBal.textContent = newBal.toLocaleString('pt-PT', {
-                minimumFractionDigits: 2, maximumFractionDigits: 2
-            });
+            pfBal.textContent = Math.round(newBal).toLocaleString('pt-PT');
         }
         const laBal = document.getElementById('la-user-balance');
         if (laBal) laBal.textContent = NB.formatCurrency(newBal);

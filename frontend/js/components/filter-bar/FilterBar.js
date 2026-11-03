@@ -4,14 +4,17 @@ window.NB = window.NB || {};
 NB.initFilterBar = function (onFilter) {
     const search = document.getElementById('search-input');
     const cat    = document.getElementById('filter-category');
+    const type   = document.getElementById('filter-type');
 
     if (search) search.addEventListener('input', () => onFilter(getFilters()));
     if (cat)    cat.addEventListener('change', () => onFilter(getFilters()));
+    if (type)   type.addEventListener('change', () => onFilter(getFilters()));
 
     function getFilters() {
         return {
-            q:   (search?.value || '').toLowerCase().trim(),
-            cat: cat?.value || ''
+            q:    (search?.value || '').toLowerCase().trim(),
+            cat:  cat?.value || '',
+            type: type?.value || ''
         };
     }
 
@@ -21,8 +24,9 @@ NB.initFilterBar = function (onFilter) {
 NB.filterAuctions = function (list, filters) {
     return list.filter(a => {
         const matchQ   = !filters.q || (a.prd_name || '').toLowerCase().includes(filters.q);
-        const matchCat = !filters.cat || String(a.prd_cat_id) === String(filters.cat);
-        return matchQ && matchCat;
+        const matchCat  = !filters.cat || String(a.prd_cat_id) === String(filters.cat);
+        const matchType = !filters.type || (a.prd_type || 'product') === filters.type;
+        return matchQ && matchCat && matchType;
     });
 };
 

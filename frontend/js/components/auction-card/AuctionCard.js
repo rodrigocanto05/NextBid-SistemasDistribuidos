@@ -61,16 +61,20 @@ NB.createCard = function (leilao, opts = {}) {
             ${NB.escHtml(leilao.prd_location)}
         </p>` : '';
 
-    const catBadgeCls = opts.favoritable ? 'auction-card__cat-badge auction-card__cat-badge--shifted' : 'auction-card__cat-badge';
+    const catText = `${leilao.prd_type === 'service' ? 'Serviço · ' : ''}${leilao.cat_name || ''}`;
+    const descStr = leilao.prd_description
+        ? `<p class="auction-card__desc">${NB.escHtml(leilao.prd_description)}</p>`
+        : '';
     card.innerHTML = `
         <div class="${wrapCls}">
             ${imgWrapInner}
             ${liveBadge}
-            <span class="${catBadgeCls}">${NB.escHtml(leilao.cat_name || '')}</span>
+            <span class="auction-card__cat-badge" title="${NB.escHtml(catText)}">${NB.escHtml(catText)}</span>
             ${resultBadge}
         </div>
         <div class="auction-card__body">
             <h3 class="auction-card__title">${NB.escHtml(leilao.prd_name)}</h3>
+            ${descStr}
             ${locationStr}
             ${bottom}
         </div>

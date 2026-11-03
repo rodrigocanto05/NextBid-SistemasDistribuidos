@@ -5,7 +5,7 @@ NB.initTicker = function () {
     const track = document.getElementById('ticker-track');
     if (!track) return;
 
-    NB.apiGet('/api/auctions/get_active.php')
+    NB.apiGetCached('/api/auctions/get_active.php')
         .then(data => {
             const list = (data.auctions || []).slice(0, 8);
             if (!list.length) {

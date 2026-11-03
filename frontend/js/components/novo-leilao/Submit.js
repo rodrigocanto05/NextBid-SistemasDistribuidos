@@ -17,8 +17,9 @@ NB.NovoLeilao.initSubmit = function (onSuccess) {
         }
 
         const files = NB.NovoLeilao.getFiles();
-        if (files.length < 3) {
-            alert('Adiciona pelo menos 3 fotos.');
+        const minPhotos = NB.NovoLeilao.minPhotos ? NB.NovoLeilao.minPhotos() : 3;
+        if (files.length < minPhotos) {
+            alert(minPhotos === 1 ? 'Adiciona pelo menos 1 foto.' : `Adiciona pelo menos ${minPhotos} fotos.`);
             return;
         }
 
@@ -33,6 +34,7 @@ NB.NovoLeilao.initSubmit = function (onSuccess) {
             const data = await NB.apiPost('/api/auctions/create.php', fd, { auth: true });
             if (data.status === 'success') {
                 form.reset();
+                document.getElementById('nl-tipo')?.dispatchEvent(new Event('change'));
                 NB.NovoLeilao.resetFiles();
                 NB.NovoLeilao.setDatetimeLimits();
                 NB.NovoLeilao.closeModal();

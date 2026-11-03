@@ -1,0 +1,20 @@
+# Sistema / editores
+.DS_Store
+Thumbs.db
+.idea/
+
+# Segredos
+.env
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Uploads gerados em runtime (no Docker vivem no volume "uploads")
+backend/uploads/avatars/*
+backend/uploads/products/*
+!backend/uploads/avatars/.gitkeep
+!backend/uploads/products/.gitkeep
+
+# Ficheiros temporários de transferência
+.nb_src_snapshot.tgz

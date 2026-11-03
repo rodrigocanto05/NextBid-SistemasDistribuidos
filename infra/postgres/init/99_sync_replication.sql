@@ -1,0 +1,14 @@
+-- Último script de init: liga a replicação síncrona.
+--
+-- 'ANY 1 (*)': um COMMIT só é confirmado ao cliente depois de pelo menos UMA réplica (qualquer)
+-- o ter gravado em disco. Com duas réplicas, a falha de uma não bloqueia as escritas.
+-- O '*' em vez de nomes fixos faz com que a regra continue válida depois de um failover,
+-- seja qual for o nó que passou a principal.
+--
+-- Fica em ALTER SYSTEM (postgresql.auto.conf) e não na linha de comando porque os scripts de
+-- init correm num servidor temporário com os mesmos parâmetros: se a replicação síncrona
+-- estivesse ativa nessa altura, o primeiro INSERT ficava à espera de uma réplica que ainda
+-- não existe e o arranque nunca terminava.
+-- O postgresql.auto.conf é copiado pelo pg_basebackup, por isso as réplicas herdam a regra
+-- e aplicam-na se forem promovidas.
+alter system set synchronous_standby_names = 'ANY 1 (*)';

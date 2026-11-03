@@ -144,10 +144,10 @@
       <!-- ── Wallet ──────────────────────────────────────── -->
       <section class="pf-wallet">
         <div class="pf-wallet__info">
-          <p class="pf-wallet__label">Carteira NextBid</p>
-          <p class="pf-wallet__amount"><span id="pf-balance">0,00</span> €</p>
+          <p class="pf-wallet__label">Créditos de faculdade</p>
+          <p class="pf-wallet__amount"><span id="pf-balance">0</span> créditos</p>
         </div>
-        <button type="button" class="btn btn--primary" id="pf-add-funds">+ Adicionar Saldo</button>
+        <button type="button" class="btn btn--primary" id="pf-add-funds">+ Carregar créditos</button>
       </section>
 
       <!-- ── Stats ───────────────────────────────────────── -->
@@ -290,6 +290,14 @@
       <form id="form-novo-leilao" class="modal__body" novalidate>
 
         <div class="form-group">
+          <label class="form-label" for="nl-tipo">Tipo</label>
+          <select id="nl-tipo" name="type" class="form-input">
+            <option value="product">Produto</option>
+            <option value="service">Serviço</option>
+          </select>
+        </div>
+
+        <div class="form-group">
           <label class="form-label" for="nl-categoria">Categoria</label>
           <select id="nl-categoria" name="categoryId" class="form-input" required>
             <option value="">Selecionar categoria…</option>
@@ -300,7 +308,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="nl-nome">Nome do Produto</label>
+          <label class="form-label" for="nl-nome">Nome</label>
           <input type="text" id="nl-nome" name="name" class="form-input" placeholder="Ex: iPhone 14 Pro Max 256GB"
             required maxlength="120" />
         </div>
@@ -311,7 +319,7 @@
             placeholder="Descreve o produto em detalhe…" rows="4" required></textarea>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="nl-condicao-group">
           <label class="form-label" for="nl-condicao">Condição</label>
           <select id="nl-condicao" name="condition" class="form-input" required>
             <option value="new">Novo</option>
@@ -323,18 +331,13 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="nl-preco">Preço Inicial</label>
+            <label class="form-label" for="nl-preco">Preço inicial (créditos)</label>
             <input type="number" id="nl-preco" name="startPrice" class="form-input" placeholder="0" min="1" step="1"
               required />
           </div>
           <div class="form-group">
             <label class="form-label" for="nl-moeda">Moeda</label>
-            <select id="nl-moeda" name="currency" class="form-input">
-              <option value="EUR">€ Euro</option>
-              <option value="USD">$ Dólar</option>
-              <option value="GBP">£ Libra</option>
-              <option value="CHF">CHF Franco</option>
-            </select>
+            <input type="text" id="nl-moeda" class="form-input" value="Créditos" disabled />
           </div>
         </div>
 
@@ -364,7 +367,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label">Fotos (3 a 15)</label>
+          <label class="form-label" id="nl-fotos-label">Fotos (3 a 15)</label>
           <div class="photo-upload-row">
             <label class="btn btn--ghost photo-upload-btn" for="nl-fotos-galeria">🖼 Galeria</label>
             <input type="file" id="nl-fotos-galeria" accept="image/jpeg,image/png,image/webp" multiple hidden />

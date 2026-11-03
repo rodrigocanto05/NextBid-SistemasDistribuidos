@@ -1,0 +1,207 @@
+name: nextbid
+
+x-api: &api
+  build: ./api
+  image: nextbid-api:latest
+  restart: unless-stopped
+  environment: &api-env
+    PORT: "3000"
+    DB_HOSTS: pg-primary:5432,pg-replica1:5432,pg-replica2:5432
+    DB_NAME: nextbid
+    DB_USER: nextbid
+    DB_PASSWORD: ${DB_PASSWORD:?define DB_PASSWORD no .env}
+    JWT_SECRET: ${JWT_SECRET:?define JWT_SECRET no .env}
+    REDIS_URL: redis://redis:6379
+    RABBITMQ_HOST: rabbitmq
+    RABBITMQ_USER: nextbid
+    RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:?define RABBITMQ_PASSWORD no .env}
+    UPLOAD_DIR: /data/uploads
+    APP_TZ: Europe/Lisbon
+    JOB_INTERVAL_MS: "5000"
+    UV_THREADPOOL_SIZE: "16"
+    SEED_DIR: /seed-uploads
+  volumes:
+    - uploads:/data/uploads
+    - ./infra/seed-uploads:/seed-uploads
+  networks: [ edge, data ]
+  depends_on:
+    pg-primary:
+      condition: service_healthy
+    redis:
+      condition: service_started
+    rabbitmq:
+      condition: service_started
+
+x-worker: &worker
+  build: ./api
+  image: nextbid-api:latest
+  restart: unless-stopped
+  command: [ "node", "src/worker.js" ]
+  environment: &worker-env
+    PORT: "3000"
+    DB_HOSTS: pg-primary:5432,pg-replica1:5432,pg-replica2:5432
+    DB_NAME: nextbid
+    DB_USER: nextbid
+    DB_PASSWORD: ${DB_PASSWORD:?define DB_PASSWORD no .env}
+    JWT_SECRET: ${JWT_SECRET:?define JWT_SECRET no .env}
+    REDIS_URL: redis://redis:6379
+    RABBITMQ_HOST: rabbitmq
+    RABBITMQ_USER: nextbid
+    RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:?define RABBITMQ_PASSWORD no .env}
+    APP_TZ: Europe/Lisbon
+    UV_THREADPOOL_SIZE: "16"
+  networks: [ data ]
+  depends_on:
+    pg-primary:
+      condition: service_healthy
+    rabbitmq:
+      condition: service_started
+
+x-pg: &pg
+  image: postgres:17-alpine
+  restart: unless-stopped
+  entrypoint: [ "sh", "-c", "tr -d '\\r' < /scripts/pg-node.sh > /tmp/pg-node.sh && exec bash /tmp/pg-node.sh \"$$@\"", "pg-node" ]
+  command:
+    - postgres
+    - -c
+    - wal_level=replica
+    - -c
+    - max_wal_senders=10
+    - -c
+    - wal_keep_size=512MB
+    - -c
+    - hot_standby=on
+    - -c
+    - wal_log_hints=on
+    - -c
+    - timezone=Europe/Lisbon
+  environment: &pg-env
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: ${PG_ADMIN_PASSWORD:?define PG_ADMIN_PASSWORD no .env}
+    POSTGRES_DB: nextbid
+    REPLICATION_USER: replicator
+    REPLICATION_PASSWORD: ${PG_REPLICATION_PASSWORD:?define PG_REPLICATION_PASSWORD no .env}
+    APP_DB_USER: nextbid
+    APP_DB_PASSWORD: ${DB_PASSWORD}
+    PG_NODES: pg-primary,pg-replica1,pg-replica2
+  healthcheck:
+    test: [ "CMD-SHELL", "pg_isready -h 127.0.0.1 -U postgres -d nextbid" ]
+    interval: 3s
+    timeout: 3s
+    retries: 20
+    start_period: 20s
+  networks: [ data ]
+
+services:
+  nginx:
+    image: nginx:1.28-alpine
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./infra/nginx/nextbid.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./infra/nginx/nextbid_proxy.inc:/etc/nginx/conf.d/nextbid_proxy.inc:ro
+      - ./frontend:/usr/share/nginx/html/frontend:ro
+      - uploads:/data/uploads:ro
+      - ./infra/seed-uploads:/data/seed:ro
+    networks: [ edge ]
+    depends_on: [ api1, api2, api3 ]
+
+  api1:
+    <<: *api
+    environment:
+      <<: *api-env
+      INSTANCE_ID: api1
+  api2:
+    <<: *api
+    environment:
+      <<: *api-env
+      INSTANCE_ID: api2
+  api3:
+    <<: *api
+    environment:
+      <<: *api-env
+      INSTANCE_ID: api3
+
+  worker1:
+    <<: *worker
+    environment:
+      <<: *worker-env
+      INSTANCE_ID: worker1
+  worker2:
+    <<: *worker
+    environment:
+      <<: *worker-env
+      INSTANCE_ID: worker2
+
+  pg-primary:
+    <<: *pg
+    environment:
+      <<: *pg-env
+      NODE_NAME: pg-primary
+      PG_BOOTSTRAP: "true"
+    volumes:
+      - pg-primary-data:/var/lib/postgresql/data
+      - ./infra/postgres:/scripts:ro
+      - ./infra/postgres/init:/docker-entrypoint-initdb.d:ro
+
+  pg-replica1:
+    <<: *pg
+    environment:
+      <<: *pg-env
+      NODE_NAME: pg-replica1
+    volumes:
+      - pg-replica1-data:/var/lib/postgresql/data
+      - ./infra/postgres:/scripts:ro
+    depends_on:
+      pg-primary:
+        condition: service_healthy
+
+  pg-replica2:
+    <<: *pg
+    environment:
+      <<: *pg-env
+      NODE_NAME: pg-replica2
+    volumes:
+      - pg-replica2-data:/var/lib/postgresql/data
+      - ./infra/postgres:/scripts:ro
+    depends_on:
+      pg-primary:
+        condition: service_healthy
+
+  redis:
+    image: redis:7.4-alpine
+    restart: unless-stopped
+    command: [ "redis-server", "--save", "", "--appendonly", "no" ]
+    networks: [ data ]
+
+  rabbitmq:
+    image: rabbitmq:4.1-management-alpine
+    hostname: rabbitmq
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: nextbid
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:?define RABBITMQ_PASSWORD no .env}
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+      - ./infra/rabbitmq/nextbid.conf:/etc/rabbitmq/conf.d/20-nextbid.conf:ro
+    ports:
+      - "127.0.0.1:15672:15672"
+    healthcheck:
+      test: [ "CMD", "rabbitmq-diagnostics", "-q", "ping" ]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+    networks: [ data ]
+
+networks:
+  edge:
+  data:
+
+volumes:
+  pg-primary-data:
+  pg-replica1-data:
+  pg-replica2-data:
+  uploads:
+  rabbitmq-data:

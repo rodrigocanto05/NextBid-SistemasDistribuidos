@@ -13,7 +13,20 @@ NB.getCurrentUser = function () {
     }
 };
 
+// Termina a sessão também no servidor: o token fica revogado (lista no PostgreSQL) e deixa de
+// ser aceite, mesmo que alguém o tenha copiado. keepalive: o pedido continua depois de a página
+// mudar. Se falhar (sem rede), o token expira sozinho; a sessão local termina na mesma.
 NB.logout = function () {
+    const token = localStorage.getItem('token');
+    if (token && NB.BASE_URL) {
+        try {
+            fetch(`${NB.BASE_URL}/api/auth/logout.php`, {
+                method: 'POST',
+                headers: { Authorization: `Bearer ${token}` },
+                keepalive: true,
+            }).catch(() => {});
+        } catch (_) { /* fetch indisponível: segue para o logout local */ }
+    }
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     window.location.href = NB._path('index.html');

@@ -42,14 +42,14 @@ NB._navbarUser = function (user) {
                             <span class="user-card__name">${NB.escHtml(user.name)}</span>
                             <span class="user-card__level">★ Nível ${level}</span>
                         </div>
-                        <span class="user-card__balance">💳 ${walletVal.toLocaleString('pt-PT')}€</span>
+                        <span class="user-card__balance">💳 ${NB.formatCurrency(walletVal)}</span>
                     </div>
                 </div>
                 <div class="dropdown" id="nb-dropdown">
                     <a href="${NB._path('Perfil.html')}" class="dropdown__item">👤 Ver Perfil</a>
                     <a href="${NB._path('Notificacoes.html')}" class="dropdown__item">🔔 Notificações</a>
                     <a href="${NB._path('leiloes/MeusLeiloes.html')}#favoritos" class="dropdown__item">❤ Favoritos</a>
-                    <button class="dropdown__item" id="nb-add-funds">💳 Adicionar Fundos</button>
+                    <button class="dropdown__item" id="nb-add-funds">💳 Carregar créditos</button>
                 </div>
             </div>
             <button class="icon-btn icon-btn--danger" title="Terminar Sessão" onclick="NB.confirmLogout()" aria-label="Terminar Sessão">

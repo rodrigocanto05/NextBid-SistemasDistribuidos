@@ -43,7 +43,7 @@
     }
 
     function loadAuctions() {
-        NB.apiGet('/api/auctions/get_active.php')
+        NB.apiGetCached('/api/auctions/get_active.php')
             .then(data => {
                 allAuctions = data.auctions || [];
                 apply();

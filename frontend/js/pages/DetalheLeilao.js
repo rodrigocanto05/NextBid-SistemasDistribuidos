@@ -26,6 +26,17 @@
 
         bidsTimer = setInterval(loadBids, BIDS_REFRESH_MS);
 
+        // Tempo real (Socket.IO): um lance feito noutra janela, mesmo tratado por outra
+        // instância da API, atualiza a página logo. O polling acima fica como rede de segurança.
+        if (NB.Realtime) {
+            const refresh = () => { loadAuction(); loadBids(); pollChat(); };
+            NB.Realtime.watchAuction(productId, {
+                onBid: refresh,
+                onChat: () => pollChat(),
+                onClosed: refresh,
+            });
+        }
+
         wireBidForm();
         wireChatForm();
         wireDelete();
@@ -41,7 +52,7 @@
 
     async function loadAuction() {
         try {
-            const data = await NB.apiGet(`/api/auctions/get_by_id.php?product_id=${productId}`);
+            const data = await NB.apiGetCached(`/api/auctions/get_by_id.php?product_id=${productId}`);
             if (data.status !== 'success' || !data.data) {
                 showError(data.message || 'Leilão não encontrado.');
                 return;
@@ -61,7 +72,7 @@
 
         setText('la-title',       auction.prd_name);
         setText('la-category',    auction.cat_name);
-        setText('la-condition',   auction.prd_condition);
+        setText('la-condition',   auction.prd_type === 'service' ? 'Serviço' : NB.conditionLabel(auction.prd_condition));
         setText('la-location',    auction.prd_location || '—');
         setText('la-description', auction.prd_description);
         setText('la-start-price', NB.formatCurrency(auction.prd_start_price));
@@ -271,18 +282,18 @@
         setText('la-user-balance',      fmt);
         setText('la-user-balance-stat', fmt);
         const navBal = document.querySelector('.user-card__balance');
-        if (navBal) navBal.textContent = `💳 ${newBal.toLocaleString('pt-PT')}€`;
+        if (navBal) navBal.textContent = `💳 ${NB.formatCurrency(newBal)}`;
     }
 
     function renderInsufficientFunds(msgEl, balance, required) {
         const missing = Math.max(0, required - balance);
         msgEl.innerHTML = `
             <span style="color:var(--danger);display:block;margin-bottom:6px;">
-                Saldo insuficiente — tens <strong>${NB.formatCurrency(balance)}</strong>
+                Créditos insuficientes — tens <strong>${NB.formatCurrency(balance)}</strong>
                 e precisas de <strong>${NB.formatCurrency(required)}</strong>
                 (faltam ${NB.formatCurrency(missing)}).
             </span>
-            <a href="#" class="btn btn--primary btn--sm" id="la-bid-add-funds">+ Adicionar Fundos</a>`;
+            <a href="#" class="btn btn--primary btn--sm" id="la-bid-add-funds">+ Carregar créditos</a>`;
         document.getElementById('la-bid-add-funds')?.addEventListener('click', e => {
             e.preventDefault();
             if (typeof NB.openWalletModal === 'function') {
@@ -305,7 +316,7 @@
 
     async function loadBids() {
         try {
-            const data = await NB.apiGet(`/api/bids/get_by_auction.php?product_id=${productId}&limit=50`);
+            const data = await NB.apiGetCached(`/api/bids/get_by_auction.php?product_id=${productId}&limit=50`);
             if (data.status !== 'success') return;
             renderBids(data.bids || []);
         } catch {}

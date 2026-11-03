@@ -13,9 +13,13 @@ NB.NovoLeilao.KEYWORD_MAP = {
     'Casa & Jardim':   ['sofa','sofá','mesa','cadeira','cama','armário','estante','tapete','espelho','candeeiro','jardim','ferramenta'],
     'Livros & Música': ['livro','livros','música','cd','vinil','disco','guitarra','piano','violino','instrumento'],
     'Brinquedos':      ['brinquedo','lego','playmobil','boneca','carrinho','puzzle','jogo','peluche'],
-    'Informática':     ['servidor','switch','router','disco','ssd','ram','processador','gpu','placa','impressora','scanner'],
+    'Informática':     ['programação','java','python','javascript','website','formatação','reparação','docker','servidor','switch','router','disco','ssd','ram','processador','gpu','placa','impressora','scanner'],
     'Viagens':         ['viagem','hotel','resort','pacote','voucher','cruzeiro','voo'],
-    'Gastronomia':     ['vinho','champanhe','whisky','azeite','queijo','presunto','gourmet']
+    'Gastronomia':     ['vinho','champanhe','whisky','azeite','queijo','presunto','gourmet'],
+    'Explicações':     ['explicação','explicações','explicador','cálculo','matemática','física','química','álgebra','estatística','exame','frequência'],
+    'Aulas e workshops': ['aula','aulas','workshop','curso','lições','iniciação'],
+    'Apoio académico': ['revisão','relatório','tese','dissertação','apresentação','trabalho de grupo'],
+    'Design e multimédia': ['logótipo','logotipo','logo','cartaz','design','edição de vídeo','ilustração']
 };
 
 NB.NovoLeilao.initAutoSuggest = function (categories) {
@@ -42,7 +46,7 @@ NB.NovoLeilao.initAutoSuggest = function (categories) {
         }
         if (best && bestScore > 0) {
             const match = categories.find(c => c.cat_name.toLowerCase() === best.toLowerCase());
-            if (match) {
+            if (match && [...sel.options].some(o => o.value === String(match.cat_id))) {
                 sel.value = match.cat_id;
                 if (hintEl) hintEl.style.display = '';
             }
