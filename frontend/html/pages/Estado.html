@@ -16,8 +16,10 @@
     browser). O Nginx mantém cada browser no mesmo servidor enquanto ele estiver vivo; se cair,
     passa para o outro, e quando voltar regressa ao original.</p>
 
-  <h2>Nginx (localhost:8080)</h2>
-  <table><thead><tr><th>Estado</th><th>api1</th><th>api2</th><th>Pedidos</th></tr></thead><tbody id="nginx"></tbody></table>
+  <h2>Nginx <small>(2 portas de entrada: se uma cair, o site continua na outra)</small></h2>
+  <table><thead><tr><th>Nó</th><th>Endereço</th><th>Estado</th></tr></thead><tbody id="nginx-nodes"></tbody></table>
+  <p class="hint">Pedidos desta página, por servidor:</p>
+  <table><thead><tr><th>Esta entrada</th><th>api1</th><th>api2</th><th>Pedidos</th></tr></thead><tbody id="nginx"></tbody></table>
   <button id="btn-traffic">Enviar 30 pedidos</button>
 
   <h2>API (Node.js)</h2>

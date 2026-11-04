@@ -93,7 +93,10 @@ x-pg: &pg
   networks: [ data ]
 
 services:
-  nginx:
+  # Porta de entrada redundante: dois Nginx iguais (8080 e 8081), com a mesma configuração.
+  # Se um cair, o site continua acessível pelo outro. Ambos usam o mesmo cookie de afinidade,
+  # por isso um browser vai parar ao mesmo servidor (api1/api2) seja qual for a entrada.
+  nginx: &nginx
     image: nginx:1.28-alpine
     restart: unless-stopped
     ports:
@@ -106,6 +109,10 @@ services:
       - ./infra/seed-uploads:/data/seed:ro
     networks: [ edge ]
     depends_on: [ api1, api2 ]
+  nginx2:
+    <<: *nginx
+    ports:
+      - "8081:80"
 
   api1:
     <<: *api

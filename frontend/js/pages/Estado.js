@@ -64,6 +64,25 @@
     return s < 3600 ? `${Math.floor(s / 60)} min ${s % 60} s` : `${Math.floor(s / 3600)} h ${Math.floor(s % 3600 / 60)} min`;
   }
 
+  // ── Os dois Nginx (portas de entrada) ───────────────────────────────
+  const NGINX = [{ name: 'nginx', port: 8080 }, { name: 'nginx2', port: 8081 }];
+  const prevNginx = {};
+  async function checkNginx() {
+    const host = location.hostname;
+    const res = await Promise.all(NGINX.map(n =>
+      fetch(`${location.protocol}//${host}:${n.port}/nginx-health`, { cache: 'no-store', mode: 'cors' })
+        .then(r => r.ok).catch(() => false)));
+    const here = Number(location.port || 80);
+    $('#nginx-nodes').innerHTML = NGINX.map((n, i) =>
+      `<tr><td>${n.name}${n.port === here ? ' <span class="muted">(esta página)</span>' : ''}</td>` +
+      `<td><a href="${location.protocol}//${host}:${n.port}/">${host}:${n.port}</a></td>` +
+      `<td>${st(res[i], res[i] ? 'UP' : 'DOWN')}</td></tr>`).join('');
+    NGINX.forEach((n, i) => {
+      if (prevNginx[n.name] !== undefined && prevNginx[n.name] !== res[i]) event(`${n.name} (porta ${n.port}): ${res[i] ? 'UP' : 'DOWN'}`);
+      prevNginx[n.name] = res[i];
+    });
+  }
+
   // ── Renderização ─────────────────────────────────────────────────────
   function renderNginx(nginxUp) {
     const count = n => dist.filter(d => d === n).length;
@@ -139,6 +158,9 @@
       `docker compose logs -f --tail=5 ${PG.filter(n => n !== primary).join(' ')}`,
       '# O principal antigo volta como réplica do novo principal',
       `docker compose start ${primary}`,
+      '# Nginx em baixo: o site continua na outra porta de entrada (8081)',
+      'docker compose kill nginx',
+      'docker compose start nginx',
       '# Workers em baixo: a fila "notifications" enche; ao voltarem processam tudo',
       'docker compose kill worker1 worker2',
       'docker compose start worker1 worker2',
@@ -259,4 +281,6 @@
   setInterval(poll, POLL_MS);
   checkBrowserSrv();
   setInterval(checkBrowserSrv, POLL_MS);
+  checkNginx();
+  setInterval(checkNginx, POLL_MS);
 })();
