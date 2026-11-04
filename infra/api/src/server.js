@@ -1,4 +1,4 @@
-// Processo API (api1, api2, api3): HTTP + Socket.IO + jobs da instância líder.
+// Processo API (api1, api2): HTTP + Socket.IO + jobs da instância líder.
 //
 //   pedido HTTP -> app.js (middlewares) -> routes/ -> services/ -> db/pool.js (principal atual)
 //   lance aceite -> outbox (mesma transação) -> relay da líder -> RabbitMQ -> worker.js

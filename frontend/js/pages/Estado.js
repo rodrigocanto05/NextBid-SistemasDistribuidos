@@ -4,7 +4,7 @@
 //   * Socket.IO (sala "dashboard") -> lances e fechos em tempo real
 // Mostra também os comandos dos cenários de falha, com o principal atual da BD.
 (function () {
-  const APIS = ['api1', 'api2', 'api3'];
+  const APIS = ['api1', 'api2'];
   const WORKERS = ['worker1', 'worker2'];
   const PG = ['pg-primary', 'pg-replica1', 'pg-replica2'];
   const POLL_MS = 1500;
@@ -16,6 +16,34 @@
   const $ = s => document.querySelector(s);
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const st = (ok, txt) => `<span class="${ok === true ? 'up' : ok === false ? 'down' : 'warn'}">${txt}</span>`;
+
+  // Cookie de afinidade (o mesmo que o site cria em Helpers.js): sem ele, cada pedido desta
+  // página iria para um servidor ao acaso.
+  if (!/(?:^|; )nb_sticky=/.test(document.cookie)) {
+    const id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Math.random()).slice(2) + Date.now();
+    document.cookie = `nb_sticky=${id}; path=/; max-age=31536000; SameSite=Lax`;
+  }
+  const NOMES = { api1: 'Servidor 1', api2: 'Servidor 2' };
+  let browserSrv; // undefined = ainda não verificado
+
+  async function checkBrowserSrv() {
+    let inst = null;
+    try {
+      const r = await fetch('/api/health', { cache: 'no-store' });
+      inst = r.headers.get('x-instance');
+    } catch { inst = null; }
+    const box = $('#browser-srv');
+    box.className = 'srv ' + (inst || 'none');
+    box.textContent = inst ? `${NOMES[inst] || inst} (${inst})` : 'Sem servidor disponível';
+    if (browserSrv !== undefined && browserSrv !== inst) {
+      const de = browserSrv ? (NOMES[browserSrv] || browserSrv) : 'nenhum';
+      const para = inst ? (NOMES[inst] || inst) : 'nenhum';
+      event(`este browser mudou de ${de} para ${para}`);
+      box.classList.add('flash');
+      setTimeout(() => box.classList.remove('flash'), 600);
+    }
+    browserSrv = inst;
+  }
 
   function event(text) {
     const li = document.createElement('li');
@@ -201,7 +229,7 @@
 
   $('#btn-traffic').addEventListener('click', async () => {
     const r = await Promise.all(Array.from({ length: 30 }, () =>
-      fetch('/api/stats/home', { cache: 'no-store' }).then(x => x.headers.get('x-instance')).catch(() => null)));
+      fetch('/api/stats/home', { cache: 'no-store', credentials: 'omit' }).then(x => x.headers.get('x-instance')).catch(() => null)));
     r.forEach(i => { if (i) dist.push(i); });
     while (dist.length > 60) dist.shift();
     event(`30 pedidos: ${APIS.map(a => `${a}=${r.filter(x => x === a).length}`).join(' ')}`);
@@ -225,4 +253,6 @@
 
   poll();
   setInterval(poll, POLL_MS);
+  checkBrowserSrv();
+  setInterval(checkBrowserSrv, POLL_MS);
 })();

@@ -145,3 +145,15 @@ NB.formatRelativeTime = function (isoLike) {
     if (d < 7)      return `há ${d}d`;
     return new Date(t).toLocaleDateString('pt-PT');
 };
+
+
+// ── Afinidade de sessão (sticky) ─────────────────────────────────────────────────────────
+// Identificador aleatório deste browser. O Nginx usa-o para mandar o browser sempre para o
+// mesmo servidor (api1 ou api2) enquanto ele estiver vivo (ver infra/nginx/nextbid.conf).
+// O servidor que está a atender este browser vê-se na página /estado, não no site.
+(function () {
+    if (/(?:^|; )nb_sticky=/.test(document.cookie)) return;
+    const id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+        : String(Math.random()).slice(2) + Date.now();
+    document.cookie = `nb_sticky=${id}; path=/; max-age=31536000; SameSite=Lax`;
+})();

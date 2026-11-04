@@ -1,7 +1,7 @@
 // Autenticação com JWT (substitui a tabela auth_tokens do PHP).
 //
 // Porque é que isto funciona com 3 instâncias: todas assinam e validam com o mesmo JWT_SECRET,
-// por isso um token emitido pela api1 é aceite pela api3 sem estado partilhado em memória.
+// por isso um token emitido pela api1 é aceite pela api2 sem estado partilhado em memória.
 //
 // Mesmo assim cada pedido autenticado faz UMA leitura à BD (como o PHP fazia a auth_tokens):
 //   * confirma que o utilizador ainda existe;

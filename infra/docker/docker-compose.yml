@@ -105,7 +105,7 @@ services:
       - uploads:/data/uploads:ro
       - ./infra/seed-uploads:/data/seed:ro
     networks: [ edge ]
-    depends_on: [ api1, api2, api3 ]
+    depends_on: [ api1, api2 ]
 
   api1:
     <<: *api
@@ -117,11 +117,6 @@ services:
     environment:
       <<: *api-env
       INSTANCE_ID: api2
-  api3:
-    <<: *api
-    environment:
-      <<: *api-env
-      INSTANCE_ID: api3
 
   worker1:
     <<: *worker
@@ -143,7 +138,6 @@ services:
     volumes:
       - pg-primary-data:/var/lib/postgresql/data
       - ./infra/postgres:/scripts:ro
-      - ./infra/postgres/init:/docker-entrypoint-initdb.d:ro
 
   pg-replica1:
     <<: *pg

@@ -10,8 +10,14 @@
   <h1>NextBid — Estado da arquitetura</h1>
   <p id="meta">—</p>
 
+  <h2>Este browser</h2>
+  <div id="browser-srv" class="srv">—</div>
+  <p class="hint">Servidor que está a atender este browser (e o site aberto noutro separador do mesmo
+    browser). O Nginx mantém cada browser no mesmo servidor enquanto ele estiver vivo; se cair,
+    passa para o outro, e quando voltar regressa ao original.</p>
+
   <h2>Nginx (localhost:8080)</h2>
-  <table><thead><tr><th>Estado</th><th>api1</th><th>api2</th><th>api3</th><th>Pedidos</th></tr></thead><tbody id="nginx"></tbody></table>
+  <table><thead><tr><th>Estado</th><th>api1</th><th>api2</th><th>Pedidos</th></tr></thead><tbody id="nginx"></tbody></table>
   <button id="btn-traffic">Enviar 30 pedidos</button>
 
   <h2>API (Node.js)</h2>
@@ -36,7 +42,7 @@
     <tbody id="queues"></tbody>
   </table>
 
-  <h2>Redis <small>(tempo real entre as 3 APIs)</small></h2>
+  <h2>Redis <small>(tempo real entre as 2 APIs)</small></h2>
   <table><tbody id="redis"></tbody></table>
 
   <h2>WebSocket (Socket.IO)</h2>

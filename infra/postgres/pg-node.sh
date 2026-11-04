@@ -152,4 +152,17 @@ else
     done
 fi
 
+# Scripts de inicialização (só o nó de bootstrap os usa, e só com o volume vazio).
+# São copiados para dentro do contentor em vez de montados diretamente: no Docker Desktop
+# (macOS/Windows) os ficheiros montados podem não ter permissão de execução
+# ("bad interpreter: Permission denied"). A cópia também remove CRLF do Windows.
+if [ "${PG_BOOTSTRAP:-false}" = "true" ] && [ -d /scripts/init ]; then
+    mkdir -p /docker-entrypoint-initdb.d
+    for f in /scripts/init/*; do
+        [ -f "$f" ] || continue
+        tr -d '\r' < "$f" > "/docker-entrypoint-initdb.d/$(basename "$f")"
+    done
+    chmod 755 /docker-entrypoint-initdb.d/* 2>/dev/null || true
+fi
+
 exec "${PG_START_CMD:-docker-entrypoint.sh}" "$@"
