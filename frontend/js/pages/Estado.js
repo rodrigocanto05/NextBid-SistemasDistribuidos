@@ -38,7 +38,7 @@
     if (browserSrv !== undefined && browserSrv !== inst) {
       const de = browserSrv ? (NOMES[browserSrv] || browserSrv) : 'nenhum';
       const para = inst ? (NOMES[inst] || inst) : 'nenhum';
-      event(`este browser mudou de ${de} para ${para}`);
+      event(`servidor atual: ${de} → ${para}`);
       box.classList.add('flash');
       setTimeout(() => box.classList.remove('flash'), 600);
     }
@@ -147,27 +147,25 @@
     const primary = (cluster?.nodes || []).find(x => x.role === 'principal')?.node || 'pg-primary';
     const other = PG.find(n => n !== primary);
     $('#cmds').textContent = [
-      '# API: o Nginx passa este browser para o outro servidor; ao voltar, regressa ao original',
+      '# Servidor',
       'docker compose kill api1',
       'docker compose start api1',
-      '# Réplica da BD em baixo: as escritas continuam (a outra réplica confirma cada lance)',
+      '# Réplica da base de dados',
       `docker compose kill ${other}`,
       `docker compose start ${other}`,
-      '# Principal da BD em baixo: failover AUTOMÁTICO em ~10-15 s (a réplica mais adiantada é promovida)',
+      '# Principal da base de dados (failover automático)',
       `docker compose kill ${primary}`,
-      `docker compose logs -f --tail=5 ${PG.filter(n => n !== primary).join(' ')}`,
-      '# O principal antigo volta como réplica do novo principal',
       `docker compose start ${primary}`,
-      '# Nginx em baixo: o site continua na outra porta de entrada (8081)',
+      '# Nginx',
       'docker compose kill nginx',
       'docker compose start nginx',
-      '# Workers em baixo: a fila "notifications" enche; ao voltarem processam tudo',
+      '# Workers',
       'docker compose kill worker1 worker2',
       'docker compose start worker1 worker2',
-      '# RabbitMQ em baixo: os lances continuam, o outbox enche; ao voltar é publicado por ordem',
+      '# RabbitMQ',
       'docker compose kill rabbitmq',
       'docker compose start rabbitmq',
-      '# Redis em baixo: o tempo real entre instâncias para (a página volta ao polling)',
+      '# Redis',
       'docker compose kill redis',
       'docker compose start redis',
       '# Carga',
@@ -193,7 +191,7 @@
       prev.api[n] = up;
     }
     const leader = APIS.find(n => health[n]?.job_leader) || null;
-    if (leader && prev.leader && leader !== prev.leader) event(`líder (fecho + relay do outbox): ${prev.leader} -> ${leader}`);
+    if (leader && prev.leader && leader !== prev.leader) event(`novo líder: ${leader}`);
     if (leader) prev.leader = leader;
     if (!cluster) return;
     for (const x of cluster.nodes) {
@@ -233,7 +231,6 @@
   }
 
   async function poll() {
-    const t0 = performance.now();
     const res = await Promise.all([
       ...APIS.map(n => getJson(`/_inst/${n}/health`).catch(() => null)),
       getJson('/api/cluster').catch(() => null),
@@ -250,7 +247,7 @@
     if (cl && cl.inst) { dist.push(cl.inst); if (dist.length > 60) dist.shift(); }
     diff(health, cluster);
     render(health, cluster, !!cl);
-    $('#meta').textContent = `${new Date().toLocaleTimeString('pt-PT')} · ${Math.round(performance.now() - t0)} ms · intervalo ${POLL_MS} ms`;
+    $('#meta').textContent = `Atualizado às ${new Date().toLocaleTimeString('pt-PT')}`;
   }
 
   $('#btn-traffic').addEventListener('click', async () => {

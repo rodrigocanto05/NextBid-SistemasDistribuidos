@@ -3,57 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NextBid — Estado da arquitetura</title>
+  <title>NextBid — Estado do sistema</title>
   <link rel="stylesheet" href="../../css/pages/estado.css" />
 </head>
 <body>
-  <h1>NextBid — Estado da arquitetura</h1>
+  <h1>NextBid — Estado do sistema</h1>
   <p id="meta">—</p>
 
-  <h2>Este browser</h2>
+  <h2>Servidor atual</h2>
   <div id="browser-srv" class="srv">—</div>
-  <p class="hint">Servidor que está a atender este browser (e o site aberto noutro separador do mesmo
-    browser). O Nginx mantém cada browser no mesmo servidor enquanto ele estiver vivo; se cair,
-    passa para o outro, e quando voltar regressa ao original.</p>
 
-  <h2>Nginx <small>(2 portas de entrada: se uma cair, o site continua na outra)</small></h2>
+  <h2>Nginx</h2>
   <table><thead><tr><th>Nó</th><th>Endereço</th><th>Estado</th></tr></thead><tbody id="nginx-nodes"></tbody></table>
-  <p class="hint">Pedidos desta página, por servidor:</p>
-  <table><thead><tr><th>Esta entrada</th><th>api1</th><th>api2</th><th>Pedidos</th></tr></thead><tbody id="nginx"></tbody></table>
+  <p class="hint">Pedidos por servidor</p>
+  <table><thead><tr><th>Nginx</th><th>api1</th><th>api2</th><th>Pedidos</th></tr></thead><tbody id="nginx"></tbody></table>
   <button id="btn-traffic">Enviar 30 pedidos</button>
 
-  <h2>API (Node.js)</h2>
+  <h2>Servidores</h2>
   <table>
-    <thead><tr><th>Instância</th><th>Estado</th><th>BD principal</th><th>Timeline</th><th>BD</th><th>Redis</th><th>RabbitMQ</th><th>Líder (fecho + relay)</th><th>Uptime</th></tr></thead>
+    <thead><tr><th>Servidor</th><th>Estado</th><th>BD principal</th><th>Timeline</th><th>BD</th><th>Redis</th><th>RabbitMQ</th><th>Líder</th><th>Uptime</th></tr></thead>
     <tbody id="apis"></tbody>
   </table>
 
-  <h2>PostgreSQL <small>(replicação síncrona ANY 1)</small></h2>
+  <h2>Base de dados <small>(PostgreSQL)</small></h2>
   <table>
     <thead><tr><th>Nó</th><th>Papel</th><th>Timeline</th><th>LSN</th><th>Segue</th><th>Receção</th><th>Atraso</th><th>Réplicas</th></tr></thead>
     <tbody id="pg"></tbody>
   </table>
 
-  <h2>RabbitMQ <small>(eventos assíncronos: outbox → fila → workers)</small></h2>
-  <p class="hint">Cada lance aceite grava um evento no outbox, na mesma transação. A API líder publica-o na fila
-    <b>notifications</b> e um dos workers faz os avisos, o XP e a mensagem no chat. Com os workers em baixo a fila
-    enche; com o RabbitMQ em baixo é o outbox que enche. Nos dois casos os lances continuam.</p>
+  <h2>RabbitMQ</h2>
   <table><tbody id="broker"></tbody></table>
   <table>
     <thead><tr><th>Fila</th><th>Tipo</th><th>Prontas</th><th>Por confirmar</th><th>Consumidores</th><th>Entrada/s</th><th>Processadas/s</th></tr></thead>
     <tbody id="queues"></tbody>
   </table>
 
-  <h2>Redis <small>(tempo real entre as 2 APIs)</small></h2>
+  <h2>Redis</h2>
   <table><tbody id="redis"></tbody></table>
 
-  <h2>WebSocket (Socket.IO)</h2>
+  <h2>WebSocket</h2>
   <table><tbody id="ws"><tr><td>Estado</td><td>—</td></tr></tbody></table>
 
   <h2>Eventos</h2>
   <ul id="feed"></ul>
 
-  <h2>Comandos</h2>
+  <h2>Testes de falha</h2>
   <pre id="cmds"></pre>
 
   <script src="/socket.io/socket.io.min.js"></script>
