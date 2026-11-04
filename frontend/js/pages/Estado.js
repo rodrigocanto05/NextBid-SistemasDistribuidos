@@ -128,12 +128,16 @@
     const primary = (cluster?.nodes || []).find(x => x.role === 'principal')?.node || 'pg-primary';
     const other = PG.find(n => n !== primary);
     $('#cmds').textContent = [
-      '# API',
-      'docker compose kill api2',
-      'docker compose start api2',
-      '# Base de dados (failover)',
+      '# API: o Nginx passa este browser para o outro servidor; ao voltar, regressa ao original',
+      'docker compose kill api1',
+      'docker compose start api1',
+      '# Réplica da BD em baixo: as escritas continuam (a outra réplica confirma cada lance)',
+      `docker compose kill ${other}`,
+      `docker compose start ${other}`,
+      '# Principal da BD em baixo: failover AUTOMÁTICO em ~10-15 s (a réplica mais adiantada é promovida)',
       `docker compose kill ${primary}`,
-      `docker compose exec -T ${other} bash /scripts/failover.sh`,
+      `docker compose logs -f --tail=5 ${PG.filter(n => n !== primary).join(' ')}`,
+      '# O principal antigo volta como réplica do novo principal',
       `docker compose start ${primary}`,
       '# Workers em baixo: a fila "notifications" enche; ao voltarem processam tudo',
       'docker compose kill worker1 worker2',

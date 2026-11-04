@@ -165,4 +165,13 @@ if [ "${PG_BOOTSTRAP:-false}" = "true" ] && [ -d /scripts/init ]; then
     chmod 755 /docker-entrypoint-initdb.d/* 2>/dev/null || true
 fi
 
+# Vigia de failover automático (watchdog.sh): corre em segundo plano neste contentor e deteta
+# a falha do principal, promove a réplica mais adiantada e desliga um principal antigo que
+# reapareça. Copiado para /tmp pelo mesmo motivo dos scripts de init (permissões e CRLF).
+WATCHDOG_SRC="${PG_WATCHDOG_SCRIPT:-/scripts/watchdog.sh}"
+if [ "${PG_WATCHDOG:-true}" = "true" ] && [ -f "$WATCHDOG_SRC" ]; then
+    tr -d '\r' < "$WATCHDOG_SRC" > /tmp/pg-watchdog.sh
+    bash /tmp/pg-watchdog.sh &
+fi
+
 exec "${PG_START_CMD:-docker-entrypoint.sh}" "$@"
