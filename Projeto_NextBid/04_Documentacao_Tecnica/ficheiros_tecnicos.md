@@ -35,7 +35,7 @@ Todas as componentes operam isoladas em contentores Docker. A infraestrutura foi
 
 ## 2. Casos de uso
 
-![Casos de uso](../02_Imagens/img_02.png)
+![Casos de uso] 02_Imagens/02_casos_de_uso_uml.png
 
 **Atores:**
 
