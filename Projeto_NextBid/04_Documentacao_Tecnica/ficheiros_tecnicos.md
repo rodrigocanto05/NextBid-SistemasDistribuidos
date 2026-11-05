@@ -79,7 +79,7 @@ O esquema completo está em `infra/postgres/init/01_schema.sql` e `infra/postgre
 ---
 
 ## 4. Capturas da aplicação
-* **Mockups e design system:** `../02_Imagens/img_05.jpg` a `img_15.jpg` (índice abaixo).
+* **Aplicação:** `../02_Imagens/img_05.jpg` a `img_13.jpg` (índice abaixo), capturas do site na versão desta entrega.
 * **Testes de falha:** capturas do site e da página `/estado` antes, durante e depois de cada falha, em `../06_Dados_Investigacao/testes_de_falha/`.
 
 ---
@@ -99,14 +99,12 @@ O `README.md` do repositório explica como pôr o sistema a correr e como repeti
 | `img_02.jpg` | Diagrama de casos de uso (UML) |
 | `img_03.jpg` | Estrutura da base de dados |
 | `img_04.jpg` | Diagrama de sequência de um lance (UML) |
-| `img_05.jpg` | Design system (cores, tipografia e componentes) |
-| `img_06.jpg` | Mockup: página inicial |
-| `img_07.jpg` | Mockup: leilões em destaque |
-| `img_08.jpg` | Mockup: lista de leilões com pesquisa e filtros |
-| `img_09.jpg` | Mockup: página do leilão (temporizador e licitação) |
-| `img_10.jpg` | Mockup: página do leilão (descrição e características) |
-| `img_11.jpg` | Mockup: página do leilão (detalhes e última licitação) |
-| `img_12.jpg` | Mockup: os meus leilões |
-| `img_13.jpg` | Mockup: perfil e saldo |
-| `img_14.jpg` | Mockup: perfil com o menu do utilizador aberto |
-| `img_15.jpg` | Mockup: perfil, atividade recente e conquistas |
+| `img_05.jpg` | Captura: página de login |
+| `img_06.jpg` | Captura: página inicial com estatísticas e leilões em destaque |
+| `img_07.jpg` | Captura: lista de leilões ativos |
+| `img_08.jpg` | Captura: página de um leilão (temporizador e licitação) |
+| `img_09.jpg` | Captura: chat e histórico de licitações do leilão |
+| `img_10.jpg` | Captura: os meus leilões |
+| `img_11.jpg` | Captura: perfil, saldo e licitações do utilizador |
+| `img_12.jpg` | Captura: notificações |
+| `img_13.jpg` | Captura: carregar saldo |
