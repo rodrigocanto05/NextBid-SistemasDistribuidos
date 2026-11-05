@@ -1,80 +1,78 @@
 # Ficheiros Técnicos - NextBid
 
-Esta pasta reúne os dois diagramas da 1ª entrega: a arquitetura distribuída e os casos de uso. O texto completo está no relatório do projeto.
+Esta secção documenta a arquitetura técnica e os casos de uso atualizados para a 2ª entrega do projeto (foco em sistemas distribuídos e tolerância a faltas).
 
-| Ficheiro | Conteúdo |
+| Ficheiro original (Diagramas) | Conteúdo |
 |---|---|
 | `diagramas/01_arquitetura_distribuida.pdf` | Diagrama da arquitetura distribuída |
 | `diagramas/02_casos_de_uso.svg` | Diagrama de casos de uso |
 
-As versões em PNG estão em `../02_Imagens/` (`01_arquitetura_distribuida.png` e `02_casos_de_uso_uml.png`).
+*(Nota: As versões de alta resolução em formato PNG com a nomenclatura exigida encontram-se na diretoria `../02_Imagens/`)*.
 
 ---
 
 ## 1. Arquitetura distribuída
 
-![Arquitetura distribuída](../02_Imagens/01_arquitetura_distribuida.png)
+![Arquitetura distribuída](../02_Imagens/img_01.png)
 
-Diagrama atualizado na 2.ª entrega (Node.js, PostgreSQL, RabbitMQ com outbox e workers). A versão da
-1.ª entrega, com Spring Boot e MySQL, continua em `../02_Imagens/01_diagrama.png`.
+Diagrama atualizado na 2.ª entrega (Node.js, PostgreSQL, RabbitMQ com *transactional outbox* e *workers*). A versão da 1.ª entrega (legado com Spring Boot e MySQL) continua referenciada no repositório para efeitos de histórico.
 
-O diagrama segue o caminho de um pedido, de cima para baixo:
+O diagrama reflete o fluxo de um pedido na infraestrutura distribuída, de cima para baixo:
 
 | Camada | O que faz | Tecnologia |
 |---|---|---|
-| Utilizadores e website | O licitador, o vendedor e o administrador usam o site no browser. Os lances e o temporizador atualizam-se sem recarregar a página. | React + WebSockets (WSS) |
-| Porta de entrada | Dois balanceadores partilham o mesmo endereço (IP virtual). O ativo reparte os pedidos; o de reserva assume se o ativo falhar. | Nginx + Keepalived |
-| Servidores | Várias instâncias iguais tratam do login (JWT + 2FA), dos leilões e dos lances. Se uma cair, as outras continuam. | Node.js (Express) |
-| Fila de eventos | Depois de cada lance confirmado, leva o evento até aos workers que enviam os avisos, dão XP e escrevem no chat (e, mais tarde, ao serviço de IA). Os lances não esperam por este trabalho, e nenhum evento se perde, mesmo com o broker em baixo: fica guardado na base de dados (outbox) até poder ser publicado. | RabbitMQ (Quorum Queues) + workers Node.js |
-| Tempo real | Leva os eventos de tempo real (novo lance, leilão terminado, mensagem nova) de uma instância da API para as outras, para todos os browsers os receberem logo. Não guarda dados. | Redis + Socket.IO |
-| Serviço de IA | Deteta lances suspeitos, estima o preço final e controla os bots de licitação. | Python (FastAPI + Scikit-Learn) |
-| Dados | Base de dados principal com duas réplicas síncronas; uma delas é promovida se a principal falhar. Cada lance é confirmado aqui, de forma síncrona e atómica, junto com o seu evento. | PostgreSQL (1 principal + 2 réplicas) |
+| **Utilizadores e Website** | O licitador, o vendedor e o administrador acedem à plataforma no *browser*. Os lances e o temporizador atualizam-se sem necessidade de recarregar a página. | Frontend + WebSockets (WSS) |
+| **Porta de Entrada (Load Balancer)** | Dois balanceadores partilham o mesmo endereço (IP virtual). O nó ativo reparte os pedidos de forma equitativa; o de reserva assume automaticamente o tráfego se o ativo falhar. | Nginx + Keepalived |
+| **Servidores API** | Múltiplas instâncias idênticas processam o *login* (JWT + 2FA), a criação de leilões e os lances. O sistema garante tolerância a faltas: se uma instância cair, as restantes assumem a carga. | Node.js (Express) |
+| **Fila de Eventos (Mensageria)** | Após o lance ser confirmado na base de dados, o evento segue para os *workers* assíncronos que enviam notificações, atribuem XP e atualizam o chat. Os lances não ficam à espera deste processo. Padrão *Outbox*: nenhum evento se perde, mesmo se o *broker* estiver inativo, ficando guardado na base de dados até poder ser publicado. | RabbitMQ (*Quorum Queues*) + *Workers* Node.js |
+| **Tempo Real** | Distribui eventos imediatos (novo lance, fim do leilão, mensagens) de uma instância da API para as restantes, garantindo que todos os *browsers* são notificados em tempo real (não guarda dados persistentes). | Redis + Socket.IO |
+| **Serviço de IA (3ª Entrega)** | Módulo para deteção de lances anómalos, previsão do preço final e mitigação de *bots* nocivos. | Python (FastAPI + Scikit-Learn) |
+| **Dados** | Base de dados principal acompanhada de duas réplicas síncronas; uma réplica é promovida a nó principal em caso de falha do nó primário. Cada licitação é processada de forma síncrona e atómica. | PostgreSQL (1 Nó Principal + 2 Réplicas) |
 
-Todas as peças correm em contentores Docker. O sistema foi pensado para aguentar uma falha de cada vez em cada camada sem parar o serviço.
+Todas as componentes operam isoladas em contentores Docker. A infraestrutura foi desenhada propositadamente para sobreviver à falha de um nó individual em qualquer uma das camadas sem interrupção do serviço.
 
 ---
 
 ## 2. Casos de uso
 
-![Casos de uso](../02_Imagens/02_casos_de_uso_uml.png)
+![Casos de uso](../02_Imagens/img_02.png)
 
-Atores:
+**Atores:**
 
-- **Licitador:** explora leilões, licita em tempo real, usa o mapa interativo, participa na Caça ao Tesouro e recebe notificações.
-- **Vendedor:** publica leilões e define o preço base, a duração e a localização do artigo.
-- **Administrador:** monitoriza o desempenho do sistema, audita transações, gere utilizadores e revê os lances marcados como suspeitos.
-- **Serviço de IA** e **App Autenticadora (TOTP):** sistemas externos que participam na licitação.
+- **Licitador:** Explora leilões, submete licitações em tempo real, utiliza o mapa interativo e recebe notificações.
+- **Vendedor:** Publica leilões e define o preço base, a duração e a localização do artigo.
+- **Administrador:** Monitoriza o desempenho do sistema, audita transações, gere utilizadores e revê lances marcados como suspeitos.
+- **Serviço de IA** e **App Autenticadora (TOTP):** Sistemas externos automatizados que interagem com o fluxo de autenticação e licitação.
 
-A laranja estão os casos de uso novos desta fase, ligados aos requisitos do relatório:
+Destacam-se os casos de uso vitais para os requisitos da nova arquitetura e próximas entregas:
 
-| Requisito | Caso de uso |
+| Requisito | Caso de Uso |
 |---|---|
-| RF1 - Autenticação com 2FA | `Licitar em tempo real` inclui `Validar código 2FA (TOTP)` |
-| RF2 - Licitações em tempo real | `Licitar em tempo real` e `Acompanhar lances e temporizador ao vivo` |
-| RF3 - Deteção de licitações fraudulentas | `Licitar em tempo real` inclui `Analisar lance`; o Administrador faz `Rever lances suspeitos` |
-| RF4 - Estimativa do preço final | `Consultar estimativa do preço final` |
-| Bots snipers (secção 5.1) | `Licitar automaticamente (bot sniper · Minimax)` estende `Licitar em tempo real` |
+| **RF1 - Autenticação com 2FA** | `Licitar em tempo real` *inclui* `Validar código 2FA (TOTP)` |
+| **RF2 - Licitações em tempo real** | `Licitar em tempo real` e `Acompanhar lances e temporizador ao vivo` |
+| **RF3 - Deteção de fraudes** | `Licitar em tempo real` *inclui* `Analisar lance`; o Administrador executa `Rever lances suspeitos` |
+| **RF4 - Estimativa preditiva** | `Consultar estimativa do preço final` |
+| **Bots Snipers** | `Licitar automaticamente (bot sniper · Minimax)` *estende* `Licitar em tempo real` |
 
 ---
 
 ## 3. Índice de imagens (`02_Imagens`)
 
-| Ficheiro | Conteúdo |
-|---|---|
-| 01_arquitetura_distribuida.png | Diagrama da arquitetura distribuída (2.ª entrega) |
-| 01_diagrama.png | Diagrama da arquitetura da 1.ª entrega (Spring Boot e MySQL) |
-| 02_casos_de_uso_uml.png | Diagrama de casos de uso |
-| DesignSystems.png | Design System do website NextBid (cores, tipografia e componentes) |
-| PagHome.png | Mockup: página inicial, com a faixa de lances ao vivo |
-| PagHome2.png | Mockup: leilões em curso (destaques) |
-| PagLeilões.png | Mockup: todos os leilões, com pesquisa e filtro |
-| PagArtigo.png | Mockup: página do leilão, com temporizador e licitação |
-| PagArtigoDesc.png | Mockup: página do leilão, descrição e características |
-| PagArtigoDesc2.png | Mockup: página do leilão, detalhes e última licitação |
-| PagMeusLeilões.png | Mockup: os meus leilões |
-| PagPerfil.png | Mockup: perfil e carteira |
-| PagStats.png | Mockup: perfil, atividade recente e conquistas |
-| PagPerfil2.png | Mockup: perfil com o menu do utilizador aberto |
-| PagTesouro.png | Mockup: Caça ao Tesouro, com mapa |
+Todos os ficheiros de imagem encontram-se exportados na raiz da pasta `02_Imagens` (em alta resolução, `> 3000px`), adotando a nomenclatura padrão definida para o arquivo documental.
 
-Os mockups e o Design System vêm do repositório original do NextBid (https://github.com/rodrigocanto05/NextBid).
+| Ficheiro | Conteúdo / Descrição |
+|---|---|
+| `img_01.png` | Diagrama da arquitetura distribuída (2.ª entrega) |
+| `img_02.png` | Diagrama de casos de uso (UML) |
+| `img_03.png` | Diagrama da arquitetura legado (1.ª entrega - Monólito Spring Boot e MySQL) |
+| `img_04.png` | Design System do website NextBid (cores, tipografia e componentes) |
+| `img_05.png` | Mockup: Página inicial (com a faixa de lances ao vivo) |
+| `img_06.png` | Mockup: Leilões em curso (destaques e carrossel) |
+| `img_07.png` | Mockup: Pesquisa global de leilões com aplicação de filtros |
+| `img_08.png` | Mockup: Página de leilão (temporizador em destaque e área de licitação) |
+| `img_09.png` | Mockup: Página de leilão (zona de descrição e características do artigo) |
+| `img_10.png` | Mockup: Página de leilão (detalhes e histórico da última licitação) |
+| `img_11.png` | Mockup: Os meus leilões (dashboard do utilizador) |
+| `img_12.png` | Mockup: Perfil público e gestão de carteira |
+| `img_13.png` | Mockup: Estatísticas, atividade recente e painel de conquistas |
+| `img_14.png` | Mockup: Perfil com navegação do menu de utilizador expandido |
