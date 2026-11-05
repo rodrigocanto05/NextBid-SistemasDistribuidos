@@ -7,13 +7,13 @@ Esta secção documenta a arquitetura técnica e os casos de uso atualizados par
 | `diagramas/01_arquitetura_distribuida.pdf` | Diagrama da arquitetura distribuída |
 | `diagramas/02_casos_de_uso.svg` | Diagrama de casos de uso |
 
-*(Nota: As versões de alta resolução em formato PNG com a nomenclatura exigida encontram-se na diretoria `../02_Imagens/`)*.
+*(Nota: As versões de alta resolução em formato PNG encontram-se na diretoria `../02_Imagens/`)*.
 
 ---
 
 ## 1. Arquitetura distribuída
 
-![Arquitetura distribuída](../02_Imagens/img_01.png)
+![Arquitetura distribuída](../02_Imagens/01_diagrama.png)
 
 Diagrama atualizado na 2.ª entrega (Node.js, PostgreSQL, RabbitMQ com *transactional outbox* e *workers*). A versão da 1.ª entrega (legado com Spring Boot e MySQL) continua referenciada no repositório para efeitos de histórico.
 
@@ -35,7 +35,7 @@ Todas as componentes operam isoladas em contentores Docker. A infraestrutura foi
 
 ## 2. Casos de uso
 
-![Casos de uso] 02_Imagens/02_casos_de_uso_uml.png
+![Casos de uso](../02_Imagens/02_casos_de_uso_uml.png)
 
 **Atores:**
 
@@ -58,21 +58,20 @@ Destacam-se os casos de uso vitais para os requisitos da nova arquitetura e pró
 
 ## 3. Índice de imagens (`02_Imagens`)
 
-Todos os ficheiros de imagem encontram-se exportados na raiz da pasta `02_Imagens` (em alta resolução, `> 3000px`), adotando a nomenclatura padrão definida para o arquivo documental.
+Todos os ficheiros de imagem encontram-se exportados na raiz da pasta `02_Imagens`.
 
 | Ficheiro | Conteúdo / Descrição |
 |---|---|
-| `img_01.png` | Diagrama da arquitetura distribuída (2.ª entrega) |
-| `img_02.png` | Diagrama de casos de uso (UML) |
-| `img_03.png` | Diagrama da arquitetura legado (1.ª entrega - Monólito Spring Boot e MySQL) |
-| `img_04.png` | Design System do website NextBid (cores, tipografia e componentes) |
-| `img_05.png` | Mockup: Página inicial (com a faixa de lances ao vivo) |
-| `img_06.png` | Mockup: Leilões em curso (destaques e carrossel) |
-| `img_07.png` | Mockup: Pesquisa global de leilões com aplicação de filtros |
-| `img_08.png` | Mockup: Página de leilão (temporizador em destaque e área de licitação) |
-| `img_09.png` | Mockup: Página de leilão (zona de descrição e características do artigo) |
-| `img_10.png` | Mockup: Página de leilão (detalhes e histórico da última licitação) |
-| `img_11.png` | Mockup: Os meus leilões (dashboard do utilizador) |
-| `img_12.png` | Mockup: Perfil público e gestão de carteira |
-| `img_13.png` | Mockup: Estatísticas, atividade recente e painel de conquistas |
-| `img_14.png` | Mockup: Perfil com navegação do menu de utilizador expandido |
+| `01_diagrama.png` | Diagrama da arquitetura distribuída |
+| `02_casos_de_uso_uml.png` | Diagrama de casos de uso (UML) |
+| `DesignSystems.png` | Design System do website NextBid (cores, tipografia e componentes) |
+| `PagHome.png` | Mockup: Página inicial (com a faixa de lances ao vivo) |
+| `PagHome2.png` | Mockup: Leilões em curso (destaques e carrossel) |
+| `PagLeilões.png` | Mockup: Pesquisa global de leilões com aplicação de filtros |
+| `PagArtigo.png` | Mockup: Página de leilão (temporizador em destaque e área de licitação) |
+| `PagArtigoDesc.png` | Mockup: Página de leilão (zona de descrição e características do artigo) |
+| `PagArtigoDesc2.png` | Mockup: Página de leilão (detalhes e histórico da última licitação) |
+| `PagMeusLeilões.png` | Mockup: Os meus leilões (dashboard do utilizador) |
+| `PagPerfil.png` | Mockup: Perfil público e gestão de carteira |
+| `PagStats.png` | Mockup: Estatísticas, atividade recente e painel de conquistas |
+| `PagPerfil2.png` | Mockup: Perfil com navegação do menu de utilizador expandido |
