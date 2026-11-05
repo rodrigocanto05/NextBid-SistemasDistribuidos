@@ -12,7 +12,7 @@
 --   * email único sem distinguir maiúsculas (no MySQL vinha da collation; aqui é um índice em lower())
 --   * saldo nunca negativo        -> check (usr_balance >= 0), última barreira contra erros de escrow
 --   * bid.bid_request_id          -> deteção de pedidos duplicados (lance repetido pelo cliente)
---   * moeda: créditos da faculdade (sem casas decimais na prática; numeric mantém o contrato da API)
+--   * moeda: euros (sem casas decimais na prática; numeric mantém o contrato da API)
 --   * leilões de produtos e de serviços (prd_type / cat_type)
 -- A Caça ao Tesouro (gamification, gamification_claim) já tinha sido removida neste repositório.
 

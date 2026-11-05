@@ -13,11 +13,11 @@ get(router, '/balance', requireAuth, async (req, res) => {
 
 post(router, '/deposit', requireAuth, async (req, res) => {
     const amount = num(req.body && req.body.amount);
-    const description = str(req.body && req.body.description).trim() || 'Carregamento de créditos';
-    if (amount <= 0 || !Number.isInteger(amount)) throw fail('Indica um número inteiro de créditos.');
-    if (amount > 100000) throw fail('Máximo por carregamento: 100 000 créditos.');
+    const description = str(req.body && req.body.description).trim() || 'Carregamento de saldo';
+    if (amount <= 0 || !Number.isInteger(amount)) throw fail('Indica um valor inteiro em euros.');
+    if (amount > 100000) throw fail('Máximo por carregamento: 100 000 €.');
     await wallet.deposit(req.user.id, amount, description);
-    res.json({ status: 'success', message: 'Créditos carregados.', amount });
+    res.json({ status: 'success', message: 'Saldo carregado.', amount });
 });
 
 module.exports = router;

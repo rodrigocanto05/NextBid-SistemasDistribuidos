@@ -43,7 +43,7 @@ const num = (v, def = 0) => {
 
 const str = v => (v === undefined || v === null ? '' : String(v));
 
-// Moeda da plataforma: créditos da faculdade (inteiros). 1200 -> "1200 créditos"
-const fmtCr = n => `${Math.round(Number(n) || 0)} créditos`;
+// Moeda da plataforma: euros (valores inteiros). 1200 -> "1200 €"
+const fmtCr = n => `${Math.round(Number(n) || 0)} €`;
 
 module.exports = { HttpError, fail, asyncH, errorHandler, int, num, str, fmtCr };

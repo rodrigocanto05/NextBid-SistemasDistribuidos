@@ -7,10 +7,10 @@ NB.BASE_URL = (function () {
     return `${protocol}//${host}${root}/backend`;
 })();
 
-// Moeda: créditos de faculdade (inteiros).
+// Moeda: euros (valores inteiros).
 NB.formatCurrency = function (amount) {
     const n = Math.round(Number(amount) || 0);
-    return `${n.toLocaleString('pt-PT')} ${n === 1 ? 'crédito' : 'créditos'}`;
+    return `${n.toLocaleString('pt-PT')} €`;
 };
 
 NB.typeLabel = function (type) {

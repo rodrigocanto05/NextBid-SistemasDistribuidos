@@ -289,11 +289,11 @@
         const missing = Math.max(0, required - balance);
         msgEl.innerHTML = `
             <span style="color:var(--danger);display:block;margin-bottom:6px;">
-                Créditos insuficientes — tens <strong>${NB.formatCurrency(balance)}</strong>
+                Saldo insuficiente — tens <strong>${NB.formatCurrency(balance)}</strong>
                 e precisas de <strong>${NB.formatCurrency(required)}</strong>
                 (faltam ${NB.formatCurrency(missing)}).
             </span>
-            <a href="#" class="btn btn--primary btn--sm" id="la-bid-add-funds">+ Carregar créditos</a>`;
+            <a href="#" class="btn btn--primary btn--sm" id="la-bid-add-funds">+ Carregar saldo</a>`;
         document.getElementById('la-bid-add-funds')?.addEventListener('click', e => {
             e.preventDefault();
             if (typeof NB.openWalletModal === 'function') {

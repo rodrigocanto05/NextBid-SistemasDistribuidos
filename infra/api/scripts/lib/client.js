@@ -77,7 +77,7 @@ function createClient(baseUrl) {
         }
     }
 
-    // Regista, faz login e (opcionalmente) carrega créditos. Devolve { id, token, email }.
+    // Regista, faz login e (opcionalmente) carrega saldo. Devolve { id, token, email }.
     async function newUser(tag, { deposit = 0 } = {}) {
         return retry(async () => {
             const email = `${tag}.${Date.now()}.${Math.random().toString(36).slice(2, 7)}@test.pt`;

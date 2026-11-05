@@ -23,7 +23,7 @@ async function onBidPlaced(c, d) {
         await notify(
             c,
             outbid,
-            `Alguém cobriu a tua oferta em '${d.product_name}'! Nova licitação de ${fmtCr(d.amount)}. Os teus créditos foram devolvidos.`,
+            `Alguém cobriu a tua oferta em '${d.product_name}'! Nova licitação de ${fmtCr(d.amount)}. O valor foi devolvido ao teu saldo.`,
             'bid_outbid',
         );
     }

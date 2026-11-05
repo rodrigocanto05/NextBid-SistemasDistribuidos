@@ -1,4 +1,4 @@
-// Carteira de créditos (saldo e carregamentos). Débitos e reembolsos dos lances estão em services/bids.js.
+// Carteira (saldo em euros (saldo e carregamentos). Débitos e reembolsos dos lances estão em services/bids.js.
 
 const db = require('../db/pool');
 

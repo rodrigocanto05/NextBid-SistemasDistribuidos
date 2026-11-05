@@ -86,7 +86,7 @@ const notifTypes = async token => {
     const low = await call('POST', '/bids/place.php', { token: B, body: { product_id: pid, amount: 5 } });
     ok(low.status === 'error', 'lance abaixo do preço inicial recusado');
     const b1 = await call('POST', '/bids/place.php', { token: B, body: { product_id: pid, amount: 15 } });
-    ok(b1.status === 'success' && b1.new_balance === 485, 'lance B 15 créditos (saldo 485)', JSON.stringify(b1));
+    ok(b1.status === 'success' && b1.new_balance === 485, 'lance B 15 € (saldo 485)', JSON.stringify(b1));
     const poor = await call('POST', '/bids/place.php', { token: B, body: { product_id: pid, amount: 9999 } });
     ok(poor.code === 'insufficient_funds', 'saldo insuficiente com code');
     const bids = await call('GET', `/bids/get_by_auction.php?product_id=${pid}&limit=50`);
@@ -124,7 +124,7 @@ const notifTypes = async token => {
     // C cobre B. B tem o leilão nos favoritos, mas como foi coberto recebe só o aviso "cobriram a
     // tua oferta" (não o aviso de favorito). O vendedor A não recebe nada.
     const c1 = await call('POST', '/bids/place.php', { token: C, body: { product_id: pid, amount: 30 } });
-    ok(c1.status === 'success', 'lance C 30 créditos');
+    ok(c1.status === 'success', 'lance C 30 €');
     const outbid = await api.eventually(async () => (await notifTypes(B)).includes('bid_outbid'));
     ok(outbid.ok, `B avisado de que foi coberto (${outbid.ms} ms)`);
     const typesB = await notifTypes(B);

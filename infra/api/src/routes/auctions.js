@@ -87,9 +87,9 @@ post(router, '/create', requireAuth, async (req, res) => {
         bail('Preenche todos os campos obrigatórios.');
     }
     if (type === 'product' && !['new', 'like new', 'good', 'used'].includes(data.condition)) bail('Condição inválida.');
-    if (!Number.isInteger(data.price)) bail('O preço inicial tem de ser um número inteiro de créditos.');
-    if (data.price < 1) bail('O preço inicial tem de ser no mínimo 1 crédito.');
-    if (data.price > 1000000) bail('O preço inicial não pode exceder 1 000 000 créditos.');
+    if (!Number.isInteger(data.price)) bail('O preço inicial tem de ser um valor inteiro em euros.');
+    if (data.price < 1) bail('O preço inicial tem de ser no mínimo 1 €.');
+    if (data.price > 1000000) bail('O preço inicial não pode exceder 1 000 000 €.');
 
     let id;
     try {

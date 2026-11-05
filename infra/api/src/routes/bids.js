@@ -14,7 +14,7 @@ post(router, '/place', requireAuth, async (req, res) => {
     const productId = int(b.product_id);
     const amount = num(b.amount);
     if (productId <= 0 || amount <= 0) throw fail('Dados de licitação inválidos.');
-    if (!Number.isInteger(amount)) throw fail('O lance tem de ser um número inteiro de créditos.');
+    if (!Number.isInteger(amount)) throw fail('O lance tem de ser um valor inteiro em euros.');
     if (amount > 99999999) throw fail('Valor demasiado alto.');
 
     const key = str(req.get('Idempotency-Key') || b.request_id).trim().slice(0, 64) || null;

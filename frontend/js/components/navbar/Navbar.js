@@ -49,7 +49,7 @@ NB._navbarUser = function (user) {
                     <a href="${NB._path('Perfil.html')}" class="dropdown__item">👤 Ver Perfil</a>
                     <a href="${NB._path('Notificacoes.html')}" class="dropdown__item">🔔 Notificações</a>
                     <a href="${NB._path('leiloes/MeusLeiloes.html')}#favoritos" class="dropdown__item">❤ Favoritos</a>
-                    <button class="dropdown__item" id="nb-add-funds">💳 Carregar créditos</button>
+                    <button class="dropdown__item" id="nb-add-funds">💳 Carregar saldo</button>
                 </div>
             </div>
             <button class="icon-btn icon-btn--danger" title="Terminar Sessão" onclick="NB.confirmLogout()" aria-label="Terminar Sessão">

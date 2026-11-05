@@ -9,18 +9,18 @@ NB.mountWalletModal = function () {
         <div class="modal-overlay" id="wallet-modal" role="dialog" aria-modal="true">
             <div class="modal modal--compact">
                 <div class="modal__header">
-                    <h2 class="modal__title">Carregar créditos</h2>
+                    <h2 class="modal__title">Carregar saldo</h2>
                     <button class="modal__close" id="wallet-close" aria-label="Fechar">✕</button>
                 </div>
                 <div class="modal__body">
-                    <p class="wallet-modal__sub">Créditos de faculdade a adicionar à conta</p>
+                    <p class="wallet-modal__sub">Valor a adicionar à conta</p>
                     <div class="wallet-grid" id="wallet-grid">
                         ${[50,100,250,500,1000,2500].map(v =>
-                            `<button class="wallet-amount" data-amount="${v}">${v} créditos</button>`).join('')}
+                            `<button class="wallet-amount" data-amount="${v}">${v} €</button>`).join('')}
                     </div>
                     <div class="wallet-custom">
                         <input type="number" id="wallet-custom-input" class="form-input"
-                               placeholder="Outro valor (créditos)" min="1" step="1" />
+                               placeholder="Outro valor (€)" min="1" step="1" />
                         <button class="btn btn--primary" id="wallet-custom-add">Adicionar</button>
                     </div>
                     <p class="wallet-msg" id="wallet-msg" aria-live="polite"></p>
@@ -72,7 +72,7 @@ NB.mountWalletModal = function () {
         try {
             const res = await NB.apiPost(
                 '/api/transactions/deposit.php',
-                { amount, description: 'Carregamento de créditos' },
+                { amount, description: 'Carregamento de saldo' },
                 { auth: true }
             );
 

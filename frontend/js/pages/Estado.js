@@ -270,7 +270,7 @@
       $('#ws').innerHTML = `<tr><td>Estado</td><td>${st(false, 'desligado')}</td></tr>`;
       event('websocket desligado');
     });
-    s.on('bid:new', e => event(`lance: leilão #${e.product_id}, ${e.amount} créditos, ${e.bidder_name}, via ${e.instance}`));
+    s.on('bid:new', e => event(`lance: leilão #${e.product_id}, ${e.amount} €, ${e.bidder_name}, via ${e.instance}`));
     s.on('auction:closed', e => event(`fecho: leilão #${e.product_id} (${e.status}), via ${e.instance}`));
   }
 

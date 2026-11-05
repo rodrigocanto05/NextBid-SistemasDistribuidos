@@ -93,7 +93,7 @@ function placeBidTx(userId, productId, amount, requestId) {
         const selfRefund = prev && prev.bid_usr_id === userId ? Number(prev.bid_amount) : 0;
         const effective = Number(me.usr_balance) + selfRefund;
         if (effective < amount) {
-            throw fail(`Créditos insuficientes. Tens ${fmtCr(effective)} disponíveis mas a licitação é de ${fmtCr(amount)}.`, {
+            throw fail(`Saldo insuficiente. Tens ${fmtCr(effective)} disponíveis mas a licitação é de ${fmtCr(amount)}.`, {
                 code: 'insufficient_funds',
                 balance: effective,
                 required: amount,

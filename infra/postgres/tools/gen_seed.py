@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Gera infra/postgres/init/02_seed.sql: dados de demonstração do NextBid.
 
-  * moeda: créditos da faculdade (cada conta começa com 2000 créditos)
+  * moeda: euros (cada conta começa com 2000 €)
   * 8 produtos + 6 serviços, com descrição, atributos e imagens (infra/seed-uploads/)
   * lances de várias contas, com o escrow coerente: o lance mais alto de cada leilão está
     retido no saldo de quem o fez, e os licitadores cobertos foram reembolsados
@@ -112,13 +112,13 @@ def ago(minutes):
 
 
 def credits(n):
-    return f"{n} créditos"
+    return f"{n} €"
 
 
 out = []
 w = out.append
 w("-- Gerado por infra/postgres/tools/gen_seed.py. Não editar à mão: alterar o gerador e voltar a correr.")
-w("-- Password de todas as contas de teste: nextbid123. Moeda: créditos da faculdade.")
+w("-- Password de todas as contas de teste: nextbid123. Moeda: euros.")
 w("")
 w("begin;")
 w("")
@@ -134,7 +134,7 @@ bids = []      # (item, usr, valor, minutos atrás)
 winners = {}
 
 for uid in balance:
-    tx.append((uid, "deposit", INITIAL_CREDITS, "Créditos atribuídos pela faculdade", 60 * 24 * 30))
+    tx.append((uid, "deposit", INITIAL_CREDITS, "Saldo inicial", 60 * 24 * 30))
 
 events = []  # (minutos atrás, item, bidder, amount) - ordenado depois por tempo
 for idx, it in enumerate(ITEMS, start=1):
@@ -170,7 +170,7 @@ for t, idx, bidder, amount in events:
                    else f"Reembolso por ter sido coberto no leilão #{idx}", t))
         if p_user != bidder:
             notifs.append((p_user, "bid_outbid",
-                           f"Alguém cobriu a tua oferta em '{name}'! Nova licitação de {credits(amount)}. Os teus créditos foram devolvidos.", t, False))
+                           f"Alguém cobriu a tua oferta em '{name}'! Nova licitação de {credits(amount)}. O valor foi devolvido ao teu saldo.", t, False))
     balance[bidder] -= amount
     assert balance[bidder] >= 0, (bidder, balance[bidder])
     tx.append((bidder, "debit", amount, f"Licitação no leilão #{idx}", t))
