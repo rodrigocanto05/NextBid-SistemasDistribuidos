@@ -69,10 +69,20 @@
   const prevNginx = {};
   async function checkNginx() {
     const host = location.hostname;
+    const here = Number(location.port || (location.protocol === 'https:' ? 443 : 80));
+    if (!NGINX.some(n => n.port === here)) {
+      // Endereço público (Cloudflare Tunnel): as portas 8080/8081 não existem por fora,
+      // por isso só se verifica o Nginx por onde esta página entrou.
+      const ok = await fetch('/nginx-health', { cache: 'no-store' }).then(r => r.ok).catch(() => false);
+      $('#nginx-nodes').innerHTML = `<tr><td>nginx <span class="muted">(entrada pública)</span></td>` +
+        `<td><a href="/">${esc(host)}</a></td><td>${st(ok, ok ? 'UP' : 'DOWN')}</td></tr>`;
+      if (prevNginx.publico !== undefined && prevNginx.publico !== ok) event(`entrada pública: ${ok ? 'UP' : 'DOWN'}`);
+      prevNginx.publico = ok;
+      return;
+    }
     const res = await Promise.all(NGINX.map(n =>
       fetch(`${location.protocol}//${host}:${n.port}/nginx-health`, { cache: 'no-store', mode: 'cors' })
         .then(r => r.ok).catch(() => false)));
-    const here = Number(location.port || 80);
     $('#nginx-nodes').innerHTML = NGINX.map((n, i) =>
       `<tr><td>${n.name}${n.port === here ? ' <span class="muted">(esta página)</span>' : ''}</td>` +
       `<td><a href="${location.protocol}//${host}:${n.port}/">${host}:${n.port}</a></td>` +

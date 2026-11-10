@@ -114,6 +114,18 @@ services:
     ports:
       - "8081:80"
 
+  # Endereço público para a apresentação (Cloudflare Quick Tunnel, sem conta, com HTTPS).
+  # Só arranca com o perfil "publico":   docker compose --profile publico up -d
+  # O link https://<aleatório>.trycloudflare.com aparece em:   docker compose logs cloudflared
+  # O túnel liga ao Nginx 1; o link muda sempre que o contentor é recriado.
+  cloudflared:
+    image: cloudflare/cloudflared:2026.5.0
+    profiles: [ publico ]
+    restart: unless-stopped
+    command: [ "tunnel", "--url", "http://nginx:80" ]
+    networks: [ edge ]
+    depends_on: [ nginx ]
+
   api1:
     <<: *api
     environment:

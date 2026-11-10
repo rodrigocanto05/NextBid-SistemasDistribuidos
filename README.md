@@ -7,7 +7,8 @@ centralizada para um **sistema distribuído e tolerante a faltas**.
 **Equipa:** Rodrigo Canto, Marco Fonseca, Martim Fonseca e Rodrigo Daibert.
 
 A documentação do projeto (memória descritiva, imagens, documentação técnica) está em
-[`Projeto_NextBid/`](Projeto_NextBid/).
+[`Projeto_NextBid/`](Projeto_NextBid/). Relatório da 2.ª entrega:
+[`relatorio_2a_entrega.md`](Projeto_NextBid/05_Artefactos/relatorio_2a_entrega.md).
 
 ---
 
@@ -49,7 +50,7 @@ Requisitos: [Docker Desktop](https://www.docker.com/products/docker-desktop/) (m
 ```bash
 git clone https://github.com/rodrigocanto05/NextBid-SistemasDistribuidos.git
 cd NextBid-SistemasDistribuidos
-cp .env.example .env          # passwords de exemplo: servem para testar localmente
+cp .env.example .env          # passwords de exemplo: só para uso local (trocar antes de expor o site)
 docker compose up -d --build  # a primeira vez demora alguns minutos
 docker compose ps             # esperar ~1 min: tudo "Up" / "healthy"
 ```
@@ -79,8 +80,29 @@ Com o site e a página `/estado` abertos lado a lado:
 4. Matar o servidor 1: `docker compose kill api1`
 5. Em poucos segundos o `/estado` mostra **Servidor 2 (api2)**.
 6. Licitar de novo.
-7. O histórico mostra os dois lances.
+7. O histórico mostra os dois lances, o do Servidor 1 e o do Servidor 2: a base de dados é partilhada e
+   replicada, por isso nenhum lance se perde com a queda do servidor.
 8. Ligar o servidor 1: `docker compose start api1` → o browser regressa ao **Servidor 1**.
+
+### Com endereço público (Cloudflare Tunnel)
+
+Para a demonstração se ver fora do `localhost` (no projetor e nos telemóveis da turma), o sistema continua
+a correr no portátil e um contentor `cloudflared` publica-o num endereço `https://….trycloudflare.com`.
+Não é preciso conta, IP público nem abrir portas no router da rede.
+
+```powershell
+docker compose --profile publico up -d                       # arranca tudo + o túnel
+docker compose logs cloudflared | Select-String trycloudflare  # macOS/Linux: | grep trycloudflare
+```
+
+Abrir o link que aparece (e `<link>/estado` ao lado) e seguir os passos 1 a 8 acima; os comandos
+`docker compose kill/start api1` continuam a ser dados no portátil.
+
+- O link muda sempre que o contentor `cloudflared` é recriado: obtê-lo uns minutos antes de começar.
+- O túnel liga ao Nginx 1. Matar o `nginx` corta o link público (o Nginx 2 continua em `localhost:8081`).
+- Enquanto o túnel estiver ligado, qualquer pessoa com o link entra no site com as contas de teste.
+  Desligar no fim: `docker compose --profile publico stop cloudflared`.
+- Se a rede da sala bloquear o túnel, usar o hotspot do telemóvel.
 
 ---
 
@@ -119,6 +141,9 @@ docker compose exec -T api1 node scripts/stress-bids.js http://nginx 8 300 20
 | `infra/api/` | API e workers em Node.js (Express, Socket.IO, RabbitMQ) |
 | `infra/postgres/` | Arranque dos nós, esquema, dados de teste, vigia de failover (`watchdog.sh`) e failover manual (`failover.sh`) |
 | `infra/nginx/` | Configuração dos Nginx (balanceamento, afinidade, deteção de falhas) |
-| `infra/docker/` | `docker-compose.yml` com todos os serviços |
-| `Projeto_NextBid/` | Memória e arquivo documental do projeto |
+| `infra/rabbitmq/` | Configuração do RabbitMQ |
+| `infra/seed-uploads/` | Imagens dos leilões de teste |
+| `infra/docker/` | `docker-compose.yml` com todos os serviços (o `compose.yaml` da raiz inclui-o, por isso os comandos correm na raiz) |
+| `.env.example` | Modelo das passwords e segredos; o `.env` real não vai para o Git |
+| `Projeto_NextBid/` | Memória, relatórios e arquivo documental do projeto |
 | `backend/`, `database/` | Versão anterior (PHP + MySQL) do semestre passado; já não é usada |
