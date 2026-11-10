@@ -23,31 +23,37 @@ insert into category (cat_name, cat_type) values ('Apoio académico', 'service')
 insert into category (cat_name, cat_type) values ('Design e multimédia', 'service');
 insert into category (cat_name, cat_type) values ('Informática', 'service');
 
-insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
-values ('Rodrigo Canto', 'rodrigocanto@hotmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2005-10-20', 'Estudante de Engenharia Informática e fã de tecnologia.', 1954, 'Lisboa', 120, 'admin', (now() - interval '59 days')); -- usr_id = 1
-insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
-values ('Rodrigo Daibert', 'rodrigodaibert@hotmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2005-10-22', 'Gosto de leilões, gaming e sistemas distribuídos.', 1946, 'Amadora', 95, 'admin', (now() - interval '58 days')); -- usr_id = 2
-insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
-values ('Marco Fonseca', 'mf2006@gmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2006-10-24', 'Colecionador e explicador de Matemática.', 2183, 'Cascais', 180, 'admin', (now() - interval '57 days')); -- usr_id = 3
-insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
-values ('Luis Quirim', 'luisquirim@gmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2004-10-28', 'Interesso-me por artigos para casa e carros.', 2000, 'Sintra', 60, 'normaluser', (now() - interval '56 days')); -- usr_id = 4
-insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
-values ('Sandra Estrela', 'sandra@hotmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'F', '2003-10-30', 'Adoro moda, decoração e música.', 1901, 'Oeiras', 140, 'normaluser', (now() - interval '55 days')); -- usr_id = 5
-insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
-values ('Daniel Paulo', 'dexpaulo@hotmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2005-11-01', 'Utilizador ativo na plataforma.', 2000, 'Loures', 75, 'admin', (now() - interval '54 days')); -- usr_id = 6
-insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
-values ('Jocy Grangeiro', 'jocy12@gmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'F', '2004-11-04', 'Gosto de oportunidades e prémios.', 1248, 'Setúbal', 110, 'normaluser', (now() - interval '53 days')); -- usr_id = 7
-insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
-values ('Paulo Alberto', 'pauloencomendas@gmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2001-11-09', 'Interessa-me eletrónica e desporto.', 629, 'Almada', 90, 'normaluser', (now() - interval '52 days')); -- usr_id = 8
-insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
-values ('Patricia Daibert', 'patriciadaibert@hotmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'F', '2002-11-13', 'Revejo relatórios e procuro artigos para casa.', 1890, 'Lisboa', 130, 'normaluser', (now() - interval '51 days')); -- usr_id = 9
-insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
-values ('Martim Fonseca', 'mrmartim@hotmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2006-12-01', 'Designer nas horas vagas, curioso por videojogos.', 1369, 'Braga', 55, 'normaluser', (now() - interval '50 days')); -- usr_id = 10
-insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
-values ('Tomas Lebre', 'tomaslebre@gmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2005-12-02', 'Programador Java e participante frequente em leilões.', 1897, 'Coimbra', 70, 'normaluser', (now() - interval '49 days')); -- usr_id = 11
+insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_photo, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
+values ('Rodrigo Canto', 'rodrigocanto@hotmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2005-10-20', 'uploads/seed/avatars/u1.png', 'Estudante de Engenharia Informática e fã de tecnologia.', 1954, 'Lisboa', 120, 'admin', (now() - interval '59 days')); -- usr_id = 1
+insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_photo, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
+values ('Rodrigo Daibert', 'rodrigodaibert@hotmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2005-10-22', 'uploads/seed/avatars/u2.png', 'Gosto de leilões, gaming e sistemas distribuídos.', 1946, 'Amadora', 95, 'admin', (now() - interval '58 days')); -- usr_id = 2
+insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_photo, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
+values ('Marco Fonseca', 'mf2006@gmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2006-10-24', 'uploads/seed/avatars/u3.png', 'Colecionador e explicador de Matemática.', 2183, 'Cascais', 180, 'admin', (now() - interval '57 days')); -- usr_id = 3
+insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_photo, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
+values ('Luis Quirim', 'luisquirim@gmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2004-10-28', 'uploads/seed/avatars/u4.png', 'Interesso-me por artigos para casa e carros.', 2000, 'Sintra', 60, 'normaluser', (now() - interval '56 days')); -- usr_id = 4
+insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_photo, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
+values ('Sandra Estrela', 'sandra@hotmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'F', '2003-10-30', 'uploads/seed/avatars/u5.png', 'Adoro moda, decoração e música.', 1901, 'Oeiras', 140, 'normaluser', (now() - interval '55 days')); -- usr_id = 5
+insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_photo, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
+values ('Daniel Paulo', 'dexpaulo@hotmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2005-11-01', 'uploads/seed/avatars/u6.png', 'Utilizador ativo na plataforma.', 2000, 'Loures', 75, 'admin', (now() - interval '54 days')); -- usr_id = 6
+insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_photo, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
+values ('Jocy Grangeiro', 'jocy12@gmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'F', '2004-11-04', 'uploads/seed/avatars/u7.png', 'Gosto de oportunidades e prémios.', 1248, 'Setúbal', 110, 'normaluser', (now() - interval '53 days')); -- usr_id = 7
+insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_photo, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
+values ('Paulo Alberto', 'pauloencomendas@gmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2001-11-09', 'uploads/seed/avatars/u8.png', 'Interessa-me eletrónica e desporto.', 629, 'Almada', 90, 'normaluser', (now() - interval '52 days')); -- usr_id = 8
+insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_photo, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
+values ('Patricia Daibert', 'patriciadaibert@hotmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'F', '2002-11-13', 'uploads/seed/avatars/u9.png', 'Revejo relatórios e procuro artigos para casa.', 1890, 'Lisboa', 130, 'normaluser', (now() - interval '51 days')); -- usr_id = 9
+insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_photo, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
+values ('Martim Fonseca', 'mrmartim@hotmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2006-12-01', 'uploads/seed/avatars/u10.png', 'Designer nas horas vagas, curioso por videojogos.', 1369, 'Braga', 55, 'normaluser', (now() - interval '50 days')); -- usr_id = 10
+insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_photo, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
+values ('Tomas Lebre', 'tomaslebre@gmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2005-12-02', 'uploads/seed/avatars/u11.png', 'Programador Java e participante frequente em leilões.', 1897, 'Coimbra', 70, 'normaluser', (now() - interval '49 days')); -- usr_id = 11
+insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_photo, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
+values ('Beatriz Lopes', 'beatrizlopes@gmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'F', '2004-03-15', 'uploads/seed/avatars/u12.png', 'Estudante de Design; vendo o que já não uso para comprar material.', 2000, 'Lisboa', 85, 'normaluser', (now() - interval '48 days')); -- usr_id = 12
+insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_photo, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
+values ('Inês Carvalho', 'inescarvalho@hotmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'F', '2005-06-02', 'uploads/seed/avatars/u13.png', 'Procuro livros e material para a faculdade.', 2000, 'Porto', 65, 'normaluser', (now() - interval '47 days')); -- usr_id = 13
+insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_photo, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)
+values ('Miguel Santos', 'miguelsantos@gmail.com', '$2a$10$Br9bDCKxh9JoSYY2GV7XJeVWaVlLQxIzvkdlMiUaQ4l956KSbfcay', 'M', '2003-09-21', 'uploads/seed/avatars/u14.png', 'Gamer e colecionador de relógios.', 1455, 'Faro', 100, 'normaluser', (now() - interval '46 days')); -- usr_id = 14
 
 insert into product (prd_name, prd_description, prd_cat_id, prd_usr_id, prd_winner_usr_id, prd_type, prd_condition, prd_start_price, prd_location, prd_latitude, prd_longitude, prd_status, prd_ends_at, prd_created_at)
-values ('iPhone 13 128 GB', 'iPhone 13 em excelente estado, sempre com capa e película. Bateria a 89 %. Inclui caixa original e cabo USB-C para Lightning.', 1, 1, null, 'product', 'like new', 300, 'Lisboa', 38.7169, -9.1399, 'active', (now() + interval '3 days'), (now() - interval '4 days')); -- prd_id = 1
+values ('iPhone 13 128 GB', 'iPhone 13 em excelente estado, sempre com capa e película. Bateria a 89 %. Inclui caixa original e cabo USB-C para Lightning.', 1, 1, null, 'product', 'like new', 300, 'Lisboa', 38.7169, -9.1399, 'active', (now() + interval '24 days'), (now() - interval '4 days')); -- prd_id = 1
 insert into product_image (img_prd_id, img_path, img_is_primary) values (1, 'uploads/seed/iphone13-1.jpg', true);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (1, 'uploads/seed/iphone13-2.jpg', false);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (1, 'uploads/seed/iphone13-3.jpg', false);
@@ -56,7 +62,7 @@ insert into product_attribute (atr_prd_id, atr_name, atr_value) values (1, 'Cor'
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (1, 'Bateria', '89 %');
 
 insert into product (prd_name, prd_description, prd_cat_id, prd_usr_id, prd_winner_usr_id, prd_type, prd_condition, prd_start_price, prd_location, prd_latitude, prd_longitude, prd_status, prd_ends_at, prd_created_at)
-values ('Nike Air Max 90 (tamanho 42)', 'Ténis Nike Air Max 90 usados duas vezes, sem marcas de uso. Vendo porque o tamanho não me serve.', 2, 5, null, 'product', 'like new', 60, 'Oeiras', 38.6979, -9.3017, 'active', (now() + interval '5 days'), (now() - interval '3 days')); -- prd_id = 2
+values ('Nike Air Max 90 (tamanho 42)', 'Ténis Nike Air Max 90 usados duas vezes, sem marcas de uso. Vendo porque o tamanho não me serve.', 2, 5, null, 'product', 'like new', 60, 'Oeiras', 38.6979, -9.3017, 'active', (now() + interval '26 days'), (now() - interval '3 days')); -- prd_id = 2
 insert into product_image (img_prd_id, img_path, img_is_primary) values (2, 'uploads/seed/nike-1.jpg', true);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (2, 'uploads/seed/nike-2.jpg', false);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (2, 'uploads/seed/nike-3.jpg', false);
@@ -64,7 +70,7 @@ insert into product_attribute (atr_prd_id, atr_name, atr_value) values (2, 'Tama
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (2, 'Marca', 'Nike');
 
 insert into product (prd_name, prd_description, prd_cat_id, prd_usr_id, prd_winner_usr_id, prd_type, prd_condition, prd_start_price, prd_location, prd_latitude, prd_longitude, prd_status, prd_ends_at, prd_created_at)
-values ('Mesa de jantar em madeira maciça', 'Mesa de jantar em carvalho para 6 pessoas, 180 × 90 cm. Pequenas marcas de uso no tampo. Levantamento em Sintra.', 3, 4, null, 'product', 'good', 80, 'Sintra', 38.8029, -9.3817, 'active', (now() + interval '6 days'), (now() - interval '5 days')); -- prd_id = 3
+values ('Mesa de jantar em madeira maciça', 'Mesa de jantar em carvalho para 6 pessoas, 180 × 90 cm. Pequenas marcas de uso no tampo. Levantamento em Sintra.', 3, 4, null, 'product', 'good', 80, 'Sintra', 38.8029, -9.3817, 'active', (now() + interval '27 days'), (now() - interval '5 days')); -- prd_id = 3
 insert into product_image (img_prd_id, img_path, img_is_primary) values (3, 'uploads/seed/mesa-1.jpg', true);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (3, 'uploads/seed/mesa-2.jpg', false);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (3, 'uploads/seed/mesa-3.jpg', false);
@@ -73,7 +79,7 @@ insert into product_attribute (atr_prd_id, atr_name, atr_value) values (3, 'Luga
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (3, 'Dimensões', '180 × 90 cm');
 
 insert into product (prd_name, prd_description, prd_cat_id, prd_usr_id, prd_winner_usr_id, prd_type, prd_condition, prd_start_price, prd_location, prd_latitude, prd_longitude, prd_status, prd_ends_at, prd_created_at)
-values ('Bola de futebol Adidas', 'Bola oficial Adidas, tamanho 5, pouco usada. Ideal para os jogos de futsal do campus.', 4, 8, null, 'product', 'good', 20, 'Almada', 38.6794, -9.1569, 'active', (now() + interval '2 days'), (now() - interval '2 days')); -- prd_id = 4
+values ('Bola de futebol Adidas', 'Bola oficial Adidas, tamanho 5, pouco usada. Ideal para os jogos de futsal do campus.', 4, 8, null, 'product', 'good', 20, 'Almada', 38.6794, -9.1569, 'active', (now() + interval '23 days'), (now() - interval '2 days')); -- prd_id = 4
 insert into product_image (img_prd_id, img_path, img_is_primary) values (4, 'uploads/seed/bola-1.jpg', true);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (4, 'uploads/seed/bola-2.jpg', false);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (4, 'uploads/seed/bola-3.jpg', false);
@@ -89,7 +95,7 @@ insert into product_attribute (atr_prd_id, atr_name, atr_value) values (5, 'Quan
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (5, 'Estado', 'Em capas protetoras');
 
 insert into product (prd_name, prd_description, prd_cat_id, prd_usr_id, prd_winner_usr_id, prd_type, prd_condition, prd_start_price, prd_location, prd_latitude, prd_longitude, prd_status, prd_ends_at, prd_created_at)
-values ('PlayStation 5 Digital Edition', 'PS5 Digital Edition com um comando DualSense. Funciona na perfeição, sem leitor de discos.', 6, 1, null, 'product', 'like new', 350, 'Lisboa', 38.7169, -9.1399, 'active', (now() + interval '4 days'), (now() - interval '3 days')); -- prd_id = 6
+values ('PlayStation 5 Digital Edition', 'PS5 Digital Edition com um comando DualSense. Funciona na perfeição, sem leitor de discos.', 6, 1, null, 'product', 'like new', 350, 'Lisboa', 38.7169, -9.1399, 'active', (now() + interval '25 days'), (now() - interval '3 days')); -- prd_id = 6
 insert into product_image (img_prd_id, img_path, img_is_primary) values (6, 'uploads/seed/ps5-1.jpg', true);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (6, 'uploads/seed/ps5-2.jpg', false);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (6, 'uploads/seed/ps5-3.jpg', false);
@@ -98,7 +104,7 @@ insert into product_attribute (atr_prd_id, atr_name, atr_value) values (6, 'Arma
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (6, 'Comandos', '1 DualSense');
 
 insert into product (prd_name, prd_description, prd_cat_id, prd_usr_id, prd_winner_usr_id, prd_type, prd_condition, prd_start_price, prd_location, prd_latitude, prd_longitude, prd_status, prd_ends_at, prd_created_at)
-values ('Peugeot 206 1.4 HDi (2004)', 'Carro económico, ideal para ir para a faculdade. Revisão feita há 3 meses, pneus novos. Inspeção válida até 2027.', 7, 4, null, 'product', 'used', 1200, 'Sintra', 38.8029, -9.3817, 'active', (now() + interval '7 days'), (now() - interval '6 days')); -- prd_id = 7
+values ('Peugeot 206 1.4 HDi (2004)', 'Carro económico, ideal para ir para a faculdade. Revisão feita há 3 meses, pneus novos. Inspeção válida até 2027.', 7, 4, null, 'product', 'used', 1200, 'Sintra', 38.8029, -9.3817, 'active', (now() + interval '28 days'), (now() - interval '6 days')); -- prd_id = 7
 insert into product_image (img_prd_id, img_path, img_is_primary) values (7, 'uploads/seed/peugeot-1.jpg', true);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (7, 'uploads/seed/peugeot-2.jpg', false);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (7, 'uploads/seed/peugeot-3.jpg', false);
@@ -107,7 +113,7 @@ insert into product_attribute (atr_prd_id, atr_name, atr_value) values (7, 'Comb
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (7, 'Ano', '2004');
 
 insert into product (prd_name, prd_description, prd_cat_id, prd_usr_id, prd_winner_usr_id, prd_type, prd_condition, prd_start_price, prd_location, prd_latitude, prd_longitude, prd_status, prd_ends_at, prd_created_at)
-values ('Harry Potter e a Pedra Filosofal (1.ª edição PT)', 'Primeira edição portuguesa da Editorial Presença, capa mole, bom estado geral.', 8, 9, null, 'product', 'good', 10, 'Lisboa', 38.7169, -9.1399, 'active', (now() + interval '3 days'), (now() - interval '2 days')); -- prd_id = 8
+values ('Harry Potter e a Pedra Filosofal (1.ª edição PT)', 'Primeira edição portuguesa da Editorial Presença, capa mole, bom estado geral.', 8, 9, null, 'product', 'good', 10, 'Lisboa', 38.7169, -9.1399, 'active', (now() + interval '24 days'), (now() - interval '2 days')); -- prd_id = 8
 insert into product_image (img_prd_id, img_path, img_is_primary) values (8, 'uploads/seed/livro-1.jpg', true);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (8, 'uploads/seed/livro-2.jpg', false);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (8, 'uploads/seed/livro-3.jpg', false);
@@ -115,46 +121,55 @@ insert into product_attribute (atr_prd_id, atr_name, atr_value) values (8, 'Edit
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (8, 'Idioma', 'Português');
 
 insert into product (prd_name, prd_description, prd_cat_id, prd_usr_id, prd_winner_usr_id, prd_type, prd_condition, prd_start_price, prd_location, prd_latitude, prd_longitude, prd_status, prd_ends_at, prd_created_at)
-values ('Explicações de Cálculo I (4 sessões)', 'Quatro sessões de 1h30 de preparação para o exame de Cálculo I: limites, derivadas, integrais e séries. Inclui fichas de exercícios resolvidas.', 15, 3, null, 'service', null, 40, 'Campus IADE, Lisboa', 38.7071, -9.1525, 'active', (now() + interval '4 days'), (now() - interval '3 days')); -- prd_id = 9
+values ('Explicações de Cálculo I (4 sessões)', 'Quatro sessões de 1h30 de preparação para o exame de Cálculo I: limites, derivadas, integrais e séries. Inclui fichas de exercícios resolvidas.', 15, 3, null, 'service', null, 40, 'Campus IADE, Lisboa', 38.7071, -9.1525, 'active', (now() + interval '25 days'), (now() - interval '3 days')); -- prd_id = 9
 insert into product_image (img_prd_id, img_path, img_is_primary) values (9, 'uploads/seed/calculo-1.jpg', true);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (9, 'uploads/seed/calculo-2.jpg', false);
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (9, 'Duração', '4 × 1h30');
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (9, 'Formato', 'Presencial ou online');
 
 insert into product (prd_name, prd_description, prd_cat_id, prd_usr_id, prd_winner_usr_id, prd_type, prd_condition, prd_start_price, prd_location, prd_latitude, prd_longitude, prd_status, prd_ends_at, prd_created_at)
-values ('Explicações de Programação Java (POO)', 'Apoio em Programação Orientada a Objetos com Java: classes, herança, interfaces, coleções e testes com JUnit. Ajuda nos projetos da cadeira.', 15, 11, null, 'service', null, 50, 'Online', null, null, 'active', (now() + interval '5 days'), (now() - interval '2 days')); -- prd_id = 10
+values ('Explicações de Programação Java (POO)', 'Apoio em Programação Orientada a Objetos com Java: classes, herança, interfaces, coleções e testes com JUnit. Ajuda nos projetos da cadeira.', 15, 11, null, 'service', null, 50, 'Online', null, null, 'active', (now() + interval '26 days'), (now() - interval '2 days')); -- prd_id = 10
 insert into product_image (img_prd_id, img_path, img_is_primary) values (10, 'uploads/seed/java-1.jpg', true);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (10, 'uploads/seed/java-2.jpg', false);
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (10, 'Duração', '3 × 1h');
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (10, 'Formato', 'Online');
 
 insert into product (prd_name, prd_description, prd_cat_id, prd_usr_id, prd_winner_usr_id, prd_type, prd_condition, prd_start_price, prd_location, prd_latitude, prd_longitude, prd_status, prd_ends_at, prd_created_at)
-values ('Revisão de relatório académico (até 30 páginas)', 'Revisão ortográfica e de estrutura de relatórios e trabalhos académicos, com comentários e sugestões. Entrega em 48 horas.', 17, 9, null, 'service', null, 30, 'Online', null, null, 'active', (now() + interval '3 days'), (now() - interval '2 days')); -- prd_id = 11
+values ('Revisão de relatório académico (até 30 páginas)', 'Revisão ortográfica e de estrutura de relatórios e trabalhos académicos, com comentários e sugestões. Entrega em 48 horas.', 17, 9, null, 'service', null, 30, 'Online', null, null, 'active', (now() + interval '24 days'), (now() - interval '2 days')); -- prd_id = 11
 insert into product_image (img_prd_id, img_path, img_is_primary) values (11, 'uploads/seed/revisao-1.jpg', true);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (11, 'uploads/seed/revisao-2.jpg', false);
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (11, 'Prazo de entrega', '48 horas');
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (11, 'Limite', '30 páginas');
 
 insert into product (prd_name, prd_description, prd_cat_id, prd_usr_id, prd_winner_usr_id, prd_type, prd_condition, prd_start_price, prd_location, prd_latitude, prd_longitude, prd_status, prd_ends_at, prd_created_at)
-values ('Aulas de guitarra para iniciantes (2 aulas)', 'Duas aulas de 1 hora para quem nunca tocou: acordes básicos, ritmo e a primeira música completa. Guitarra disponível se precisares.', 16, 5, null, 'service', null, 25, 'Oeiras', 38.6979, -9.3017, 'active', (now() + interval '6 days'), (now() - interval '4 days')); -- prd_id = 12
+values ('Aulas de guitarra para iniciantes (2 aulas)', 'Duas aulas de 1 hora para quem nunca tocou: acordes básicos, ritmo e a primeira música completa. Guitarra disponível se precisares.', 16, 5, null, 'service', null, 25, 'Oeiras', 38.6979, -9.3017, 'active', (now() + interval '27 days'), (now() - interval '4 days')); -- prd_id = 12
 insert into product_image (img_prd_id, img_path, img_is_primary) values (12, 'uploads/seed/guitarra-1.jpg', true);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (12, 'uploads/seed/guitarra-2.jpg', false);
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (12, 'Duração', '2 × 1h');
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (12, 'Nível', 'Iniciante');
 
 insert into product (prd_name, prd_description, prd_cat_id, prd_usr_id, prd_winner_usr_id, prd_type, prd_condition, prd_start_price, prd_location, prd_latitude, prd_longitude, prd_status, prd_ends_at, prd_created_at)
-values ('Design de logótipo para projeto ou associação', 'Criação de logótipo com 3 propostas iniciais e 2 rondas de alterações. Entrega em SVG e PNG, com guia de cores.', 18, 10, null, 'service', null, 35, 'Online', null, null, 'active', (now() + interval '5 days'), (now() - interval '3 days')); -- prd_id = 13
+values ('Design de logótipo para projeto ou associação', 'Criação de logótipo com 3 propostas iniciais e 2 rondas de alterações. Entrega em SVG e PNG, com guia de cores.', 18, 10, null, 'service', null, 35, 'Online', null, null, 'active', (now() + interval '26 days'), (now() - interval '3 days')); -- prd_id = 13
 insert into product_image (img_prd_id, img_path, img_is_primary) values (13, 'uploads/seed/logo-1.jpg', true);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (13, 'uploads/seed/logo-2.jpg', false);
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (13, 'Propostas', '3');
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (13, 'Formatos', 'SVG e PNG');
 
 insert into product (prd_name, prd_description, prd_cat_id, prd_usr_id, prd_winner_usr_id, prd_type, prd_condition, prd_start_price, prd_location, prd_latitude, prd_longitude, prd_status, prd_ends_at, prd_created_at)
-values ('Explicações de Sistemas Distribuídos (exame)', 'Preparação para o exame de Sistemas Distribuídos: replicação, consenso (Paxos e Raft), transações distribuídas e tolerância a faltas, com exercícios de exames anteriores.', 15, 2, null, 'service', null, 45, 'Campus IADE, Lisboa', 38.7071, -9.1525, 'active', (now() + interval '2 days'), (now() - interval '2 days')); -- prd_id = 14
+values ('Explicações de Sistemas Distribuídos (exame)', 'Preparação para o exame de Sistemas Distribuídos: replicação, consenso (Paxos e Raft), transações distribuídas e tolerância a faltas, com exercícios de exames anteriores.', 15, 2, null, 'service', null, 45, 'Campus IADE, Lisboa', 38.7071, -9.1525, 'active', (now() + interval '23 days'), (now() - interval '2 days')); -- prd_id = 14
 insert into product_image (img_prd_id, img_path, img_is_primary) values (14, 'uploads/seed/sd-1.jpg', true);
 insert into product_image (img_prd_id, img_path, img_is_primary) values (14, 'uploads/seed/sd-2.jpg', false);
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (14, 'Duração', '3 × 1h30');
 insert into product_attribute (atr_prd_id, atr_name, atr_value) values (14, 'Formato', 'Presencial');
+
+insert into product (prd_name, prd_description, prd_cat_id, prd_usr_id, prd_winner_usr_id, prd_type, prd_condition, prd_start_price, prd_location, prd_latitude, prd_longitude, prd_status, prd_ends_at, prd_created_at)
+values ('MacBook Pro 13" (M1, 2020)', 'MacBook Pro com chip M1, 8 GB de RAM e 256 GB SSD. Bateria com 87 % de saúde e carregador original. Sem riscos no ecrã; ideal para programar e para design.', 1, 12, null, 'product', 'good', 450, 'Lisboa', 38.7169, -9.1399, 'active', (now() + interval '25 days'), (now() - interval '1 days')); -- prd_id = 15
+insert into product_image (img_prd_id, img_path, img_is_primary) values (15, 'uploads/seed/macbook-1.jpg', true);
+insert into product_image (img_prd_id, img_path, img_is_primary) values (15, 'uploads/seed/macbook-2.jpg', false);
+insert into product_image (img_prd_id, img_path, img_is_primary) values (15, 'uploads/seed/macbook-3.jpg', false);
+insert into product_attribute (atr_prd_id, atr_name, atr_value) values (15, 'Processador', 'Apple M1');
+insert into product_attribute (atr_prd_id, atr_name, atr_value) values (15, 'Memória', '8 GB');
+insert into product_attribute (atr_prd_id, atr_name, atr_value) values (15, 'Armazenamento', '256 GB SSD');
 
 insert into bid (bid_prd_id, bid_usr_id, bid_amount, bid_created_at) values (5, 7, 131, (now() - interval '11089 minutes'));
 insert into bid (bid_prd_id, bid_usr_id, bid_amount, bid_created_at) values (5, 11, 138, (now() - interval '9649 minutes'));
@@ -204,10 +219,13 @@ insert into bid (bid_prd_id, bid_usr_id, bid_amount, bid_created_at) values (4, 
 insert into bid (bid_prd_id, bid_usr_id, bid_amount, bid_created_at) values (6, 10, 589, (now() - interval '1084 minutes'));
 insert into bid (bid_prd_id, bid_usr_id, bid_amount, bid_created_at) values (14, 11, 56, (now() - interval '1010 minutes'));
 insert into bid (bid_prd_id, bid_usr_id, bid_amount, bid_created_at) values (14, 3, 61, (now() - interval '992 minutes'));
+insert into bid (bid_prd_id, bid_usr_id, bid_amount, bid_created_at) values (15, 7, 476, (now() - interval '727 minutes'));
 insert into bid (bid_prd_id, bid_usr_id, bid_amount, bid_created_at) values (10, 9, 60, (now() - interval '714 minutes'));
 insert into bid (bid_prd_id, bid_usr_id, bid_amount, bid_created_at) values (1, 2, 473, (now() - interval '697 minutes'));
 insert into bid (bid_prd_id, bid_usr_id, bid_amount, bid_created_at) values (3, 5, 99, (now() - interval '658 minutes'));
+insert into bid (bid_prd_id, bid_usr_id, bid_amount, bid_created_at) values (15, 13, 516, (now() - interval '610 minutes'));
 insert into bid (bid_prd_id, bid_usr_id, bid_amount, bid_created_at) values (1, 7, 503, (now() - interval '603 minutes'));
+insert into bid (bid_prd_id, bid_usr_id, bid_amount, bid_created_at) values (15, 14, 545, (now() - interval '478 minutes'));
 insert into bid (bid_prd_id, bid_usr_id, bid_amount, bid_created_at) values (2, 7, 74, (now() - interval '436 minutes'));
 insert into bid (bid_prd_id, bid_usr_id, bid_amount, bid_created_at) values (4, 10, 28, (now() - interval '346 minutes'));
 insert into bid (bid_prd_id, bid_usr_id, bid_amount, bid_created_at) values (9, 2, 54, (now() - interval '293 minutes'));
@@ -226,6 +244,9 @@ insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (9, 'deposit', 2000, 'Saldo inicial', (now() - interval '43200 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (10, 'deposit', 2000, 'Saldo inicial', (now() - interval '43200 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (11, 'deposit', 2000, 'Saldo inicial', (now() - interval '43200 minutes'));
+insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (12, 'deposit', 2000, 'Saldo inicial', (now() - interval '43200 minutes'));
+insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (13, 'deposit', 2000, 'Saldo inicial', (now() - interval '43200 minutes'));
+insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (14, 'deposit', 2000, 'Saldo inicial', (now() - interval '43200 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (7, 'debit', 131, 'Licitação no leilão #5', (now() - interval '11089 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (7, 'deposit', 131, 'Reembolso por ter sido coberto no leilão #5', (now() - interval '9649 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (11, 'debit', 138, 'Licitação no leilão #5', (now() - interval '9649 minutes'));
@@ -309,14 +330,19 @@ insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (11, 'debit', 56, 'Licitação no leilão #14', (now() - interval '1010 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (11, 'deposit', 56, 'Reembolso por ter sido coberto no leilão #14', (now() - interval '992 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (3, 'debit', 61, 'Licitação no leilão #14', (now() - interval '992 minutes'));
+insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (7, 'debit', 476, 'Licitação no leilão #15', (now() - interval '727 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (7, 'deposit', 57, 'Reembolso por ter sido coberto no leilão #10', (now() - interval '714 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (9, 'debit', 60, 'Licitação no leilão #10', (now() - interval '714 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (8, 'deposit', 434, 'Reembolso por ter sido coberto no leilão #1', (now() - interval '697 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (2, 'debit', 473, 'Licitação no leilão #1', (now() - interval '697 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (6, 'deposit', 93, 'Reembolso por ter sido coberto no leilão #3', (now() - interval '658 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (5, 'debit', 99, 'Licitação no leilão #3', (now() - interval '658 minutes'));
+insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (7, 'deposit', 476, 'Reembolso por ter sido coberto no leilão #15', (now() - interval '610 minutes'));
+insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (13, 'debit', 516, 'Licitação no leilão #15', (now() - interval '610 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (2, 'deposit', 473, 'Reembolso por ter sido coberto no leilão #1', (now() - interval '603 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (7, 'debit', 503, 'Licitação no leilão #1', (now() - interval '603 minutes'));
+insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (13, 'deposit', 516, 'Reembolso por ter sido coberto no leilão #15', (now() - interval '478 minutes'));
+insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (14, 'debit', 545, 'Licitação no leilão #15', (now() - interval '478 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (10, 'deposit', 67, 'Reembolso por ter sido coberto no leilão #2', (now() - interval '436 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (7, 'debit', 74, 'Licitação no leilão #2', (now() - interval '436 minutes'));
 insert into transactions (tra_usr_id, tra_type, tra_amount, tra_description, tra_created_at) values (2, 'deposit', 26, 'Reembolso por ter sido coberto no leilão #4', (now() - interval '346 minutes'));
@@ -369,7 +395,9 @@ insert into notifications (not_usr_id, not_type, not_message, not_read, not_crea
 insert into notifications (not_usr_id, not_type, not_message, not_read, not_created_at) values (7, 'bid_outbid', 'Alguém cobriu a tua oferta em ''Explicações de Programação Java (POO)''! Nova licitação de 60 €. O valor foi devolvido ao teu saldo.', false, (now() - interval '714 minutes'));
 insert into notifications (not_usr_id, not_type, not_message, not_read, not_created_at) values (8, 'bid_outbid', 'Alguém cobriu a tua oferta em ''iPhone 13 128 GB''! Nova licitação de 473 €. O valor foi devolvido ao teu saldo.', false, (now() - interval '697 minutes'));
 insert into notifications (not_usr_id, not_type, not_message, not_read, not_created_at) values (6, 'bid_outbid', 'Alguém cobriu a tua oferta em ''Mesa de jantar em madeira maciça''! Nova licitação de 99 €. O valor foi devolvido ao teu saldo.', false, (now() - interval '658 minutes'));
+insert into notifications (not_usr_id, not_type, not_message, not_read, not_created_at) values (7, 'bid_outbid', 'Alguém cobriu a tua oferta em ''MacBook Pro 13" (M1, 2020)''! Nova licitação de 516 €. O valor foi devolvido ao teu saldo.', false, (now() - interval '610 minutes'));
 insert into notifications (not_usr_id, not_type, not_message, not_read, not_created_at) values (2, 'bid_outbid', 'Alguém cobriu a tua oferta em ''iPhone 13 128 GB''! Nova licitação de 503 €. O valor foi devolvido ao teu saldo.', false, (now() - interval '603 minutes'));
+insert into notifications (not_usr_id, not_type, not_message, not_read, not_created_at) values (13, 'bid_outbid', 'Alguém cobriu a tua oferta em ''MacBook Pro 13" (M1, 2020)''! Nova licitação de 545 €. O valor foi devolvido ao teu saldo.', false, (now() - interval '478 minutes'));
 insert into notifications (not_usr_id, not_type, not_message, not_read, not_created_at) values (10, 'bid_outbid', 'Alguém cobriu a tua oferta em ''Nike Air Max 90 (tamanho 42)''! Nova licitação de 74 €. O valor foi devolvido ao teu saldo.', false, (now() - interval '436 minutes'));
 insert into notifications (not_usr_id, not_type, not_message, not_read, not_created_at) values (2, 'bid_outbid', 'Alguém cobriu a tua oferta em ''Bola de futebol Adidas''! Nova licitação de 28 €. O valor foi devolvido ao teu saldo.', false, (now() - interval '346 minutes'));
 insert into notifications (not_usr_id, not_type, not_message, not_read, not_created_at) values (10, 'bid_outbid', 'Alguém cobriu a tua oferta em ''Explicações de Cálculo I (4 sessões)''! Nova licitação de 54 €. O valor foi devolvido ao teu saldo.', false, (now() - interval '293 minutes'));
@@ -437,6 +465,7 @@ insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, ch
 insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (4, 8, '💰 Daniel Paulo licitou 21 €', true, (now() - interval '1660 minutes'));
 insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (11, 9, '💰 Tomas Lebre licitou 39 €', true, (now() - interval '1628 minutes'));
 insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (14, 2, '💰 Martim Fonseca licitou 52 €', true, (now() - interval '1449 minutes'));
+insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (15, 12, '🎬 O leilão começou! Preço inicial: 450 €', true, (now() - interval '1440 minutes'));
 insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (5, 3, '🏁 Leilão terminado! Vencedor: Jocy Grangeiro por 183 €', true, (now() - interval '1440 minutes'));
 insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (4, 8, '💰 Rodrigo Daibert licitou 22 €', true, (now() - interval '1416 minutes'));
 insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (8, 9, '💰 Sandra Estrela licitou 13 €', true, (now() - interval '1412 minutes'));
@@ -448,10 +477,13 @@ insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, ch
 insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (6, 1, '💰 Martim Fonseca licitou 589 €', true, (now() - interval '1084 minutes'));
 insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (14, 2, '💰 Tomas Lebre licitou 56 €', true, (now() - interval '1010 minutes'));
 insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (14, 2, '💰 Marco Fonseca licitou 61 €', true, (now() - interval '992 minutes'));
+insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (15, 12, '💰 Jocy Grangeiro licitou 476 €', true, (now() - interval '727 minutes'));
 insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (10, 11, '💰 Patricia Daibert licitou 60 €', true, (now() - interval '714 minutes'));
 insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (1, 1, '💰 Rodrigo Daibert licitou 473 €', true, (now() - interval '697 minutes'));
 insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (3, 4, '💰 Sandra Estrela licitou 99 €', true, (now() - interval '658 minutes'));
+insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (15, 12, '💰 Inês Carvalho licitou 516 €', true, (now() - interval '610 minutes'));
 insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (1, 1, '💰 Jocy Grangeiro licitou 503 €', true, (now() - interval '603 minutes'));
+insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (15, 12, '💰 Miguel Santos licitou 545 €', true, (now() - interval '478 minutes'));
 insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (2, 5, '💰 Jocy Grangeiro licitou 74 €', true, (now() - interval '436 minutes'));
 insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (4, 8, '💰 Martim Fonseca licitou 28 €', true, (now() - interval '346 minutes'));
 insert into chat_message (cht_prd_id, cht_usr_id, cht_content, cht_is_system, cht_created_at) values (9, 3, '💰 Rodrigo Daibert licitou 54 €', true, (now() - interval '293 minutes'));

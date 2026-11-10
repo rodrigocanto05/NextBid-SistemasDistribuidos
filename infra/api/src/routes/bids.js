@@ -4,6 +4,7 @@ const bids = require('../services/bids');
 const { requireAuth } = require('../lib/auth');
 const { fail, int, num, str } = require('../lib/http');
 const { post, get } = require('./_util');
+const log = require('../lib/log');
 
 const router = express.Router();
 
@@ -18,7 +19,9 @@ post(router, '/place', requireAuth, async (req, res) => {
     if (amount > 99999999) throw fail('Valor demasiado alto.');
 
     const key = str(req.get('Idempotency-Key') || b.request_id).trim().slice(0, 64) || null;
-    res.json(await bids.placeBid(req.user.id, productId, amount, key));
+    const result = await bids.placeBid(req.user.id, productId, amount, key);
+    if (!result.duplicate) log.info(`lance de ${amount} € aceite no leilão #${productId} (utilizador #${req.user.id})`);
+    res.json(result);
 });
 
 get(router, '/get_by_auction', async (req, res) => {

@@ -15,6 +15,7 @@ const { notify, chatSystem, giveRandomXp } = require('../services/common');
 const { EventType } = require('../messaging/events');
 const { QUEUES } = require('../messaging/topology');
 const realtime = require('../realtime/emitter');
+const log = require('../lib/log');
 
 /** @param {import('pg').PoolClient} c @param {object} d payload de events.bidPlaced */
 async function onBidPlaced(c, d) {
@@ -39,6 +40,7 @@ async function onBidPlaced(c, d) {
 
     const chtId = await chatSystem(c, d.product_id, `💰 ${d.bidder_name} licitou ${fmtCr(d.amount)}`);
     await giveRandomXp(c, d.bidder_id, `Licitação no produto #${d.product_id}`);
+    log.info(`evento bid.placed do leilão #${d.product_id} (${fmtCr(d.amount)}): chat, avisos e XP feitos`);
     return { product_id: d.product_id, cht_id: chtId };
 }
 

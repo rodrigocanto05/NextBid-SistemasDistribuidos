@@ -41,3 +41,13 @@ Redimensionadas para 1000 px de largura. Origem de cada ficheiro:
 | `logo-2.jpg` | https://images.unsplash.com/photo-1611241893603-3c359704e0ee |
 | `sd-1.jpg` | https://images.unsplash.com/photo-1695668548342-c0c1ad479aee |
 | `sd-2.jpg` | https://images.unsplash.com/photo-1784652852605-6945598f2af3 |
+
+Fotografias do [Pexels](https://www.pexels.com) (licença Pexels, uso livre):
+
+| Ficheiro | Origem |
+|---|---|
+| `macbook-1.jpg` | Pexels, foto de nickoloui (2506947) |
+| `macbook-2.jpg` | Pexels, foto de Janine Speidel (32966915) |
+| `macbook-3.jpg` | Pexels, foto de dlxmedia.hu (12015532) |
+
+Os avatares em `avatars/` são gerados por `infra/postgres/tools/gen_avatars.py` (iniciais sobre um gradiente).

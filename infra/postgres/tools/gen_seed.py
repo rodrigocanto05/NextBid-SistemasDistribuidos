@@ -2,7 +2,7 @@
 """Gera infra/postgres/init/02_seed.sql: dados de demonstração do NextBid.
 
   * moeda: euros (cada conta começa com 2000 €)
-  * 8 produtos + 6 serviços, com descrição, atributos e imagens (infra/seed-uploads/)
+  * 14 contas com avatar, 9 produtos + 6 serviços, com descrição, atributos e imagens (infra/seed-uploads/)
   * lances de várias contas, com o escrow coerente: o lance mais alto de cada leilão está
     retido no saldo de quem o fez, e os licitadores cobertos foram reembolsados
   * 1 leilão já vendido (cartas), com pagamento ao vendedor e avaliação
@@ -31,7 +31,11 @@ USERS = [  # nome, email, género, nascimento, bio, local, xp, papel
     ("Patricia Daibert", "patriciadaibert@hotmail.com", "F", "2002-11-13", "Revejo relatórios e procuro artigos para casa.", "Lisboa", 130, "normaluser"),
     ("Martim Fonseca", "mrmartim@hotmail.com", "M", "2006-12-01", "Designer nas horas vagas, curioso por videojogos.", "Braga", 55, "normaluser"),
     ("Tomas Lebre", "tomaslebre@gmail.com", "M", "2005-12-02", "Programador Java e participante frequente em leilões.", "Coimbra", 70, "normaluser"),
+    ("Beatriz Lopes", "beatrizlopes@gmail.com", "F", "2004-03-15", "Estudante de Design; vendo o que já não uso para comprar material.", "Lisboa", 85, "normaluser"),
+    ("Inês Carvalho", "inescarvalho@hotmail.com", "F", "2005-06-02", "Procuro livros e material para a faculdade.", "Porto", 65, "normaluser"),
+    ("Miguel Santos", "miguelsantos@gmail.com", "M", "2003-09-21", "Gamer e colecionador de relógios.", "Faro", 100, "normaluser"),
 ]
+# Avatar de cada conta: infra/seed-uploads/avatars/u<id>.png (gerados por gen_avatars.py)
 
 CATEGORIES = [  # nome, tipo
     ("Eletrónica", "product"), ("Moda", "product"), ("Casa", "product"), ("Desporto", "product"),
@@ -45,50 +49,55 @@ CAT = {name: i + 1 for i, (name, _) in enumerate(CATEGORIES)}
 
 # slug, nome, descrição, categoria, vendedor, tipo, condição, preço inicial, local, lat, lng,
 # dias desde a criação, dias até ao fim (negativo = já terminou), nº de imagens, atributos, licitadores
+# Os leilões ativos acabam daqui a 3 a 5 semanas, para a base de dados continuar utilizável durante
+# o semestre sem os leilões expirarem (o fim é contado a partir do momento em que a BD é criada).
 ITEMS = [
     ("iphone13", "iPhone 13 128 GB", "iPhone 13 em excelente estado, sempre com capa e película. Bateria a 89 %. Inclui caixa original e cabo USB-C para Lightning.",
-     "Eletrónica", 1, "product", "like new", 300, "Lisboa", 38.7169, -9.1399, 4, 3, 3,
+     "Eletrónica", 1, "product", "like new", 300, "Lisboa", 38.7169, -9.1399, 4, 24, 3,
      [("Armazenamento", "128 GB"), ("Cor", "Meia-noite"), ("Bateria", "89 %")], [2, 7, 11, 8], 6),
     ("nike", "Nike Air Max 90 (tamanho 42)", "Ténis Nike Air Max 90 usados duas vezes, sem marcas de uso. Vendo porque o tamanho não me serve.",
-     "Moda", 5, "product", "like new", 60, "Oeiras", 38.6979, -9.3017, 3, 5, 3,
+     "Moda", 5, "product", "like new", 60, "Oeiras", 38.6979, -9.3017, 3, 26, 3,
      [("Tamanho", "42"), ("Marca", "Nike")], [9, 7, 10], 4),
     ("mesa", "Mesa de jantar em madeira maciça", "Mesa de jantar em carvalho para 6 pessoas, 180 × 90 cm. Pequenas marcas de uso no tampo. Levantamento em Sintra.",
-     "Casa", 4, "product", "good", 80, "Sintra", 38.8029, -9.3817, 5, 6, 3,
+     "Casa", 4, "product", "good", 80, "Sintra", 38.8029, -9.3817, 5, 27, 3,
      [("Material", "Carvalho"), ("Lugares", "6"), ("Dimensões", "180 × 90 cm")], [9, 5, 6], 3),
     ("bola", "Bola de futebol Adidas", "Bola oficial Adidas, tamanho 5, pouco usada. Ideal para os jogos de futsal do campus.",
-     "Desporto", 8, "product", "good", 20, "Almada", 38.6794, -9.1569, 2, 2, 3,
+     "Desporto", 8, "product", "good", 20, "Almada", 38.6794, -9.1569, 2, 23, 3,
      [("Tamanho", "5"), ("Marca", "Adidas")], [10, 11, 2, 6], 5),
     ("cartas", "Coleção de cartas Pokémon", "Coleção de 120 cartas Pokémon em capas protetoras, incluindo várias holográficas. Guardadas num álbum.",
      "Colecionáveis", 3, "product", "like new", 120, "Cascais", 38.6970, -9.4215, 8, -1, 3,
      [("Quantidade", "120 cartas"), ("Estado", "Em capas protetoras")], [2, 11, 7], 5),
     ("ps5", "PlayStation 5 Digital Edition", "PS5 Digital Edition com um comando DualSense. Funciona na perfeição, sem leitor de discos.",
-     "Videojogos", 1, "product", "like new", 350, "Lisboa", 38.7169, -9.1399, 3, 4, 3,
+     "Videojogos", 1, "product", "like new", 350, "Lisboa", 38.7169, -9.1399, 3, 25, 3,
      [("Versão", "Digital Edition"), ("Armazenamento", "825 GB"), ("Comandos", "1 DualSense")], [11, 10, 2, 7], 6),
     ("peugeot", "Peugeot 206 1.4 HDi (2004)", "Carro económico, ideal para ir para a faculdade. Revisão feita há 3 meses, pneus novos. Inspeção válida até 2027.",
-     "Automóveis", 4, "product", "used", 1200, "Sintra", 38.8029, -9.3817, 6, 7, 3,
+     "Automóveis", 4, "product", "used", 1200, "Sintra", 38.8029, -9.3817, 6, 28, 3,
      [("Quilómetros", "120 000 km"), ("Combustível", "Diesel"), ("Ano", "2004")], [6, 8], 2),
     ("livro", "Harry Potter e a Pedra Filosofal (1.ª edição PT)", "Primeira edição portuguesa da Editorial Presença, capa mole, bom estado geral.",
-     "Livros", 9, "product", "good", 10, "Lisboa", 38.7169, -9.1399, 2, 3, 3,
+     "Livros", 9, "product", "good", 10, "Lisboa", 38.7169, -9.1399, 2, 24, 3,
      [("Editora", "Editorial Presença"), ("Idioma", "Português")], [5, 7, 10], 4),
     # serviços
     ("calculo", "Explicações de Cálculo I (4 sessões)", "Quatro sessões de 1h30 de preparação para o exame de Cálculo I: limites, derivadas, integrais e séries. Inclui fichas de exercícios resolvidas.",
-     "Explicações", 3, "service", None, 40, "Campus IADE, Lisboa", 38.7071, -9.1525, 3, 4, 2,
+     "Explicações", 3, "service", None, 40, "Campus IADE, Lisboa", 38.7071, -9.1525, 3, 25, 2,
      [("Duração", "4 × 1h30"), ("Formato", "Presencial ou online")], [10, 11, 2], 5),
     ("java", "Explicações de Programação Java (POO)", "Apoio em Programação Orientada a Objetos com Java: classes, herança, interfaces, coleções e testes com JUnit. Ajuda nos projetos da cadeira.",
-     "Explicações", 11, "service", None, 50, "Online", None, None, 2, 5, 2,
+     "Explicações", 11, "service", None, 50, "Online", None, None, 2, 26, 2,
      [("Duração", "3 × 1h"), ("Formato", "Online")], [10, 7, 9], 4),
     ("revisao", "Revisão de relatório académico (até 30 páginas)", "Revisão ortográfica e de estrutura de relatórios e trabalhos académicos, com comentários e sugestões. Entrega em 48 horas.",
-     "Apoio académico", 9, "service", None, 30, "Online", None, None, 2, 3, 2,
+     "Apoio académico", 9, "service", None, 30, "Online", None, None, 2, 24, 2,
      [("Prazo de entrega", "48 horas"), ("Limite", "30 páginas")], [2, 3, 11], 3),
     ("guitarra", "Aulas de guitarra para iniciantes (2 aulas)", "Duas aulas de 1 hora para quem nunca tocou: acordes básicos, ritmo e a primeira música completa. Guitarra disponível se precisares.",
-     "Aulas e workshops", 5, "service", None, 25, "Oeiras", 38.6979, -9.3017, 4, 6, 2,
+     "Aulas e workshops", 5, "service", None, 25, "Oeiras", 38.6979, -9.3017, 4, 27, 2,
      [("Duração", "2 × 1h"), ("Nível", "Iniciante")], [9, 6], 2),
     ("logo", "Design de logótipo para projeto ou associação", "Criação de logótipo com 3 propostas iniciais e 2 rondas de alterações. Entrega em SVG e PNG, com guia de cores.",
-     "Design e multimédia", 10, "service", None, 35, "Online", None, None, 3, 5, 2,
+     "Design e multimédia", 10, "service", None, 35, "Online", None, None, 3, 26, 2,
      [("Propostas", "3"), ("Formatos", "SVG e PNG")], [3, 1, 5], 4),
     ("sd", "Explicações de Sistemas Distribuídos (exame)", "Preparação para o exame de Sistemas Distribuídos: replicação, consenso (Paxos e Raft), transações distribuídas e tolerância a faltas, com exercícios de exames anteriores.",
-     "Explicações", 2, "service", None, 45, "Campus IADE, Lisboa", 38.7071, -9.1525, 2, 2, 2,
+     "Explicações", 2, "service", None, 45, "Campus IADE, Lisboa", 38.7071, -9.1525, 2, 23, 2,
      [("Duração", "3 × 1h30"), ("Formato", "Presencial")], [11, 10, 3, 9], 5),
+    ("macbook", "MacBook Pro 13\" (M1, 2020)", "MacBook Pro com chip M1, 8 GB de RAM e 256 GB SSD. Bateria com 87 % de saúde e carregador original. Sem riscos no ecrã; ideal para programar e para design.",
+     "Eletrónica", 12, "product", "good", 450, "Lisboa", 38.7169, -9.1399, 1, 25, 3,
+     [("Processador", "Apple M1"), ("Memória", "8 GB"), ("Armazenamento", "256 GB SSD")], [13, 14, 7], 3),
 ]
 
 CHAT_EXTRA = {
@@ -199,8 +208,8 @@ for slug, msgs in CHAT_EXTRA.items():
 
 # Utilizadores
 for i, (name, email, g, birth, bio, loc, xp, role) in enumerate(USERS, start=1):
-    w("insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)")
-    w(f"values ({q(name)}, {q(email)}, {q(PASSWORD_HASH)}, {q(g)}, {q(birth)}, {q(bio)}, {balance[i]}, {q(loc)}, {xp}, {q(role)}, (now() - interval '{60 - i} days')); -- usr_id = {i}")
+    w("insert into users (usr_name, usr_email, usr_password, usr_gender, usr_birthdate, usr_photo, usr_bio, usr_balance, usr_location, usr_xp, usr_role, usr_created_at)")
+    w(f"values ({q(name)}, {q(email)}, {q(PASSWORD_HASH)}, {q(g)}, {q(birth)}, 'uploads/seed/avatars/u{i}.png', {q(bio)}, {balance[i]}, {q(loc)}, {xp}, {q(role)}, (now() - interval '{60 - i} days')); -- usr_id = {i}")
 w("")
 
 # Produtos e serviços
