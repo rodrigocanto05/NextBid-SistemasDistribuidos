@@ -1,3 +1,10 @@
+# Só entra na imagem o que a API precisa: package*.json, src/, scripts/ e o entrypoint
 node_modules
-npm-debug.log
+npm-debug.log*
+*.log
 .env
+.env.*
+README.md
+Dockerfile
+.dockerignore
+coverage

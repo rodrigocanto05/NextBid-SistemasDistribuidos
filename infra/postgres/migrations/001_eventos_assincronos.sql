@@ -1,5 +1,4 @@
 -- 001: eventos assíncronos (RabbitMQ) e logout seguro.
--- Ver docs/adr/0001-rabbitmq-eventos-pos-commit.md.
 --
 -- Idempotente (if not exists): pode correr mais do que uma vez sem erro.
 -- Corre como superutilizador, pelo infra/postgres/migrate.sh, que define a variável app_user.

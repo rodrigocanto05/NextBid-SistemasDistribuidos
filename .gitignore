@@ -1,20 +1,53 @@
-# Sistema / editores
-.DS_Store
-Thumbs.db
-.idea/
-
-# Segredos
+# ── Segredos ────────────────────────────────────────────────────────────────
+# Só o modelo vai para o Git. Criar o .env local: cp .env.example .env
 .env
+.env.*
+!.env.example
+*.pem
+*.key
 
-# Node
+# ── Node ────────────────────────────────────────────────────────────────────
 node_modules/
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+coverage/
 
-# Uploads gerados em runtime (no Docker vivem no volume "uploads")
-backend/uploads/avatars/*
-backend/uploads/products/*
-!backend/uploads/avatars/.gitkeep
-!backend/uploads/products/.gitkeep
+# ── Logs, temporários, saídas de testes ─────────────────────────────────────
+*.log
+logs/
+tmp/
+*.tmp
+*.tgz
+*.bak
 
-# Ficheiros temporários de transferência
-.nb_src_snapshot.tgz
+# ── Uploads gerados em runtime (no Docker vivem no volume "uploads") ────────
+backend/uploads/
+
+# ── Sistema operativo ───────────────────────────────────────────────────────
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ── Editores / IDEs ─────────────────────────────────────────────────────────
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+*~
+
+# ── Python (ferramentas em infra/postgres/tools) ────────────────────────────
+__pycache__/
+*.py[cod]
+.venv/
+
+# ── Docker: overrides locais de cada pessoa ─────────────────────────────────
+compose.override.yaml
+docker-compose.override.yml
+

@@ -1,10 +1,41 @@
+# Fins de linha: LF no repositório e no disco, em todos os sistemas.
+# Os scripts correm dentro de contentores Linux: um CRLF parte o shebang.
 * text=auto eol=lf
-*.sh text eol=lf
-*.png binary
-*.jpg binary
+*.sh  text eol=lf
+*.sql text eol=lf
+*.conf text eol=lf
+*.inc text eol=lf
+
+# Scripts do Windows precisam de CRLF
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binários (sem conversão nem diff de texto)
+*.png  binary
+*.jpg  binary
 *.jpeg binary
+*.gif  binary
 *.webp binary
-*.pdf binary
-*.mp4 binary
-*.zip binary
-*.tgz binary
+*.ico  binary
+*.pdf  binary
+*.mp4  binary
+*.mov  binary
+*.zip  binary
+*.tgz  binary
+*.gz   binary
+*.woff  binary
+*.woff2 binary
+*.ttf  binary
+*.docx binary
+*.pptx binary
+*.xlsx binary
+
+# Lockfile: sem diff linha a linha nos PRs
+package-lock.json -diff linguist-generated
+
+# Estatística de linguagens do GitHub: contar só o sistema atual
+backend/**         linguist-vendored
+database/**        linguist-vendored
+Projeto_NextBid/** linguist-documentation
+infra/seed-uploads/** linguist-vendored

@@ -38,7 +38,7 @@ module.exports = {
     // Redis: só tempo real (Socket.IO entre instâncias). Vazio = cada instância só fala com os seus browsers.
     redisUrl: process.env.REDIS_URL || '',
 
-    // RabbitMQ: eventos assíncronos (ver docs/adr/0001-rabbitmq-eventos-pos-commit.md).
+    // RabbitMQ: eventos assíncronos depois do commit (outbox -> broker -> workers).
     // Vazio = os eventos ficam no outbox do PostgreSQL até haver broker.
     rabbitmq: {
         enabled: !!rabbitHost,
