@@ -13,35 +13,33 @@
   <h2>Servidor atual</h2>
   <div id="browser-srv" class="srv">—</div>
 
-  <h2>Nginx</h2>
+  <h2>Entrada <small>(2 Nginx: se um cai, usa-se o outro)</small></h2>
   <table><thead><tr><th>Nó</th><th>Endereço</th><th>Estado</th></tr></thead><tbody id="nginx-nodes"></tbody></table>
   <p class="hint">Pedidos por servidor</p>
   <table><thead><tr><th>Nginx</th><th>api1</th><th>api2</th><th>Pedidos</th></tr></thead><tbody id="nginx"></tbody></table>
   <button id="btn-traffic">Enviar 30 pedidos</button>
 
-  <h2>Servidores</h2>
+  <h2>Servidores <small>(2 APIs Node.js + Express)</small></h2>
   <table>
     <thead><tr><th>Servidor</th><th>Estado</th><th>BD principal</th><th>Timeline</th><th>BD</th><th>Redis</th><th>RabbitMQ</th><th>Líder</th><th>Uptime</th></tr></thead>
     <tbody id="apis"></tbody>
   </table>
 
-  <h2>Base de dados <small>(PostgreSQL)</small></h2>
+  <h2>Base de dados <small>(PostgreSQL: 1 principal + 2 réplicas síncronas, failover automático)</small></h2>
   <table>
     <thead><tr><th>Nó</th><th>Papel</th><th>Timeline</th><th>LSN</th><th>Segue</th><th>Receção</th><th>Atraso</th><th>Réplicas</th></tr></thead>
     <tbody id="pg"></tbody>
   </table>
 
-  <h2>RabbitMQ</h2>
+  <h2>Assíncrono <small>(RabbitMQ + 2 workers: notificações e chat)</small></h2>
   <table><tbody id="broker"></tbody></table>
   <table>
     <thead><tr><th>Fila</th><th>Tipo</th><th>Prontas</th><th>Por confirmar</th><th>Consumidores</th><th>Entrada/s</th><th>Processadas/s</th></tr></thead>
     <tbody id="queues"></tbody>
   </table>
 
-  <h2>Redis</h2>
+  <h2>Tempo real <small>(Redis + WebSocket)</small></h2>
   <table><tbody id="redis"></tbody></table>
-
-  <h2>WebSocket</h2>
   <table><tbody id="ws"><tr><td>Estado</td><td>—</td></tr></tbody></table>
 
   <h2>Eventos</h2>

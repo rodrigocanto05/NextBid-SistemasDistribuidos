@@ -1,6 +1,6 @@
 // Emitir eventos Socket.IO a partir de um processo que NÃO tem servidor Socket.IO (o worker).
 //
-// Publica no mesmo canal Redis que o adaptador das 3 APIs ouve (realtime/socket.js); cada API
+// Publica no mesmo canal Redis que o adaptador das 2 APIs ouve (realtime/socket.js); cada API
 // entrega o evento aos browsers ligados a ela. É assim que o worker avisa a página do leilão de
 // que há uma mensagem nova no chat sem passar pela API.
 

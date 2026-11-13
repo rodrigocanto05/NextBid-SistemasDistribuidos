@@ -1,5 +1,5 @@
 // Logs com o identificador da instância, para se perceber nos `docker compose logs`
-// qual das 3 APIs fez o quê.
+// qual das 2 APIs (ou dos workers) fez o quê.
 const { instanceId } = require('../config');
 
 const stamp = () => new Date().toISOString();

@@ -1,4 +1,4 @@
-// Eleição de líder entre as 3 APIs (slides de Sis-Dis, cap. 5).
+// Eleição de líder entre as 2 APIs (slides de Sis-Dis, cap. 5).
 //
 // Há trabalho que deve correr numa só instância: fechar leilões, publicar o outbox, limpezas.
 // A liderança é um advisory lock do PostgreSQL guardado numa ligação dedicada:

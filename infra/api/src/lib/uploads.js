@@ -1,7 +1,7 @@
 // Uploads de imagens.
 //
-// Com 3 instâncias, uma imagem gravada no disco da api1 não existiria na api2. Por isso
-// UPLOAD_DIR é um volume Docker partilhado pelas 3 APIs e servido diretamente pelo Nginx em
+// Com 2 instâncias, uma imagem gravada no disco da api1 não existiria na api2. Por isso
+// UPLOAD_DIR é um volume Docker partilhado pelas 2 APIs e servido diretamente pelo Nginx em
 // /backend/uploads/. O caminho guardado na BD continua igual ao do PHP: "uploads/products/<ficheiro>".
 
 const fs = require('fs');

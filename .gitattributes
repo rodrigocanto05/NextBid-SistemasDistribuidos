@@ -35,7 +35,5 @@
 package-lock.json -diff linguist-generated
 
 # Estatística de linguagens do GitHub: contar só o sistema atual
-backend/**         linguist-vendored
-database/**        linguist-vendored
 Projeto_NextBid/** linguist-documentation
 infra/seed-uploads/** linguist-vendored

@@ -1,4 +1,4 @@
-// Sessões (JWT). Os tokens não têm estado no servidor: as 3 APIs validam-nos com o mesmo segredo.
+// Sessões (JWT). Os tokens não têm estado no servidor: as 2 APIs validam-nos com o mesmo segredo.
 // Terminar sessões antes de o token expirar precisa, por isso, de estado partilhado:
 //
 //   * logout de UMA sessão -> o `jti` do token vai para revoked_token até à data em que expiraria.

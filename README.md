@@ -146,4 +146,3 @@ docker compose exec -T api1 node scripts/stress-bids.js http://nginx 8 300 20
 | `infra/docker/` | `docker-compose.yml` com todos os serviços (o `compose.yaml` da raiz inclui-o, por isso os comandos correm na raiz) |
 | `.env.example` | Modelo das passwords e segredos; o `.env` real não vai para o Git |
 | `Projeto_NextBid/` | Memória, relatórios e arquivo documental do projeto |
-| `backend/`, `database/` | Versão anterior (PHP + MySQL) do semestre passado; já não é usada |

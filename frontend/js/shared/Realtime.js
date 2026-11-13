@@ -1,7 +1,7 @@
 // Tempo real com Socket.IO.
 // Liga-se à API através do Nginx (/socket.io/) e entra na sala do leilão aberto.
 // Um lance feito noutra janela, mesmo que tratado por outra instância da API, chega aqui logo:
-// as 3 instâncias partilham os eventos através do Redis.
+// as 2 APIs partilham os eventos através do Redis.
 // Se o Socket.IO não estiver disponível (ex.: página aberta sem o Nginx), não faz nada e
 // a página continua a funcionar só com o polling que já existia.
 window.NB = window.NB || {};

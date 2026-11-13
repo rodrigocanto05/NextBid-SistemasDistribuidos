@@ -60,7 +60,7 @@ module.exports = {
     uploadDir: process.env.UPLOAD_DIR || '/data/uploads',
 
     jobs: {
-        // Verificação da liderança (advisory lock) entre as 3 APIs
+        // Verificação da liderança (advisory lock) entre as 2 APIs
         leaderCheckMs: num('LEADER_CHECK_MS', 1000),
         // Fecho de leilões (substitui o executarLazyCron do PHP)
         closeIntervalMs: num('JOB_INTERVAL_MS', 5000),

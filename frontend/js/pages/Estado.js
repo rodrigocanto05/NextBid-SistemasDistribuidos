@@ -25,6 +25,7 @@
   }
   const NOMES = { api1: 'Servidor 1', api2: 'Servidor 2' };
   let browserSrv; // undefined = ainda não verificado
+  let homeSrv;    // primeiro servidor deste browser: é o que a demonstração mata e volta a ligar
 
   async function checkBrowserSrv() {
     let inst = null;
@@ -43,6 +44,7 @@
       setTimeout(() => box.classList.remove('flash'), 600);
     }
     browserSrv = inst;
+    if (!homeSrv && inst) homeSrv = inst;
   }
 
   function event(text) {
@@ -156,10 +158,11 @@
   function renderCommands(cluster) {
     const primary = (cluster?.nodes || []).find(x => x.role === 'principal')?.node || 'pg-primary';
     const other = PG.find(n => n !== primary);
+    const srv = homeSrv || 'api1';
     $('#cmds').textContent = [
-      '# Servidor',
-      'docker compose kill api1',
-      'docker compose start api1',
+      `# Demonstração (8 passos): matar e voltar a ligar o servidor deste browser (${NOMES[srv] || srv})`,
+      `docker compose kill ${srv}`,
+      `docker compose start ${srv}`,
       '# Réplica da base de dados',
       `docker compose kill ${other}`,
       `docker compose start ${other}`,

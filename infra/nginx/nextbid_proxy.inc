@@ -17,7 +17,7 @@ proxy_read_timeout 30s;
 # É de propósito: se a instância caiu a meio de um lance, não sabemos se o lance foi gravado,
 # e repeti-lo podia duplicá-lo. O cliente recebe 502 e decide (o React envia Idempotency-Key).
 #
-# O 503 da API NÃO está na lista: significa "a base de dados está em baixo", e as 3 instâncias
+# O 503 da API NÃO está na lista: significa "a base de dados está em baixo", e as 2 instâncias
 # usam a mesma BD, por isso tentar noutra não ajuda. Pior: contava como falha da instância e,
 # durante um failover da BD, o Nginx marcava as 3 como mortas e respondia 502 em HTML.
 # (Encontrado no primeiro teste real com Docker.)

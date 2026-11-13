@@ -1,5 +1,5 @@
 // Fecho de leilões (corre só na instância líder, ver jobs/leader.js). Substitui o
-// executarLazyCron() do PHP, que fechava leilões "à boleia" de pedidos: com 3 instâncias seriam
+// executarLazyCron() do PHP, que fechava leilões "à boleia" de pedidos: com 2 instâncias seriam
 // 3 processos a tentar fechar o mesmo leilão ao mesmo tempo.
 //
 // Mesmo que por um instante haja duas líderes, closeOne() usa `for no key update skip locked` e só fecha

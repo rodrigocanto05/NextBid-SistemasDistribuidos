@@ -20,7 +20,7 @@ const { ignoreUnhandledRejections, onShutdown } = require('./lib/process');
 ignoreUnhandledRejections();
 
 const server = http.createServer(createApp());
-realtime.init(server); // Socket.IO + adaptador Redis (eventos entre as 3 APIs)
+realtime.init(server); // Socket.IO + adaptador Redis (eventos entre as 2 APIs)
 
 db.start(); //            descoberta do principal PostgreSQL
 schema.check(); //        avisa nos logs se faltar aplicar migrações

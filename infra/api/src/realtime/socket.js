@@ -1,7 +1,7 @@
 // Tempo real com Socket.IO.
 //
-// Problema com 3 instâncias: um browser ligado à api2 não recebe um evento emitido na api1.
-// O adaptador Redis resolve isto: cada emit é publicado num canal Redis e as 3 instâncias
+// Problema com 2 instâncias: um browser ligado à api2 não recebe um evento emitido na api1.
+// O adaptador Redis resolve isto: cada emit é publicado num canal Redis e as 2 instâncias
 // entregam-no aos seus clientes (comunicação em grupo / multicast, slides de Sis-Dis, cap. 2).
 //
 // Salas: `auction:<id>`. O browser entra na sala do leilão que está a ver.
@@ -11,7 +11,7 @@
 //   chat:new        { product_id, cht_id }
 //
 // O cliente deve usar `transports: ['websocket']`: o modo polling precisa de sticky sessions,
-// e o Nginx reparte os pedidos pelas 3 instâncias.
+// e o Nginx reparte os pedidos pelas 2 instâncias.
 
 const { Server } = require('socket.io');
 const { createAdapter } = require('@socket.io/redis-adapter');

@@ -22,8 +22,6 @@ tmp/
 *.tgz
 *.bak
 
-# ── Uploads gerados em runtime (no Docker vivem no volume "uploads") ────────
-backend/uploads/
 
 # ── Sistema operativo ───────────────────────────────────────────────────────
 .DS_Store
